@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LittleLume — Premium English Learning for Kids</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --midnight:   #0D0B1E;
+  --surface:    #141230;
+  --card:       #1A1740;
+  --card-hover: #201D4D;
+  --purple:     #6C63FF;
+  --purple-dim: #3D3899;
+  --mint:       #00E5C3;
+  --mint-dim:   #00B89D;
+  --text:       #F0EEFF;
+  --muted:      #8B8AB8;
+  --border:     rgba(108,99,255,0.18);
+  --glow-p:     rgba(108,99,255,0.35);
+  --glow-m:     rgba(0,229,195,0.25);
+}
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  font-family:'Inter', sans-serif;
+  background:var(--midnight);
+  color:var(--text);
+  overflow-x:hidden;
+  line-height:1.6;
+}
+#particles {
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
+  opacity:0.55;
+}
+nav {
+  position:fixed;
+  top:0; left:0; right:0;
+  z-index:100;
+  padding:18px 40px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  background:rgba(13,11,30,0.75);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  transition:background 0.3s;
+}
+.nav-logo {
+  font-family:'Plus Jakarta Sans', sans-serif;
+  font-weight:800;
+  font-size:1.35rem;
+  letter-spacing:-0.3px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  text-decoration:none;
+  color:var(--text);
+}
+.logo-lume {
+  background:linear-gradient(135deg, var(--purple), var(--mint));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.nav-links {
+  display:flex;
+  align-items:center;
+  gap:32px;
+  list-style:none;
+}
+.nav-links a {
+  color:var(--muted);
+  text-decoration:none;
+  font-size:0.9rem;
+  font-weight:500;
+  transition:color 0.2s;
+}
+.nav-links a:hover { color:var(--text); }
+.btn-nav {
+  background:linear-gradient(135deg, var(--purple), var(--mint));
+  color:#fff !important;
+  padding:10px 22px;
+  border-radius:50px;
+  font-weight:600 !important;
+  font-size:0.88rem !important;
+  transition:opacity 0.2s, transform 0.2s !important;
+}
+.btn-nav:hover { opacity:0.88; transform:translateY(-1px); }
+.hero {
+  position:relative;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:140px 24px 100px;
+  z-index:1;
+}
+.hero-eyebrow {
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  background:rgba(108,99,255,0.12);
+  border:1px solid rgba(108,99,255,0.3);
+  color:var(--mint);
+  padding:7px 18px;
+  border-radius:50px;
+  font-size:0.82rem;
+  font-weight:600;
+  letter-spacing:0.5px;
+  text-transform:uppercase;
+  margin-bottom:28px;
+}
+.hero h1 {
+  font-family:'Plus Jakarta Sans', sans-serif;
+  font-size:clamp(2.6rem, 6vw, 4.4rem);
+  font-weight:800;
+  line-height:1.1;
+  letter-spacing:-1.5px;
+  max-width:820px;
+  margin-bottom:24px;
+}
+.hero h1 em {
+  font-style:normal;
+  background:linear-gradient(135deg, var(--purple) 0%, var(--mint) 100%);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.hero-sub {
+  font-size:1.1rem;
+  color:var(--muted);
+  max-width:520px;
+  margin-bottom:44px;
+  line-height:1.75;
+}
+.hero-cta { display:flex; gap:14px; flex-wrap:wrap; justify-content:center; }
+.btn-primary {
+  background:linear-gradient(135deg, var(--purple), var(--mint));
+  color:#fff;
+  padding:16px 36px;
+  border-radius:50px;
+  font-family:'Plus Jakarta Sans', sans-serif;
+  font-weight:700;
+  font-size:1rem;
+  text-decoration:none;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  box-shadow:0 8px 32px var(--glow-p);
+  transition:transform 0.25s, box-shadow 0.25s;
+}
+.btn-primary:hover { transform:translateY(-3px); box-shadow:0 16px 40px var(--glow-p); }
+.btn-ghost {
+  background:transparent;
+  color:var(--text);
+  padding:16px 36px;
+  border-radius:50px;
+  border:1px solid var(--border);
+  font-weight:600;
+  font-size:1rem;
+  text-decoration:none;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  transition:border-color 0.2s, background 0.2s;
+}
+.btn-ghost:hover { border-color:var(--purple); background:rgba(108,99,255,0.08); }
+.hero-note { margin-top:22px; font-size:0.82rem; color:var(--muted); }
+.hero-note strong { color:var(--mint); }
+.hero-badge {
+  position:absolute; right:8%; top:30%;
+  background:var(--card); border:1px solid var(--border);
+  border-radius:18px; padding:16px 20px;
+  font-size:0.82rem; color:var(--muted);
+  backdrop-filter:blur(12px);
+  animation:float 5s ease-in-out infinite;
+  display:none;
+}
+@media(min-width:1100px){ .hero-badge { display:block; } }
+.hero-badge strong { display:block; font-size:1.5rem; color:var(--mint); font-family:'Plus Jakarta Sans',sans-serif; font-weight:800; }
+.hero-badge-2 {
+  position:absolute; left:6%; bottom:28%;
+  background:var(--card); border:1px solid var(--border);
+  border-radius:18px; padding:16px 20px;
+  font-size:0.82rem; color:var(--muted);
+  backdrop-filter:blur(12px);
+  animation:float 6s ease-in-out infinite 1.5s;
+  display:none;
+}
+@media(min-width:1100px){ .hero-badge-2 { display:block; } }
+.hero-badge-2 strong { display:block; font-size:1.5rem; color:var(--purple); font-family:'Plus Jakarta Sans',sans-serif; font-weight:800; }
+@keyframes float { 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-12px); } }
+.proof-bar {
+  position:relative; z-index:1;
+  padding:28px 40px;
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  display:flex; align-items:center; justify-content:center;
+  gap:60px; flex-wrap:wrap;
+  background:rgba(20,18,48,0.6);
+}
+.proof-item { text-align:center; }
+.proof-item .num {
+  font-family:'Plus Jakarta Sans', sans-serif;
+  font-size:1.9rem; font-weight:800;
+  background:linear-gradient(135deg, var(--purple), var(--mint));
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+}
+.proof-item .label { font-size:0.82rem; color:var(--muted); font-weight:500; margin-top:2px; }
+.proof-divider { width:1px; height:36px; background:var(--border); }
+section { position:relative; z-index:1; }
+.container { max-width:1100px; margin:0 auto; padding:0 24px; }
+.section-pad { padding:100px 0; }
+.section-eyebrow {
+  display:inline-block; color:var(--mint);
+  font-size:0.78rem; font-weight:700;
+  letter-spacing:1.5px; text-transform:uppercase; margin-bottom:16px;
+}
+.section-title {
+  font-family:'Plus Jakarta Sans', sans-serif;
+  font-size:clamp(1.9rem, 4vw, 2.8rem); font-weight:800;
+  letter-spacing:-0.8px; line-height:1.15; margin-bottom:16px;
+}
+.section-title em {
+  font-style:normal;
+  background:linear-gradient(135deg, var(--purple), var(--mint));
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+}
+.section-sub { color:var(--muted); font-size:1rem; max-width:500px; line-height:1.75; }
+.features-grid {
+  display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));
+  gap:20px; margin-top:56px;
+}
+.feature-card {
+  background:var(--card); border:1px solid var(--border);
+  border-radius:20px; padding:32px;
+  transition:border-color 0.25s, transform 0.25s, background 0.25s;
+  position:relative; overflow:hidden;
+}
+.feature-card::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:2px;
+  background:linear-gradient(90deg, var(--purple), var(--mint));
+  opacity:0; transition:opacity 0.25s;
+}
+.feature-card:hover { border-color:rgba(108,99,255,0.45); transform:translateY(-4px); background:var(--card-hover); }
+.feature-card:hover::before { opacity:1; }
+.feature-icon {
+  width:52px; height:52px; border-radius:14px;
+  background:rgba(108,99,255,0.12);
+  display:flex; align-items:center; justify-content:center;
+  font-size:1.5rem; margin-bottom:20px;
+}
+.feature-card h3 { font-family:'Plus Jakarta Sans', sans-serif; font-size:1.08rem; font-weight:700; margin-bottom:10px; }
+.feature-card p { color:var(--muted); font-size:0.9rem; line-height:1.7; }
+.grades-section { background:var(--surface); }
+.grade-tabs { display:flex; gap:10px; flex-wrap:wrap; margin-top:48px; margin-bottom:32px; }
+.grade-tab {
+  padding:9px 22px; border-radius:50px; border:1px solid var(--border);
+  background:transparent; color:var(--muted);
+  font-size:0.88rem; font-weight:600; cursor:pointer;
+  transition:all 0.2s; font-family:'Inter', sans-serif;
+}
+.grade-tab.active, .grade-tab:hover {
+  background:linear-gradient(135deg, var(--purple), var(--mint));
+  color:#fff; border-color:transparent;
+}
+.grade-content { display:none; animation:fadeIn 0.3s ease; }
+.grade-content.active { display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:16px; }
+@keyframes fadeIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+.skill-card {
+  background:var(--card); border:1px solid var(--border);
+  border-radius:16px; padding:24px;
+  display:flex; align-items:center; gap:14px;
+  transition:border-color 0.2s, background 0.2s; cursor:pointer;
+}
+.skill-card:hover { border-color:rgba(108,99,255,0.4); background:var(--card-hover); }
+.skill-icon {
+  width:44px; height:44px; border-radius:12px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:1.3rem; flex-shrink:0;
+}
+.skill-icon.listening { background:rgba(108,99,255,0.15); }
+.skill-icon.reading   { background:rgba(0,229,195,0.12); }
+.skill-icon.speaking  { background:rgba(255,165,80,0.12); }
+.skill-icon.writing   { background:rgba(255,99,160,0.12); }
+.skill-card h4 { font-family:'Plus Jakarta Sans', sans-serif; font-size:0.95rem; font-weight:700; margin-bottom:3px; }
+.skill-card p { font-size:0.78rem; color:var(--muted); }
+.lock-badge { margin-left:auto; font-size:0.85rem; color:var(--muted); opacity:0.5; }
+.steps {
+  display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr));
+  gap:32px; margin-top:56px; position:relative;
+}
+.steps::before {
+  content:''; position:absolute; top:36px; left:10%; right:10%; height:1px;
+  background:linear-gradient(90deg, transparent, var(--border), var(--border), transparent);
+}
+.step { text-align:center; position:relative; }
+.step-num {
+  width:72px; height:72px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  margin:0 auto 20px;
+  font-family:'Plus Jakarta Sans', sans-serif;
+  font-size:1.5rem; font-weight:800;
+  background:linear-gradient(135deg, var(--purple), var(--mint));
+  color:#fff; position:relative; z-index:1;
+}
+.step h3 { font-family:'Plus Jakarta Sans', sans-serif; font-size:1rem; font-weight:700; margin-bottom:8px; }
+.step p { font-size:0.85rem; color:var(--muted); line-height:1.65; }
+.pricing-section { background:var(--surface); }
+.pricing-card {
+  max-width:440px; margin:56px auto 0;
+  background:var(--card); border:1px solid var(--purple);
+  border-radius:28px; padding:48px 44px; text-align:center;
+  position:relative; box-shadow:0 0 60px rgba(108,99,255,0.18);
+}
+.pricing-badge {
+  position:absolute; top:-16px; left:50%; transform:translateX(-50%);
+  background:linear-gradient(135deg, var(--purple), var(--mint));
+  color:#fff; padding:6px 22px; border-radius:50px;
+  font-size:0.78rem; font-weight:700; letter-spacing:0.5px; white-space:nowrap;
+}
+.pricing-label { font-size:0.82rem; color:var(--muted); font-weight:600; letter-spacing:1px; text-transform:uppercase; margin-bottom:16px; }
+.pricing-price {
+  font-family:'Plus Jakarta Sans', sans-serif;
+  font-size:4rem; font-weight:800; letter-spacing:-2px;
+  background:linear-gradient(135deg, var(--purple), var(--mint));
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+  line-height:1; margin-bottom:4px;
+}
+.pricing-period { font-size:0.88rem; color:var(--muted); margin-bottom:32px; }
+.pricing-features { list-style:none; margin-bottom:36px; text-align:left; }
+.pricing-features li {
+  display:flex; align-items:center; gap:12px;
+  padding:11px 0; border-bottom:1px solid var(--border);
+  font-size:0.92rem; color:var(--text);
+}
+.pricing-features li:last-child { border-bottom:none; }
+.pricing-features li::before {
+  content:'✓'; width:22px; height:22px; border-radius:50%;
+  background:rgba(0,229,195,0.12); color:var(--mint);
+  display:flex; align-items:center; justify-content:center;
+  font-size:0.78rem; font-weight:700; flex-shrink:0;
+}
+.pricing-note { font-size:0.8rem; color:var(--muted); margin-top:18px; }
+.pricing-note strong { color:var(--mint); }
+.testimonials-grid {
+  display:grid; grid-template-columns:repeat(auto-fit, minmax(280px,1fr));
+  gap:20px; margin-top:56px;
+}
+.testi-card { background:var(--card); border:1px solid var(--border); border-radius:20px; padding:28px; }
+.testi-stars { color:#FFD93D; font-size:0.9rem; margin-bottom:14px; letter-spacing:2px; }
+.testi-text { font-size:0.92rem; color:var(--text); line-height:1.75; margin-bottom:20px; font-style:italic; }
+.testi-author { display:flex; align-items:center; gap:12px; }
+.testi-avatar {
+  width:40px; height:40px; border-radius:50%;
+  background:linear-gradient(135deg, var(--purple), var(--mint));
+  display:flex; align-items:center; justify-content:center;
+  font-weight:700; font-size:0.9rem; color:#fff; flex-shrink:0;
+}
+.testi-name { font-weight:700; font-size:0.88rem; }
+.testi-role { font-size:0.78rem; color:var(--muted); }
+.faq-list { max-width:680px; margin:56px auto 0; }
+.faq-item { border-bottom:1px solid var(--border); }
+.faq-q {
+  width:100%; background:none; border:none; color:var(--text);
+  text-align:left; padding:22px 0;
+  font-family:'Plus Jakarta Sans', sans-serif; font-size:1rem; font-weight:600;
+  cursor:pointer; display:flex; justify-content:space-between; align-items:center; gap:16px;
+}
+.faq-q .chevron { color:var(--muted); transition:transform 0.25s; font-style:normal; flex-shrink:0; }
+.faq-item.open .chevron { transform:rotate(180deg); }
+.faq-a {
+  overflow:hidden; max-height:0;
+  transition:max-height 0.35s ease, padding 0.25s;
+  color:var(--muted); font-size:0.92rem; line-height:1.75;
+}
+.faq-item.open .faq-a { max-height:200px; padding-bottom:22px; }
+.cta-section { padding:100px 24px; text-align:center; position:relative; z-index:1; }
+.cta-glow {
+  position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+  width:600px; height:300px;
+  background:radial-gradient(ellipse, rgba(108,99,255,0.18) 0%, transparent 70%);
+  pointer-events:none;
+}
+.cta-section h2 {
+  font-family:'Plus Jakarta Sans', sans-serif;
+  font-size:clamp(1.8rem, 4vw, 3rem); font-weight:800;
+  letter-spacing:-1px; margin-bottom:16px;
+}
+.cta-section p { color:var(--muted); margin-bottom:36px; font-size:1rem; }
+footer {
+  background:var(--surface); border-top:1px solid var(--border);
+  padding:48px 40px; display:flex; flex-direction:column;
+  align-items:center; gap:20px; text-align:center;
+}
+.footer-logo { font-family:'Plus Jakarta Sans', sans-serif; font-weight:800; font-size:1.3rem; }
+.footer-links { display:flex; gap:28px; flex-wrap:wrap; justify-content:center; }
+.footer-links a { color:var(--muted); text-decoration:none; font-size:0.85rem; transition:color 0.2s; }
+.footer-links a:hover { color:var(--text); }
+.footer-copy { font-size:0.78rem; color:var(--muted); }
+@media(max-width:768px) {
+  nav { padding:16px 20px; }
+  .nav-links { display:none; }
+  .proof-bar { gap:28px; }
+  .proof-divider { display:none; }
+  .steps::before { display:none; }
+  .pricing-card { padding:40px 28px; }
+}
+.reveal { opacity:0; transform:translateY(28px); transition:opacity 0.65s ease, transform 0.65s ease; }
+.reveal.visible { opacity:1; transform:translateY(0); }
+</style>
+</head>
+<body>
+
+<canvas id="particles"></canvas>
+
+<nav>
+  <a class="nav-logo" href="#">
+    <span>💡</span>
+    <span>Little<span class="logo-lume">Lume</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#features">Features</a></li>
+    <li><a href="#grades">Grades</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#pricing" class="btn-nav">Get Started</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-eyebrow">✦ <span>Trusted English Learning Platform for Kids</span> ✦</div>
+  <h1>Where Kids <em>Shine</em> in English</h1>
+  <p class="hero-sub">A premium self-paced English course for Grade 1–6. Interactive lessons, games, and worksheets — designed so your child learns independently, anytime, anywhere.</p>
+  <div class="hero-cta">
+    <a href="#pricing" class="btn-primary">🚀 Start Learning — Rp 29.000/mo</a>
+    <a href="#grades" class="btn-ghost">📚 Explore Lessons</a>
+  </div>
+  <p class="hero-note">No contracts. <strong>Cancel anytime.</strong> All grades included.</p>
+  <div class="hero-badge"><strong>6</strong>Grade Levels<br>Covered</div>
+  <div class="hero-badge-2"><strong>4+</strong>Core English<br>Skills</div>
+</section>
+
+<div class="proof-bar">
+  <div class="proof-item"><div class="num">6</div><div class="label">Grade Levels</div></div>
+  <div class="proof-divider"></div>
+  <div class="proof-item"><div class="num">4</div><div class="label">Core Skills</div></div>
+  <div class="proof-divider"></div>
+  <div class="proof-item"><div class="num">100+</div><div class="label">Lessons & Materials</div></div>
+  <div class="proof-divider"></div>
+  <div class="proof-item"><div class="num">24/7</div><div class="label">Access Anytime</div></div>
+  <div class="proof-divider"></div>
+  <div class="proof-item"><div class="num">Rp 29K</div><div class="label">Per Month, All Access</div></div>
+</div>
+
+<section id="features" class="section-pad">
+  <div class="container">
+    <div class="reveal">
+      <span class="section-eyebrow">Why LittleLume</span>
+      <h2 class="section-title">Everything your child needs to <em>excel</em> in English</h2>
+      <p class="section-sub">We combined curriculum expertise with interactive design so kids actually enjoy learning.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card reveal"><div class="feature-icon">🎧</div><h3>Listening Practice</h3><p>Audio-based exercises with real-world topics help kids tune their ears and build comprehension naturally.</p></div>
+      <div class="feature-card reveal"><div class="feature-icon">📖</div><h3>Reading Comprehension</h3><p>Engaging passages and questions at the right difficulty level for each grade, building reading fluency step by step.</p></div>
+      <div class="feature-card reveal"><div class="feature-icon">🗣️</div><h3>Speaking Confidence</h3><p>Guided speaking activities that help children practice pronunciation and express themselves in English.</p></div>
+      <div class="feature-card reveal"><div class="feature-icon">✍️</div><h3>Writing Skills</h3><p>Structured writing exercises from simple sentences to paragraphs, growing with your child's ability.</p></div>
+      <div class="feature-card reveal"><div class="feature-icon">📝</div><h3>Grammar Mastery</h3><p>Tenses, parts of speech, sentence structure — explained clearly and practiced with fun interactive exercises.</p></div>
+      <div class="feature-card reveal"><div class="feature-icon">🎮</div><h3>Learning Games</h3><p>Gamified exercises keep kids engaged and motivated — because the best learning happens when it feels like play.</p></div>
+      <div class="feature-card reveal"><div class="feature-icon">📄</div><h3>Printable Worksheets</h3><p>High-quality worksheets for every grade and skill — perfect for offline practice or homework support.</p></div>
+      <div class="feature-card reveal"><div class="feature-icon">📱</div><h3>Learn Anywhere</h3><p>Fully responsive on mobile, tablet, and desktop. Your child's lessons are always available, no app required.</p></div>
+      <div class="feature-card reveal"><div class="feature-icon">🔓</div><h3>All Grades, One Price</h3><p>One subscription unlocks every grade from 1 to 6. As your child advances, so does their access — no upgrade needed.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="grades" class="grades-section section-pad">
+  <div class="container">
+    <div class="reveal">
+      <span class="section-eyebrow">Curriculum</span>
+      <h2 class="section-title">Structured for every <em>grade level</em></h2>
+      <p class="section-sub">Each grade has its own curated lessons covering all four core English skills plus grammar.</p>
+    </div>
+    <div class="grade-tabs reveal">
+      <button class="grade-tab active" onclick="showGrade('g1',this)">Grade 1</button>
+      <button class="grade-tab" onclick="showGrade('g2',this)">Grade 2</button>
+      <button class="grade-tab" onclick="showGrade('g3',this)">Grade 3</button>
+      <button class="grade-tab" onclick="showGrade('g4',this)">Grade 4</button>
+      <button class="grade-tab" onclick="showGrade('g5',this)">Grade 5</button>
+      <button class="grade-tab" onclick="showGrade('g6',this)">Grade 6</button>
+    </div>
+    <div id="g1" class="grade-content active">
+      <div class="skill-card"><div class="skill-icon listening">🎧</div><div><h4>Listening</h4><p>Daily Activities, Hobbies, Family & more</p></div><span class="lock-badge">🔒</span></div>
+      <div class="skill-card"><div class="skill-icon reading">📖</div><div><h4>Reading</h4><p>Simple texts with guided comprehension</p></div><span class="lock-badge">🔒</span></div>
+      <div class="skill-card"><div class="skill-icon speaking">🗣️</div><div><h4>Speaking</h4><p>Basic conversation & pronunciation</p></div><span class="lock-badge">🔒</span></div>
+      <div class="skill-card"><div class="skill-icon writing">✍️</div><div><h4>Writing</h4><p>Letters, words, and simple sentences</p></div><span class="lock-badge">🔒</span></div>
+    </div>
+    <div id="g2" class="grade-content">
+      <div class="skill-card"><div class="skill-icon listening">🎧</div><div><h4>Listening</h4><p>Animal Sounds, Colors, Numbers & more</p></div><span class="lock-badge">🔒</span></div>
+      <div class="skill-card"><div class="skill-icon reading">📖</div><div><h4>Reading</h4><p>Short passages and reading games</p></div><span class="lock-badge">🔒</span></div>
+      <div class="skill-card"><div class="skill-icon speaking">🗣️</div><div><h4>Speaking</h4><p>Greetings, responses & daily expressions</p></div><span class="lock-badge">🔒</span></div>
+      <div class="skill-card"><div class="skill-icon writing">✍️</div><div><h4>Writing</h4><p>Sentence building & short paragraphs</p></div><span class="lock-badge">🔒</span></div>
+    </div>
+    <div id="g3" class="grade-content">
+      <div class="skill-card"><div class="skill-icon listening">🎧</div><div><h4>Listening</h4><p>Weather, Shopping, School Life & more</p></div><span class="lock-badge">🔒</span></div>
+      <div class="skill-card"><div class="skill-icon reading">📖</div><div><h4>Reading</h4><p>Descriptive and narrative texts</p></div><span class="lock-badge">🔒</span></div>
+      <div class="skill-card"><div class="skill-icon speaking">🗣️</div><div><h4>Speaking</h4><p>Describing people, places & events</p></div><span class="lock-badge">🔒</span></div>
+      <div class="skill-card"><div class="skill-icon writing">✍️</div><div><h4>Writing</h4><p>Paragraph writing with topic sentences</p></div><span class="lock-badge">🔒</span></div>
+    </div>
+    <div id="g4" class="grade-content">
+      <div class="skill-card"><div class="skill-icon listening">🎧</div><div><h4>Listening</h4><p>Hobbies, My Family, Daily Activities</p></div><span class="lock-badge">🔒</span></div>
+      <div class="skill-card"><div class="skill-icon reading">📖</div><div><h4>Reading</h4><p>Longer texts with inference questions</p></div><span class="lock-badge">🔒</span></div>
+      <div class="skill-card"><div class="skill-icon speaking">🗣️</div><div><h4>Speaking</h4><p>Storytelling and role-play scenarios</p></div><span class="lock-badge">🔒</span></div>
+      <div class="skill-card"><div class="skill-icon writing">✍️</div><div><h4>Writing</h4><p>Opinion writing and structured essays</p></div><span class="lock-badge">🔒</span></div>
+    </div>
+    <div id="g5" class="grade-content">
+      <div class="skill-card"><div class="skill-icon listening">🎧</div><div><h4>Listening</h4><p>Complex dialogues and narrations</p></div><span class="lock-badge">🔒</span></div>
+      <div class="skill-card"><div class="skill-icon reading">📖</div><div><h4>Reading</h4><p>Multi-paragraph comprehension texts</p></div><span class="lock-badge">🔒</span></div>
+      <div class="skill-card"><div class="skill-icon speaking">🗣️</div><div><h4>Speaking</h4><p>Discussions, debates & presentations</p></div><span class="lock-badge">🔒</span></div>
+      <div class="skill-card"><div class="skill-icon writing">✍️</div><div><h4>Writing</h4><p>Report writing & creative compositions</p></div><span class="lock-badge">🔒</span></div>
+    </div>
+    <div id="g6" class="grade-content">
+      <div class="skill-card"><div class="skill-icon listening">🎧</div><div><h4>Listening</h4><p>Advanced topics and exam preparation</p></div><span class="lock-badge">🔒</span></div>
+      <div class="skill-card"><div class="skill-icon reading">📖</div><div><h4>Reading</h4><p>Critical reading and analysis</p></div><span class="lock-badge">🔒</span></div>
+      <div class="skill-card"><div class="skill-icon speaking">🗣️</div><div><h4>Speaking</h4><p>Formal presentations & arguments</p></div><span class="lock-badge">🔒</span></div>
+      <div class="skill-card"><div class="skill-icon writing">✍️</div><div><h4>Writing</h4><p>Academic writing & exam-ready essays</p></div><span class="lock-badge">🔒</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section-pad">
+  <div class="container">
+    <div class="reveal" style="text-align:center">
+      <span class="section-eyebrow">How It Works</span>
+      <h2 class="section-title">Up and learning in <em>3 simple steps</em></h2>
+    </div>
+    <div class="steps reveal">
+      <div class="step"><div class="step-num">1</div><h3>Create an Account</h3><p>Sign up with your Google account in seconds. No lengthy forms, no complicated setup.</p></div>
+      <div class="step"><div class="step-num">2</div><h3>Subscribe</h3><p>Pay securely via QRIS, bank transfer, or e-wallet. One plan unlocks all 6 grade levels instantly.</p></div>
+      <div class="step"><div class="step-num">3</div><h3>Start Learning</h3><p>Your child accesses all lessons, games, and worksheets right away — anytime, on any device.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing" class="pricing-section section-pad">
+  <div class="container" style="text-align:center">
+    <div class="reveal">
+      <span class="section-eyebrow">Pricing</span>
+      <h2 class="section-title">Simple, honest <em>pricing</em></h2>
+      <p class="section-sub" style="margin:0 auto">One price. All grades. No hidden fees. Cancel anytime.</p>
+    </div>
+    <div class="pricing-card reveal">
+      <div class="pricing-badge">🌟 Early Bird — Limited Time</div>
+      <div class="pricing-label">All Access Plan</div>
+      <div class="pricing-price">Rp 29K</div>
+      <div class="pricing-period">per month · billed monthly</div>
+      <ul class="pricing-features">
+        <li>All 6 Grade Levels (Grade 1–6)</li>
+        <li>Listening, Reading, Speaking & Writing</li>
+        <li>Grammar Lessons — Tenses, Parts of Speech & more</li>
+        <li>Interactive Learning Games</li>
+        <li>Printable Worksheets for every grade</li>
+        <li>Access on Mobile, Tablet & Desktop</li>
+        <li>New content added regularly</li>
+      </ul>
+      <a href="#" class="btn-primary" style="width:100%;justify-content:center;font-size:1.05rem;padding:18px;">
+        🚀 Get Started Now
+      </a>
+      <p class="pricing-note">Early bird price. Normal price: <strong>Rp 49.000/month</strong> — lock in your rate today.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section-pad">
+  <div class="container">
+    <div class="reveal" style="text-align:center">
+      <span class="section-eyebrow">Testimonials</span>
+      <h2 class="section-title">Parents & kids <em>love</em> LittleLume</h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testi-card reveal">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"My daughter actually asks to do her English lessons every day now. The materials are well-structured and the games keep her engaged. Worth every penny."</p>
+        <div class="testi-author"><div class="testi-avatar">S</div><div><div class="testi-name">Sarah W.</div><div class="testi-role">Parent of Grade 3 Student</div></div></div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"The listening exercises are excellent. My son's pronunciation has improved noticeably in just a few weeks. Very affordable for the quality offered."</p>
+        <div class="testi-author"><div class="testi-avatar">R</div><div><div class="testi-name">Rudi H.</div><div class="testi-role">Parent of Grade 5 Student</div></div></div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"I love how all grades are included in one subscription. As my kids move up, they don't need a new plan. The grammar section is particularly well done."</p>
+        <div class="testi-author"><div class="testi-avatar">A</div><div><div class="testi-name">Anisa P.</div><div class="testi-role">Parent of Grade 1 & 4 Students</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq" class="section-pad" style="background:var(--surface)">
+  <div class="container">
+    <div class="reveal" style="text-align:center">
+      <span class="section-eyebrow">FAQ</span>
+      <h2 class="section-title">Frequently asked <em>questions</em></h2>
+    </div>
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">What grades does LittleLume cover?<em class="chevron">▾</em></button>
+        <div class="faq-a">LittleLume covers Grade 1 through Grade 6 of elementary school. One subscription gives your child access to all grade levels — no upgrades needed as they advance.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Is there a free trial?<em class="chevron">▾</em></button>
+        <div class="faq-a">We offer a preview of selected materials on our homepage so you can see the quality before subscribing. Full access requires an active subscription.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Can I cancel anytime?<em class="chevron">▾</em></button>
+        <div class="faq-a">Yes. There are no contracts or commitments. You can cancel your subscription at any time from your dashboard. Access continues until the end of your billing period.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">What payment methods are accepted?<em class="chevron">▾</em></button>
+        <div class="faq-a">We accept QRIS, bank transfer (BCA, Mandiri, BNI, BRI), GoPay, OVO, Dana, and credit/debit cards — all processed securely through Midtrans.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Does my child need a teacher to use LittleLume?<em class="chevron">▾</em></button>
+        <div class="faq-a">No. LittleLume is fully self-paced. All lessons, audio, and exercises are designed so children can learn independently at their own pace, with no live teacher required.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Is the content aligned with the school curriculum?<em class="chevron">▾</em></button>
+        <div class="faq-a">Yes. Our materials are structured to complement and reinforce the English curriculum for Indonesian elementary students, covering the four core skills plus grammar.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="cta-glow"></div>
+  <div class="container">
+    <div class="reveal">
+      <h2>Ready to <em style="background:linear-gradient(135deg,var(--purple),var(--mint));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-style:normal">light up</em> your child's English?</h2>
+      <p>Join LittleLume today. Rp 29.000/month. All grades. Cancel anytime.</p>
+      <a href="#" class="btn-primary" style="font-size:1.05rem;padding:18px 44px;">🚀 Get Started Now</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">💡 Little<span class="logo-lume">Lume</span></div>
+  <div class="footer-links">
+    <a href="#">Home</a>
+    <a href="#features">Features</a>
+    <a href="#grades">Grades</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#">Terms & Conditions</a>
+    <a href="#">Privacy Policy</a>
+    <a href="#">Refund Policy</a>
+  </div>
+  <p class="footer-copy">© 2026 LittleLume. All rights reserved. Premium English Learning for Kids.</p>
+</footer>
+
+<script>
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
+let W, H, particles = [];
+function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+resize(); window.addEventListener('resize', resize);
+class Particle {
+  constructor() { this.reset(); }
+  reset() {
+    this.x = Math.random() * W; this.y = Math.random() * H;
+    this.r = Math.random() * 1.8 + 0.4;
+    this.vx = (Math.random() - 0.5) * 0.25; this.vy = (Math.random() - 0.5) * 0.25;
+    this.alpha = Math.random() * 0.6 + 0.1;
+    this.color = Math.random() > 0.5 ? '108,99,255' : '0,229,195';
+  }
+  update() { this.x += this.vx; this.y += this.vy; if (this.x < 0 || this.x > W || this.y < 0 || this.y > H) this.reset(); }
+  draw() { ctx.beginPath(); ctx.arc(this.x, this.y, this.r, 0, Math.PI*2); ctx.fillStyle = `rgba(${this.color},${this.alpha})`; ctx.fill(); }
+}
+for (let i = 0; i < 90; i++) particles.push(new Particle());
+function animateParticles() { ctx.clearRect(0,0,W,H); particles.forEach(p=>{p.update();p.draw();}); requestAnimationFrame(animateParticles); }
+animateParticles();
+
+function showGrade(id, btn) {
+  document.querySelectorAll('.grade-content').forEach(el=>el.classList.remove('active'));
+  document.querySelectorAll('.grade-tab').forEach(el=>el.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+
+function toggleFaq(btn) {
+  const item = btn.parentElement;
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); });
+}, {threshold:0.12});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+window.addEventListener('scroll', ()=>{
+  document.querySelector('nav').style.background =
+    window.scrollY > 40 ? 'rgba(13,11,30,0.95)' : 'rgba(13,11,30,0.75)';
+});
+</script>
+</body>
+</html>
