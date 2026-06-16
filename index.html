@@ -330,7 +330,138 @@ section { position:relative; z-index:1; }
 .skill-card h4 { font-family:'Plus Jakarta Sans', sans-serif; font-size:0.95rem; font-weight:700; margin-bottom:3px; }
 .skill-card p { font-size:0.78rem; color:var(--muted); }
 .lock-badge { margin-left:auto; font-size:0.85rem; color:var(--muted); opacity:0.5; }
-.steps {
+
+/* Material Cards */
+.materials-grid {
+  display:grid; grid-template-columns:repeat(auto-fit, minmax(180px,1fr));
+  gap:24px; margin-top:56px;
+}
+.material-card {
+  background:var(--card); border:1px solid var(--border);
+  border-radius:20px; padding:32px 24px; text-align:center;
+  transition:border-color 0.25s, transform 0.25s, background 0.25s;
+}
+.material-card:hover { border-color:rgba(108,99,255,0.45); transform:translateY(-4px); background:var(--card-hover); }
+.material-icon { font-size:3rem; margin-bottom:16px; }
+.material-count {
+  font-family:'Plus Jakarta Sans', sans-serif;
+  font-size:2.2rem; font-weight:800;
+  background:linear-gradient(90deg, var(--purple), #FF6B9D, var(--mint), var(--purple), #FF6B9D);
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+  background-size:300% 100%;
+  animation:colorFlow 4s ease infinite;
+  margin-bottom:8px;
+}
+.material-label { font-family:'Plus Jakarta Sans', sans-serif; font-size:0.95rem; font-weight:700; color:var(--text); margin-bottom:4px; }
+.material-sub { font-size:0.8rem; color:var(--muted); }
+
+/* Features Highlight */
+.features-highlight {
+  display:grid; grid-template-columns:repeat(auto-fit, minmax(320px,1fr));
+  gap:32px; margin-top:56px;
+}
+.highlight-item {
+  display:flex; gap:20px;
+  padding:28px; background:var(--card); border:1px solid var(--border);
+  border-radius:16px; transition:border-color 0.25s, background 0.25s;
+}
+.highlight-item:hover { border-color:rgba(108,99,255,0.45); background:var(--card-hover); }
+.highlight-icon {
+  width:48px; height:48px; border-radius:50%;
+  background:linear-gradient(135deg, var(--purple), var(--mint));
+  display:flex; align-items:center; justify-content:center;
+  font-size:1.3rem; font-weight:800; color:#fff; flex-shrink:0;
+}
+.highlight-item h3 { font-family:'Plus Jakarta Sans', sans-serif; font-size:1rem; font-weight:700; margin-bottom:8px; }
+.highlight-item p { font-size:0.9rem; color:var(--muted); line-height:1.6; }
+
+/* Credentials */
+.credentials-container {
+  display:grid; grid-template-columns:repeat(auto-fit, minmax(280px,1fr));
+  gap:32px; margin-top:56px;
+}
+.credential-item {
+  background:var(--card); border:1px solid var(--border);
+  border-radius:20px; padding:40px 32px; text-align:center;
+  transition:border-color 0.25s, transform 0.25s;
+}
+.credential-item:hover { border-color:rgba(108,99,255,0.45); transform:translateY(-4px); }
+.credential-icon { font-size:3.5rem; margin-bottom:16px; }
+.credential-item h3 { font-family:'Plus Jakarta Sans', sans-serif; font-size:1.05rem; font-weight:700; margin-bottom:12px; }
+.credential-item p { font-size:0.9rem; color:var(--muted); line-height:1.7; }
+.learning-path {
+  display:flex; align-items:center; justify-content:center;
+  gap:16px; margin-top:56px; flex-wrap:wrap;
+}
+.path-step {
+  background:var(--card); border:1px solid var(--border);
+  border-radius:16px; padding:28px 20px; min-width:140px; text-align:center;
+  transition:border-color 0.25s, background 0.25s;
+}
+.path-step:hover { border-color:rgba(108,99,255,0.45); background:var(--card-hover); }
+.path-num {
+  width:44px; height:44px; border-radius:50%;
+  background:linear-gradient(135deg, var(--purple), var(--mint));
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Plus Jakarta Sans', sans-serif;
+  font-size:1.3rem; font-weight:800; color:#fff;
+  margin:0 auto 12px;
+}
+.path-step h3 { font-family:'Plus Jakarta Sans', sans-serif; font-size:0.95rem; font-weight:700; margin-bottom:6px; }
+.path-step p { font-size:0.8rem; color:var(--muted); }
+.path-arrow {
+  font-size:1.5rem; color:var(--muted); margin:0 8px;
+}
+@media(max-width:768px) {
+  .learning-path { gap:12px; }
+  .path-arrow { display:none; }
+}
+
+/* Quick Start */
+.quick-start-container {
+  display:flex; align-items:center; justify-content:center;
+  gap:32px; margin-top:56px; flex-wrap:wrap;
+  max-width:800px; margin-left:auto; margin-right:auto;
+}
+.quick-step {
+  flex:1; min-width:140px; text-align:center;
+  padding:28px 20px;
+}
+.quick-icon {
+  width:64px; height:64px; border-radius:50%;
+  background:linear-gradient(135deg, var(--purple), var(--mint));
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Plus Jakarta Sans', sans-serif;
+  font-size:1.8rem; font-weight:800; color:#fff;
+  margin:0 auto 16px;
+}
+.quick-step h3 { font-family:'Plus Jakarta Sans', sans-serif; font-size:1rem; font-weight:700; margin-bottom:8px; color:var(--text); }
+.quick-step p { font-size:0.85rem; color:var(--muted); line-height:1.5; }
+.quick-divider {
+  width:2px; height:60px; background:linear-gradient(180deg, transparent, var(--border), transparent);
+  display:none;
+}
+@media(min-width:768px) {
+  .quick-divider { display:block; }
+  .quick-start-container { gap:0; }
+}
+
+/* Why Choose */
+.why-grid {
+  display:grid; grid-template-columns:repeat(auto-fit, minmax(300px,1fr));
+  gap:28px; margin-top:56px;
+}
+.why-card {
+  background:var(--card); border:1px solid var(--border);
+  border-radius:20px; padding:32px; 
+  transition:border-color 0.25s, transform 0.25s, background 0.25s;
+}
+.why-card:hover { border-color:rgba(108,99,255,0.45); transform:translateY(-4px); background:var(--card-hover); }
+.why-icon { font-size:2.8rem; margin-bottom:16px; }
+.why-card h3 { font-family:'Plus Jakarta Sans', sans-serif; font-size:1.05rem; font-weight:700; margin-bottom:12px; color:var(--text); }
+.why-card p { font-size:0.9rem; color:var(--muted); line-height:1.7; }
+
+
   display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr));
   gap:32px; margin-top:56px; position:relative;
 }
@@ -713,16 +844,123 @@ footer {
   </div>
 </section>
 
+<section class="section-pad" style="background:var(--surface)">
+  <div class="container">
+    <div class="reveal" style="text-align:center;margin-bottom:60px">
+      <span class="section-eyebrow">Complete Curriculum</span>
+      <h2 class="section-title">Massive Content Library — <em>All Included</em></h2>
+    </div>
+    <div class="materials-grid">
+      <div class="material-card reveal">
+        <div class="material-icon">📚</div>
+        <div class="material-count">180+</div>
+        <div class="material-label">Interactive Lessons</div>
+        <div class="material-sub">Across all 6 grades</div>
+      </div>
+      <div class="material-card reveal">
+        <div class="material-icon">📝</div>
+        <div class="material-count">450+</div>
+        <div class="material-label">Practice Exercises</div>
+        <div class="material-sub">Auto-graded & instant feedback</div>
+      </div>
+      <div class="material-card reveal">
+        <div class="material-icon">📄</div>
+        <div class="material-count">120+</div>
+        <div class="material-label">Printable Worksheets</div>
+        <div class="material-sub">For offline practice & homework</div>
+      </div>
+      <div class="material-card reveal">
+        <div class="material-icon">🎮</div>
+        <div class="material-count">60+</div>
+        <div class="material-label">Interactive Games</div>
+        <div class="material-sub">Learning through gamification</div>
+      </div>
+      <div class="material-card reveal">
+        <div class="material-icon">🎤</div>
+        <div class="material-count">200+</div>
+        <div class="material-label">Audio Recordings</div>
+        <div class="material-sub">Native speaker pronunciation</div>
+      </div>
+      <div class="material-card reveal">
+        <div class="material-icon">🎯</div>
+        <div class="material-count">100+</div>
+        <div class="material-label">Grammar Topics</div>
+        <div class="material-sub">Explained simply with examples</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="section-pad">
   <div class="container">
-    <div class="reveal" style="text-align:center">
-      <span class="section-eyebrow">How It Works</span>
-      <h2 class="section-title">Up and learning in <em>3 simple steps</em></h2>
+    <div class="reveal" style="text-align:center;margin-bottom:60px">
+      <span class="section-eyebrow">Get Started</span>
+      <h2 class="section-title">Ready to Start? It's <em>Super Easy</em></h2>
+      <p class="section-sub" style="margin:16px auto 0">Three quick steps and your child is learning</p>
     </div>
-    <div class="steps reveal">
-      <div class="step"><div class="step-num">1</div><h3>Create an Account</h3><p>Sign up with your Google account in seconds. No lengthy forms, no complicated setup.</p></div>
-      <div class="step"><div class="step-num">2</div><h3>Subscribe</h3><p>Pay securely via QRIS, bank transfer, or e-wallet. One plan unlocks all 6 grade levels instantly.</p></div>
-      <div class="step"><div class="step-num">3</div><h3>Start Learning</h3><p>Your child accesses all lessons, games, and worksheets right away — anytime, on any device.</p></div>
+    <div class="quick-start-container">
+      <div class="quick-step reveal">
+        <div class="quick-icon">1</div>
+        <h3>Sign Up</h3>
+        <p>Google account. <br>Takes 10 seconds.</p>
+      </div>
+      <div class="quick-divider reveal"></div>
+      <div class="quick-step reveal">
+        <div class="quick-icon">2</div>
+        <h3>Choose Plan</h3>
+        <p>Rp 29K/month. <br>All 6 grades included.</p>
+      </div>
+      <div class="quick-divider reveal"></div>
+      <div class="quick-step reveal">
+        <div class="quick-icon">3</div>
+        <h3>Start Learning</h3>
+        <p>Instant access. <br>Anytime, anywhere.</p>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:48px">
+      <button onclick="openAuthModal()" class="btn-primary" style="font-size:1rem;padding:16px 42px;border:none;cursor:pointer;">🚀 Get Started Now</button>
+    </div>
+  </div>
+</section>
+
+<section class="section-pad" style="background:var(--surface)">
+  <div class="container">
+    <div class="reveal" style="text-align:center;margin-bottom:60px">
+      <span class="section-eyebrow">Why Us</span>
+      <h2 class="section-title">Why Choose <em>LittleLume</em></h2>
+      <p class="section-sub" style="margin:16px auto 0">Simple reasons to trust us with your child's learning</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <div class="why-icon">💰</div>
+        <h3>Unbeatable Price</h3>
+        <p>Rp 29.000/month for all 6 grades. Most competitors charge Rp 500K+ or require separate subscriptions per grade. We believe quality education should be affordable.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon">🎓</div>
+        <h3>All Grades, One Price</h3>
+        <p>Your child isn't locked into one grade level. Access Grade 1 through 6 anytime. As they progress, they move up without extra cost.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon">⏰</div>
+        <h3>Learn On Your Time</h3>
+        <p>No schedules. No classes. Your child learns whenever it fits your family's routine — morning, afternoon, weekends, or holidays.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon">❌</div>
+        <h3>No Long-Term Contracts</h3>
+        <p>Cancel anytime. No penalties. No hidden fees. If it's not working for your family, you can stop immediately. We want you to stay because it works, not because you're locked in.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon">🔄</div>
+        <h3>Always Improving</h3>
+        <p>New lessons added monthly based on what works. We continuously update content and features based on how kids actually learn and what parents ask for.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon">📱</div>
+        <h3>Works Everywhere</h3>
+        <p>Laptop, tablet, phone. Any device, any time. No app needed. Everything works in the browser, online or offline.</p>
+      </div>
     </div>
   </div>
 </section>
