@@ -87,6 +87,17 @@ nav {
     background-position:0% 0%;
   }
 }
+
+.gradient-glow {
+  font-style:normal;
+  background:linear-gradient(90deg, var(--purple), #FF6B9D, var(--mint), var(--purple), #FF6B9D);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  background-size:300% 100%;
+  animation:colorFlow 4s ease infinite;
+  filter:drop-shadow(0 0 8px rgba(108,99,255,0.8)) drop-shadow(0 0 16px rgba(0,229,195,0.6));
+}
 .nav-links {
   display:flex;
   align-items:center;
@@ -810,7 +821,7 @@ footer {
   <div class="cta-glow"></div>
   <div class="container">
     <div class="reveal">
-      <h2>Ready to <em style="background:linear-gradient(90deg,var(--purple),#FF6B9D,var(--mint),var(--purple),#FF6B9D));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;background-size:300% 100%;animation:colorFlow 4s ease infinite;font-style:normal">light up</em> your child's English?</h2>
+      <h2>Ready to <em class="gradient-glow">light up</em> your child's English?</h2>
       <p>Join LittleLume today. Rp 29.000/month. All grades. Cancel anytime.</p>
       <button onclick="openAuthModal()" class="btn-primary" style="font-size:1.05rem;padding:18px 44px;border:none;cursor:pointer;">🚀 Get Started Now</button>
     </div>
