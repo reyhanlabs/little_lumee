@@ -12,15 +12,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
-  --midnight: #FFF8F3;
-  --surface:  #FFFBF8;
-  --card:     #FFFFFF;
-  --card-h:   #FFF5EE;
-  --purple:   #FF6B35;
-  --mint:     #06A77D;
-  --text:     #2C3E50;
-  --muted:    #7A8A99;
-  --border:   rgba(255,107,53,0.15);
+  --midnight: #0D0B1E;
+  --surface:  #141230;
+  --card:     #1A1740;
+  --card-h:   #201D4D;
+  --purple:   #6C63FF;
+  --mint:     #00E5C3;
+  --text:     #F0EEFF;
+  --muted:    #8B8AB8;
+  --border:   rgba(108,99,255,0.18);
   --sidebar-w: 240px;
 
   /* Grade accent colors */
@@ -135,32 +135,6 @@ body {
   font-size:1.05rem; font-weight:700;
 }
 .topbar-right { display:flex; align-items:center; gap:12px; }
-
-/* ── LANGUAGE TOGGLE ── */
-.lang-toggle {
-  display:flex;
-  align-items:center;
-  gap:4px;
-  background:rgba(255,107,53,0.1);
-  border:1px solid rgba(255,107,53,0.25);
-  border-radius:10px;
-  padding:4px 6px;
-}
-.lang-btn {
-  padding:6px 10px;
-  border:none;
-  background:transparent;
-  border-radius:8px;
-  font-weight:600;
-  font-size:0.78rem;
-  cursor:pointer;
-  transition:all 0.2s;
-  color:var(--muted);
-}
-.lang-btn.active {
-  background:linear-gradient(135deg, #FF6B35, #06A77D);
-  color:#fff;
-}
 .sub-status {
   display:inline-flex; align-items:center; gap:6px;
   padding:6px 14px; border-radius:50px;
@@ -501,12 +475,6 @@ body {
   <div class="topbar">
     <div class="topbar-title" id="topbarTitle">Dashboard</div>
     <div class="topbar-right">
-      <!-- Language Toggle -->
-      <div class="lang-toggle">
-        <button class="lang-btn active" id="langBtnEn" onclick="window.setLanguage('en')">🇬🇧</button>
-        <button class="lang-btn" id="langBtnId" onclick="window.setLanguage('id')">🇮🇩</button>
-      </div>
-      
       <div class="sub-status inactive" id="subStatus">
         <div class="sub-dot"></div>
         <span id="subLabel">Checking...</span>
@@ -731,9 +699,6 @@ body {
 <!-- Toast -->
 <div class="toast" id="toast"></div>
 
-<!-- Language Config -->
-<script src="language-config.js"></script>
-
 <script type="module">
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
 import { getAuth, signOut, onAuthStateChanged }
@@ -753,16 +718,6 @@ const firebaseConfig = {
 const app  = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db   = getFirestore(app);
-
-/* ── LANGUAGE SWITCHER ── */
-window.setLanguage = function(lang) {
-  if (window.langMgr) {
-    window.langMgr.setLanguage(lang);
-    document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-    if (lang === 'en') document.getElementById('langBtnEn').classList.add('active');
-    else document.getElementById('langBtnId').classList.add('active');
-  }
-};
 
 /* ── HELPERS ── */
 window.showToast = function(msg, type='success') {
