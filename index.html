@@ -122,6 +122,34 @@ nav {
   transition:opacity 0.2s, transform 0.2s !important;
 }
 .btn-nav:hover { opacity:0.88; transform:translateY(-1px); }
+
+/* ── LANGUAGE TOGGLE ── */
+.lang-toggle {
+  display:flex;
+  align-items:center;
+  gap:4px;
+  background:rgba(108,99,255,0.1);
+  border:1px solid rgba(108,99,255,0.25);
+  border-radius:10px;
+  padding:4px 6px;
+  margin-right:16px;
+}
+.lang-btn {
+  padding:6px 10px;
+  border:none;
+  background:transparent;
+  border-radius:8px;
+  font-weight:600;
+  font-size:0.78rem;
+  cursor:pointer;
+  transition:all 0.2s;
+  color:var(--muted);
+  font-family:'Inter', sans-serif;
+}
+.lang-btn.active {
+  background:linear-gradient(135deg, var(--purple), var(--mint));
+  color:#fff;
+}
 .hero {
   position:relative;
   min-height:100vh;
@@ -731,11 +759,18 @@ footer {
     <span>Little<span class="logo-lume">Lume</span></span>
   </a>
   <ul class="nav-links">
-    <li><a href="#features">Features</a></li>
-    <li><a href="#grades">Grades</a></li>
-    <li><a href="#pricing">Pricing</a></li>
-    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#features" data-i18n="nav.features">Features</a></li>
+    <li><a href="#grades" data-i18n="nav.grades">Grades</a></li>
+    <li><a href="#pricing" data-i18n="nav.pricing">Pricing</a></li>
+    <li><a href="#faq" data-i18n="nav.faq">FAQ</a></li>
   </ul>
+  
+  <!-- Language Toggle -->
+  <div class="lang-toggle">
+    <button class="lang-btn active" id="langBtnEn" onclick="window.setLanguage('en')">🇬🇧</button>
+    <button class="lang-btn" id="langBtnId" onclick="window.setLanguage('id')">🇮🇩</button>
+  </div>
+  
   <!-- Auth UI — dikendalikan JS -->
   <div class="nav-auth" id="navAuth">
     <div class="auth-loading">
@@ -1080,8 +1115,21 @@ footer {
   <p class="footer-copy">© 2026 LittleLume. All rights reserved. Premium English Learning for Kids.</p>
 </footer>
 
+<!-- Language Config -->
+<script src="language-config.js"></script>
+
 <!-- ── FIREBASE SDK ── -->
 <script type="module">
+/* ── LANGUAGE SWITCHER ── */
+window.setLanguage = function(lang) {
+  if (window.langMgr) {
+    window.langMgr.setLanguage(lang);
+    document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+    if (lang === 'en') document.getElementById('langBtnEn').classList.add('active');
+    else document.getElementById('langBtnId').classList.add('active');
+  }
+};
+
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
 import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged }
   from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js';
