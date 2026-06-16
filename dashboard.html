@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard — LittleLume</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --midnight: #0D0B1E;
+  --surface:  #141230;
+  --card:     #1A1740;
+  --card-h:   #201D4D;
+  --purple:   #6C63FF;
+  --mint:     #00E5C3;
+  --text:     #F0EEFF;
+  --muted:    #8B8AB8;
+  --border:   rgba(108,99,255,0.18);
+  --sidebar-w: 240px;
+
+  /* Grade accent colors */
+  --g1: #FF6B9D; --g1d: rgba(255,107,157,0.12);
+  --g2: #FF9A3C; --g2d: rgba(255,154,60,0.12);
+  --g3: #FFD93D; --g3d: rgba(255,217,61,0.10);
+  --g4: #6BCB77; --g4d: rgba(107,203,119,0.12);
+  --g5: #4D96FF; --g5d: rgba(77,150,255,0.12);
+  --g6: #C77DFF; --g6d: rgba(199,125,255,0.12);
+}
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html, body { height:100%; }
+body {
+  font-family:'Inter', sans-serif;
+  background:var(--midnight);
+  color:var(--text);
+  display:flex;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+/* ── SIDEBAR ── */
+.sidebar {
+  width:var(--sidebar-w);
+  background:var(--surface);
+  border-right:1px solid var(--border);
+  display:flex;
+  flex-direction:column;
+  position:fixed;
+  top:0; left:0; bottom:0;
+  z-index:50;
+  transition:transform 0.3s;
+}
+.sidebar-logo {
+  padding:24px 20px 20px;
+  border-bottom:1px solid var(--border);
+  display:flex; align-items:center; gap:10px;
+  text-decoration:none;
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-weight:800; font-size:1.15rem; color:var(--text);
+}
+.logo-lume {
+  background:linear-gradient(135deg,var(--purple),var(--mint));
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+}
+.sidebar-nav { flex:1; padding:16px 12px; overflow-y:auto; }
+.nav-label {
+  font-size:0.68rem; font-weight:700; letter-spacing:1.5px;
+  text-transform:uppercase; color:var(--muted);
+  padding:0 8px; margin:16px 0 8px;
+}
+.nav-label:first-child { margin-top:0; }
+.nav-item {
+  display:flex; align-items:center; gap:10px;
+  padding:10px 12px; border-radius:10px;
+  font-size:0.88rem; font-weight:500; color:var(--muted);
+  cursor:pointer; text-decoration:none;
+  transition:background 0.15s, color 0.15s;
+  margin-bottom:2px;
+}
+.nav-item:hover { background:rgba(108,99,255,0.1); color:var(--text); }
+.nav-item.active { background:rgba(108,99,255,0.15); color:var(--purple); font-weight:600; }
+.nav-item .ni { font-size:1rem; width:20px; text-align:center; }
+.sidebar-bottom {
+  padding:16px 12px;
+  border-top:1px solid var(--border);
+}
+.user-info {
+  display:flex; align-items:center; gap:10px;
+  padding:10px 12px; border-radius:12px;
+  background:var(--card); margin-bottom:8px;
+}
+.user-ava {
+  width:34px; height:34px; border-radius:50%;
+  background:linear-gradient(135deg,var(--purple),var(--mint));
+  display:flex; align-items:center; justify-content:center;
+  font-weight:700; font-size:0.82rem; color:#fff;
+  flex-shrink:0; overflow:hidden;
+}
+.user-ava img { width:100%; height:100%; object-fit:cover; border-radius:50%; }
+.user-detail .u-name { font-size:0.85rem; font-weight:700; color:var(--text); }
+.user-detail .u-email { font-size:0.72rem; color:var(--muted); margin-top:1px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:130px; }
+.btn-signout {
+  width:100%; padding:9px; border-radius:10px;
+  background:none; border:1px solid var(--border);
+  color:var(--muted); font-size:0.82rem; font-weight:600;
+  cursor:pointer; transition:all 0.2s; font-family:'Inter',sans-serif;
+  display:flex; align-items:center; justify-content:center; gap:6px;
+}
+.btn-signout:hover { border-color:rgba(255,107,107,0.4); color:#ff6b6b; background:rgba(255,107,107,0.07); }
+
+/* ── MAIN ── */
+.main {
+  margin-left:var(--sidebar-w);
+  flex:1;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+}
+
+/* ── TOPBAR ── */
+.topbar {
+  position:sticky; top:0; z-index:40;
+  background:rgba(13,11,30,0.85);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+  padding:16px 32px;
+  display:flex; align-items:center; justify-content:space-between;
+}
+.topbar-title {
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:1.05rem; font-weight:700;
+}
+.topbar-right { display:flex; align-items:center; gap:12px; }
+.sub-status {
+  display:inline-flex; align-items:center; gap:6px;
+  padding:6px 14px; border-radius:50px;
+  font-size:0.78rem; font-weight:700;
+}
+.sub-status.active { background:rgba(0,229,195,0.12); color:var(--mint); border:1px solid rgba(0,229,195,0.25); }
+.sub-status.inactive { background:rgba(255,107,107,0.1); color:#ff6b6b; border:1px solid rgba(255,107,107,0.2); }
+.sub-dot { width:6px; height:6px; border-radius:50%; background:currentColor; }
+
+/* ── CONTENT ── */
+.content { padding:32px; flex:1; }
+
+/* ── GREETING ── */
+.greeting-section { margin-bottom:32px; }
+.greeting-eyebrow {
+  font-size:0.78rem; font-weight:600; color:var(--muted);
+  letter-spacing:0.5px; margin-bottom:6px;
+}
+.greeting-title {
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:clamp(1.5rem, 3vw, 2rem); font-weight:800;
+  letter-spacing:-0.5px; line-height:1.2;
+}
+.greeting-title span {
+  background:linear-gradient(135deg,var(--purple),var(--mint));
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+}
+.greeting-sub { color:var(--muted); font-size:0.9rem; margin-top:6px; }
+
+/* ── STATS ROW ── */
+.stats-row {
+  display:grid;
+  grid-template-columns:repeat(4, 1fr);
+  gap:16px;
+  margin-bottom:28px;
+}
+.stat-card {
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:20px;
+  position:relative;
+  overflow:hidden;
+  transition:border-color 0.2s, transform 0.2s;
+}
+.stat-card:hover { border-color:rgba(108,99,255,0.35); transform:translateY(-2px); }
+.stat-card::before {
+  content:'';
+  position:absolute; top:0; left:0; right:0; height:2px;
+}
+.stat-card.s-purple::before { background:linear-gradient(90deg,var(--purple),#9B93FF); }
+.stat-card.s-mint::before   { background:linear-gradient(90deg,var(--mint),#00B89D); }
+.stat-card.s-orange::before { background:linear-gradient(90deg,#FF9A3C,#FFD93D); }
+.stat-card.s-pink::before   { background:linear-gradient(90deg,#FF6B9D,#C77DFF); }
+.stat-icon { font-size:1.4rem; margin-bottom:10px; display:block; }
+.stat-num {
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:1.8rem; font-weight:800; letter-spacing:-1px;
+  color:var(--text); line-height:1;
+}
+.stat-label { font-size:0.78rem; color:var(--muted); margin-top:4px; font-weight:500; }
+
+/* ── LAST ACCESSED ── */
+.last-accessed {
+  background:linear-gradient(135deg, rgba(108,99,255,0.15), rgba(0,229,195,0.08));
+  border:1px solid rgba(108,99,255,0.3);
+  border-radius:20px;
+  padding:24px 28px;
+  margin-bottom:28px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  flex-wrap:wrap;
+}
+.la-left { display:flex; align-items:center; gap:16px; }
+.la-icon {
+  width:52px; height:52px; border-radius:14px;
+  background:rgba(108,99,255,0.2);
+  display:flex; align-items:center; justify-content:center;
+  font-size:1.5rem; flex-shrink:0;
+}
+.la-eyebrow { font-size:0.72rem; font-weight:600; color:var(--mint); letter-spacing:0.5px; text-transform:uppercase; margin-bottom:4px; }
+.la-title { font-family:'Plus Jakarta Sans',sans-serif; font-size:1rem; font-weight:700; margin-bottom:2px; }
+.la-meta { font-size:0.8rem; color:var(--muted); }
+.btn-continue {
+  background:linear-gradient(135deg,var(--purple),var(--mint));
+  color:#fff; padding:12px 24px; border-radius:50px;
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-weight:700; font-size:0.88rem;
+  border:none; cursor:pointer;
+  display:flex; align-items:center; gap:8px;
+  white-space:nowrap;
+  transition:transform 0.2s, box-shadow 0.2s;
+  box-shadow:0 6px 20px rgba(108,99,255,0.3);
+}
+.btn-continue:hover { transform:translateY(-2px); box-shadow:0 10px 28px rgba(108,99,255,0.4); }
+
+/* ── SECTION HEADER ── */
+.section-hdr {
+  display:flex; align-items:center; justify-content:space-between;
+  margin-bottom:16px;
+}
+.section-hdr h2 {
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:1.05rem; font-weight:700;
+}
+.section-hdr a {
+  font-size:0.82rem; color:var(--purple); text-decoration:none; font-weight:600;
+}
+.section-hdr a:hover { color:var(--mint); }
+
+/* ── GRADE GRID ── */
+.grade-grid {
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:16px;
+  margin-bottom:28px;
+}
+.grade-card {
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:20px;
+  cursor:pointer;
+  transition:border-color 0.2s, transform 0.2s, background 0.2s;
+  position:relative;
+  overflow:hidden;
+  text-decoration:none;
+  display:block;
+}
+.grade-card:hover { transform:translateY(-3px); background:var(--card-h); }
+.grade-card.locked { opacity:0.5; cursor:default; }
+.grade-card.locked:hover { transform:none; background:var(--card); }
+.gc-top { display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; }
+.gc-badge {
+  padding:4px 12px; border-radius:50px;
+  font-size:0.72rem; font-weight:700;
+  letter-spacing:0.3px;
+}
+.gc-lock { font-size:0.9rem; opacity:0.5; }
+.gc-title {
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:1rem; font-weight:800; margin-bottom:3px;
+}
+.gc-sub { font-size:0.78rem; color:var(--muted); margin-bottom:14px; }
+.progress-bar-wrap { margin-bottom:6px; }
+.progress-track {
+  height:5px; background:rgba(255,255,255,0.08);
+  border-radius:10px; overflow:hidden;
+}
+.progress-fill { height:100%; border-radius:10px; transition:width 0.8s ease; }
+.progress-label {
+  display:flex; justify-content:space-between;
+  font-size:0.7rem; color:var(--muted); margin-top:5px;
+}
+.gc-chapters { font-size:0.75rem; color:var(--muted); margin-top:8px; }
+.gc-chapters strong { color:var(--text); }
+
+/* Grade card accent borders */
+.gc-1 { border-top:2px solid var(--g1); }
+.gc-1:hover { border-color:var(--g1); }
+.gc-2 { border-top:2px solid var(--g2); }
+.gc-2:hover { border-color:var(--g2); }
+.gc-3 { border-top:2px solid var(--g3); }
+.gc-3:hover { border-color:var(--g3); }
+.gc-4 { border-top:2px solid var(--g4); }
+.gc-4:hover { border-color:var(--g4); }
+.gc-5 { border-top:2px solid var(--g5); }
+.gc-5:hover { border-color:var(--g5); }
+.gc-6 { border-top:2px solid var(--g6); }
+.gc-6:hover { border-color:var(--g6); }
+
+/* ── QUICK ACTIONS ── */
+.quick-grid {
+  display:grid;
+  grid-template-columns:repeat(4, 1fr);
+  gap:12px;
+  margin-bottom:28px;
+}
+.quick-card {
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:18px 14px;
+  text-align:center;
+  cursor:pointer;
+  text-decoration:none;
+  display:block;
+  transition:border-color 0.2s, transform 0.2s, background 0.2s;
+}
+.quick-card:hover { border-color:rgba(108,99,255,0.4); transform:translateY(-2px); background:var(--card-h); }
+.qc-icon { font-size:1.6rem; margin-bottom:8px; display:block; }
+.qc-label { font-size:0.8rem; font-weight:700; color:var(--text); margin-bottom:2px; font-family:'Plus Jakarta Sans',sans-serif; }
+.qc-sub { font-size:0.7rem; color:var(--muted); }
+
+/* ── RESPONSIVE ── */
+@media(max-width:1024px){
+  .stats-row { grid-template-columns:repeat(2,1fr); }
+  .grade-grid { grid-template-columns:repeat(2,1fr); }
+  .quick-grid { grid-template-columns:repeat(2,1fr); }
+}
+@media(max-width:768px){
+  .sidebar { transform:translateX(-100%); }
+  .sidebar.open { transform:translateX(0); }
+  .main { margin-left:0; }
+  .content { padding:20px; }
+  .topbar { padding:14px 20px; }
+  .grade-grid { grid-template-columns:1fr; }
+  .stats-row { grid-template-columns:repeat(2,1fr); }
+}
+
+/* ── AUTH GUARD overlay ── */
+.auth-guard {
+  position:fixed; inset:0; z-index:999;
+  background:var(--midnight);
+  display:flex; align-items:center; justify-content:center;
+  flex-direction:column; gap:16px;
+  transition:opacity 0.4s;
+}
+.auth-guard.hidden { opacity:0; pointer-events:none; }
+.ag-spinner {
+  width:40px; height:40px; border-radius:50%;
+  border:3px solid rgba(108,99,255,0.2);
+  border-top-color:var(--purple);
+  animation:spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform:rotate(360deg); } }
+.ag-logo { font-family:'Plus Jakarta Sans',sans-serif; font-weight:800; font-size:1.3rem; }
+
+/* ── PAYWALL BANNER ── */
+.paywall-banner {
+  background:linear-gradient(135deg, rgba(255,107,107,0.1), rgba(255,154,60,0.08));
+  border:1px solid rgba(255,107,107,0.25);
+  border-radius:16px;
+  padding:20px 24px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  margin-bottom:28px;
+  flex-wrap:wrap;
+}
+.pb-left { display:flex; align-items:center; gap:12px; }
+.pb-icon { font-size:1.5rem; }
+.pb-title { font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:0.95rem; margin-bottom:2px; }
+.pb-sub { font-size:0.8rem; color:var(--muted); }
+.btn-subscribe {
+  background:linear-gradient(135deg,#FF9A3C,#FFD93D);
+  color:#1A1000; padding:10px 22px; border-radius:50px;
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-weight:700; font-size:0.85rem;
+  border:none; cursor:pointer; white-space:nowrap;
+  transition:transform 0.2s, box-shadow 0.2s;
+  box-shadow:0 4px 16px rgba(255,154,60,0.3);
+}
+.btn-subscribe:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(255,154,60,0.4); }
+
+/* Toast */
+.toast {
+  position:fixed; bottom:24px; left:50%; transform:translateX(-50%) translateY(20px);
+  background:var(--card); border:1px solid var(--border);
+  border-radius:50px; padding:11px 22px;
+  font-size:0.85rem; font-weight:600; color:var(--text);
+  box-shadow:0 8px 32px rgba(0,0,0,0.4);
+  z-index:999; opacity:0; pointer-events:none;
+  transition:opacity 0.3s, transform 0.3s; white-space:nowrap;
+}
+.toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- Auth Guard (loading screen) -->
+<div class="auth-guard" id="authGuard">
+  <div class="ag-logo">💡 Little<span style="background:linear-gradient(135deg,#6C63FF,#00E5C3);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Lume</span></div>
+  <div class="ag-spinner"></div>
+</div>
+
+<!-- ── SIDEBAR ── -->
+<aside class="sidebar" id="sidebar">
+  <a href="/index.html" class="sidebar-logo">
+    <span>💡</span>
+    <span>Little<span class="logo-lume">Lume</span></span>
+  </a>
+  <nav class="sidebar-nav">
+    <div class="nav-label">Main</div>
+    <a class="nav-item active" href="/dashboard.html">
+      <span class="ni">📊</span> Dashboard
+    </a>
+    <a class="nav-item" href="#">
+      <span class="ni">📚</span> My Grades
+    </a>
+    <div class="nav-label">Learn</div>
+    <a class="nav-item" href="#">
+      <span class="ni">🎧</span> Listening
+    </a>
+    <a class="nav-item" href="#">
+      <span class="ni">📖</span> Reading
+    </a>
+    <a class="nav-item" href="#">
+      <span class="ni">🗣️</span> Speaking
+    </a>
+    <a class="nav-item" href="#">
+      <span class="ni">✍️</span> Writing
+    </a>
+    <div class="nav-label">Extras</div>
+    <a class="nav-item" href="#">
+      <span class="ni">📝</span> Grammar
+    </a>
+    <a class="nav-item" href="#">
+      <span class="ni">📄</span> Worksheets
+    </a>
+    <a class="nav-item" href="#">
+      <span class="ni">🎮</span> Games & Quiz
+    </a>
+    <div class="nav-label">Account</div>
+    <a class="nav-item" href="#">
+      <span class="ni">⚙️</span> Settings
+    </a>
+  </nav>
+  <div class="sidebar-bottom">
+    <div class="user-info">
+      <div class="user-ava" id="sidebarAvatar">?</div>
+      <div class="user-detail">
+        <div class="u-name" id="sidebarName">Loading...</div>
+        <div class="u-email" id="sidebarEmail">—</div>
+      </div>
+    </div>
+    <button class="btn-signout" onclick="handleSignOut()">↩ Sign Out</button>
+  </div>
+</aside>
+
+<!-- ── MAIN ── -->
+<main class="main">
+
+  <!-- Topbar -->
+  <div class="topbar">
+    <div class="topbar-title" id="topbarTitle">Dashboard</div>
+    <div class="topbar-right">
+      <div class="sub-status inactive" id="subStatus">
+        <div class="sub-dot"></div>
+        <span id="subLabel">Checking...</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="content">
+
+    <!-- Greeting -->
+    <div class="greeting-section">
+      <div class="greeting-eyebrow" id="greetingTime">Good morning ☀️</div>
+      <h1 class="greeting-title">Welcome back, <span id="greetingName">there</span>!</h1>
+      <p class="greeting-sub" id="greetingSub">Keep the momentum going. Your child's English journey continues today.</p>
+    </div>
+
+    <!-- Paywall banner (shown if not subscribed) -->
+    <div class="paywall-banner" id="paywallBanner" style="display:none">
+      <div class="pb-left">
+        <span class="pb-icon">🔒</span>
+        <div>
+          <div class="pb-title">Unlock All Content</div>
+          <div class="pb-sub">Subscribe for Rp 29.000/month — all grades, all skills, all games.</div>
+        </div>
+      </div>
+      <button class="btn-subscribe" onclick="goToSubscribe()">🚀 Subscribe Now</button>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-row">
+      <div class="stat-card s-purple">
+        <span class="stat-icon">📚</span>
+        <div class="stat-num" id="statGrades">6</div>
+        <div class="stat-label">Grade Levels Available</div>
+      </div>
+      <div class="stat-card s-mint">
+        <span class="stat-icon">✅</span>
+        <div class="stat-num" id="statDone">0</div>
+        <div class="stat-label">Chapters Completed</div>
+      </div>
+      <div class="stat-card s-orange">
+        <span class="stat-icon">🔥</span>
+        <div class="stat-num" id="statStreak">0</div>
+        <div class="stat-label">Day Streak</div>
+      </div>
+      <div class="stat-card s-pink">
+        <span class="stat-icon">⏱️</span>
+        <div class="stat-num" id="statTime">0h</div>
+        <div class="stat-label">Total Learning Time</div>
+      </div>
+    </div>
+
+    <!-- Last Accessed -->
+    <div class="last-accessed" id="lastAccessed">
+      <div class="la-left">
+        <div class="la-icon">📖</div>
+        <div>
+          <div class="la-eyebrow">Continue where you left off</div>
+          <div class="la-title" id="laTitle">Grade 1 — Chapter 1: Hello, World!</div>
+          <div class="la-meta" id="laMeta">Listening · Last accessed: Today</div>
+        </div>
+      </div>
+      <button class="btn-continue" onclick="showToast('Content coming soon! 🚀')">
+        ▶ Continue
+      </button>
+    </div>
+
+    <!-- Grade Progress -->
+    <div class="section-hdr">
+      <h2>📚 Grade Progress</h2>
+      <a href="#">View all →</a>
+    </div>
+    <div class="grade-grid">
+
+      <!-- Grade 1 -->
+      <div class="grade-card gc-1" onclick="showToast('Grade 1 content coming soon!')">
+        <div class="gc-top">
+          <span class="gc-badge" style="background:var(--g1d);color:var(--g1)">Grade 1</span>
+          <span class="gc-lock" id="lock1">🔒</span>
+        </div>
+        <div class="gc-title">Beginner Explorer</div>
+        <div class="gc-sub">Foundations of English — letters, words & basic conversations</div>
+        <div class="progress-bar-wrap">
+          <div class="progress-track">
+            <div class="progress-fill" id="prog1" style="width:0%;background:var(--g1)"></div>
+          </div>
+          <div class="progress-label">
+            <span id="prog1label">0% complete</span>
+            <span id="prog1ch">0 / 8 chapters</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Grade 2 -->
+      <div class="grade-card gc-2" onclick="showToast('Grade 2 content coming soon!')">
+        <div class="gc-top">
+          <span class="gc-badge" style="background:var(--g2d);color:var(--g2)">Grade 2</span>
+          <span class="gc-lock" id="lock2">🔒</span>
+        </div>
+        <div class="gc-title">Word Builder</div>
+        <div class="gc-sub">Expanding vocabulary, simple sentences & listening skills</div>
+        <div class="progress-bar-wrap">
+          <div class="progress-track">
+            <div class="progress-fill" id="prog2" style="width:0%;background:var(--g2)"></div>
+          </div>
+          <div class="progress-label">
+            <span id="prog2label">0% complete</span>
+            <span id="prog2ch">0 / 8 chapters</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Grade 3 -->
+      <div class="grade-card gc-3" onclick="showToast('Grade 3 content coming soon!')">
+        <div class="gc-top">
+          <span class="gc-badge" style="background:var(--g3d);color:var(--g3)">Grade 3</span>
+          <span class="gc-lock" id="lock3">🔒</span>
+        </div>
+        <div class="gc-title">Story Reader</div>
+        <div class="gc-sub">Reading comprehension, grammar basics & speaking practice</div>
+        <div class="progress-bar-wrap">
+          <div class="progress-track">
+            <div class="progress-fill" id="prog3" style="width:0%;background:var(--g3)"></div>
+          </div>
+          <div class="progress-label">
+            <span id="prog3label">0% complete</span>
+            <span id="prog3ch">0 / 8 chapters</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Grade 4 -->
+      <div class="grade-card gc-4" onclick="showToast('Grade 4 content coming soon!')">
+        <div class="gc-top">
+          <span class="gc-badge" style="background:var(--g4d);color:var(--g4)">Grade 4</span>
+          <span class="gc-lock" id="lock4">🔒</span>
+        </div>
+        <div class="gc-title">Language Crafter</div>
+        <div class="gc-sub">Intermediate grammar, writing skills & storytelling</div>
+        <div class="progress-bar-wrap">
+          <div class="progress-track">
+            <div class="progress-fill" id="prog4" style="width:0%;background:var(--g4)"></div>
+          </div>
+          <div class="progress-label">
+            <span id="prog4label">0% complete</span>
+            <span id="prog4ch">0 / 8 chapters</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Grade 5 -->
+      <div class="grade-card gc-5" onclick="showToast('Grade 5 content coming soon!')">
+        <div class="gc-top">
+          <span class="gc-badge" style="background:var(--g5d);color:var(--g5)">Grade 5</span>
+          <span class="gc-lock" id="lock5">🔒</span>
+        </div>
+        <div class="gc-title">Advanced Communicator</div>
+        <div class="gc-sub">Complex reading, essay writing & confident speaking</div>
+        <div class="progress-bar-wrap">
+          <div class="progress-track">
+            <div class="progress-fill" id="prog5" style="width:0%;background:var(--g5)"></div>
+          </div>
+          <div class="progress-label">
+            <span id="prog5label">0% complete</span>
+            <span id="prog5ch">0 / 8 chapters</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Grade 6 -->
+      <div class="grade-card gc-6" onclick="showToast('Grade 6 content coming soon!')">
+        <div class="gc-top">
+          <span class="gc-badge" style="background:var(--g6d);color:var(--g6)">Grade 6</span>
+          <span class="gc-lock" id="lock6">🔒</span>
+        </div>
+        <div class="gc-title">English Master</div>
+        <div class="gc-sub">Academic writing, critical reading & exam preparation</div>
+        <div class="progress-bar-wrap">
+          <div class="progress-track">
+            <div class="progress-fill" id="prog6" style="width:0%;background:var(--g6)"></div>
+          </div>
+          <div class="progress-label">
+            <span id="prog6label">0% complete</span>
+            <span id="prog6ch">0 / 8 chapters</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="section-hdr">
+      <h2>⚡ Quick Access</h2>
+    </div>
+    <div class="quick-grid">
+      <a class="quick-card" href="#" onclick="showToast('Grammar coming soon!')">
+        <span class="qc-icon">📝</span>
+        <div class="qc-label">Grammar</div>
+        <div class="qc-sub">10+ topics</div>
+      </a>
+      <a class="quick-card" href="#" onclick="showToast('Worksheets coming soon!')">
+        <span class="qc-icon">📄</span>
+        <div class="qc-label">Worksheets</div>
+        <div class="qc-sub">All grades</div>
+      </a>
+      <a class="quick-card" href="#" onclick="showToast('Games coming soon!')">
+        <span class="qc-icon">🎮</span>
+        <div class="qc-label">Games & Quiz</div>
+        <div class="qc-sub">6+ game types</div>
+      </a>
+      <a class="quick-card" href="/index.html">
+        <span class="qc-icon">🏠</span>
+        <div class="qc-label">Homepage</div>
+        <div class="qc-sub">Back to main</div>
+      </a>
+    </div>
+
+  </div>
+</main>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script type="module">
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
+import { getAuth, signOut, onAuthStateChanged }
+  from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js';
+import { getFirestore, doc, getDoc }
+  from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCQiI8HJt1IHcJu7ZzDtcTWj6_aXIeLnAw",
+  authDomain: "little-lume.firebaseapp.com",
+  projectId: "little-lume",
+  storageBucket: "little-lume.firebasestorage.app",
+  messagingSenderId: "931608441059",
+  appId: "1:931608441059:web:cf40488df42c8d5fbe15d6"
+};
+
+const app  = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db   = getFirestore(app);
+
+/* ── HELPERS ── */
+window.showToast = function(msg, type='success') {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = `toast ${type} show`;
+  setTimeout(() => t.classList.remove('show'), 3200);
+};
+
+window.handleSignOut = async function() {
+  await signOut(auth);
+  window.location.href = '/index.html';
+};
+
+window.goToSubscribe = function() {
+  window.location.href = '/index.html#pricing';
+};
+
+/* ── GREETING ── */
+function setGreeting(name) {
+  const h = new Date().getHours();
+  const greet = h < 12 ? 'Good morning ☀️' : h < 17 ? 'Good afternoon 🌤️' : 'Good evening 🌙';
+  document.getElementById('greetingTime').textContent = greet;
+  document.getElementById('greetingName').textContent = name.split(' ')[0];
+  document.getElementById('topbarTitle').textContent = `${greet.split(' ').slice(0,2).join(' ')}, ${name.split(' ')[0]}`;
+}
+
+/* ── RENDER USER ── */
+function renderUser(user) {
+  const name = user.displayName || 'Learner';
+  const email = user.email || '';
+  const initials = name.split(' ').map(n=>n[0]).join('').slice(0,2).toUpperCase();
+
+  // Sidebar
+  const ava = document.getElementById('sidebarAvatar');
+  if (user.photoURL) {
+    ava.innerHTML = `<img src="${user.photoURL}" alt="${name}">`;
+  } else {
+    ava.textContent = initials;
+  }
+  document.getElementById('sidebarName').textContent = name;
+  document.getElementById('sidebarEmail').textContent = email;
+
+  setGreeting(name);
+}
+
+/* ── CHECK SUBSCRIPTION ── */
+async function checkSubscription(userId) {
+  try {
+    const snap = await getDoc(doc(db, 'users', userId));
+    if (!snap.exists()) return null;
+    const sub = snap.data()?.subscription;
+    if (!sub) return null;
+    const exp = sub.expiredAt?.toDate?.() || new Date(sub.expiredAt);
+    return { active: sub.status === 'active' && exp > new Date(), expiredAt: exp };
+  } catch { return null; }
+}
+
+/* ── RENDER SUBSCRIPTION STATUS ── */
+function renderSubStatus(sub) {
+  const el = document.getElementById('subStatus');
+  const label = document.getElementById('subLabel');
+  const banner = document.getElementById('paywallBanner');
+
+  if (sub && sub.active) {
+    el.className = 'sub-status active';
+    const d = sub.expiredAt;
+    label.textContent = `Active · expires ${d.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'})}`;
+    banner.style.display = 'none';
+    // Unlock grade cards
+    for(let i=1;i<=6;i++){
+      document.getElementById(`lock${i}`).textContent = '✅';
+    }
+    document.getElementById('greetingSub').textContent = "You have full access to all grades. Keep up the great work!";
+  } else {
+    el.className = 'sub-status inactive';
+    label.textContent = 'No active subscription';
+    banner.style.display = 'flex';
+    document.getElementById('greetingSub').textContent = "Subscribe to unlock all grades, chapters, and learning tools.";
+  }
+}
+
+/* ── AUTH STATE ── */
+onAuthStateChanged(auth, async (user) => {
+  const guard = document.getElementById('authGuard');
+  if (!user) {
+    window.location.href = '/index.html';
+    return;
+  }
+  renderUser(user);
+  const sub = await checkSubscription(user.uid);
+  renderSubStatus(sub);
+  guard.classList.add('hidden');
+  setTimeout(() => guard.style.display = 'none', 400);
+});
+</script>
+</body>
+</html>
