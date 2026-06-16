@@ -417,6 +417,111 @@ footer {
 }
 .reveal { opacity:0; transform:translateY(28px); transition:opacity 0.65s ease, transform 0.65s ease; }
 .reveal.visible { opacity:1; transform:translateY(0); }
+
+/* ── EXTRAS: GRAMMAR, WORKSHEET, QUIZ ── */
+.extras-section { background:var(--midnight); }
+.extras-grid {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:24px;
+  margin-top:56px;
+}
+@media(max-width:768px){ .extras-grid { grid-template-columns:1fr; } }
+
+.extra-block {
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:24px;
+  padding:36px;
+  position:relative;
+  overflow:hidden;
+  transition:border-color 0.25s, transform 0.25s;
+}
+.extra-block:hover { border-color:rgba(108,99,255,0.45); transform:translateY(-5px); }
+.extra-block .glow-orb {
+  position:absolute;
+  bottom:-50px; right:-50px;
+  width:160px; height:160px;
+  border-radius:50%;
+  opacity:0.07;
+  pointer-events:none;
+}
+.extra-block.grammar  { border-top:2px solid var(--purple); }
+.extra-block.worksheet{ border-top:2px solid var(--mint); }
+.extra-block.quiz     { border-top:2px solid #FFB347; }
+
+.extra-icon-wrap {
+  width:56px; height:56px;
+  border-radius:16px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:1.6rem;
+  margin-bottom:20px;
+}
+.grammar   .extra-icon-wrap { background:rgba(108,99,255,0.12); }
+.worksheet .extra-icon-wrap { background:rgba(0,229,195,0.10); }
+.quiz      .extra-icon-wrap { background:rgba(255,179,71,0.12); }
+
+.extra-block h3 {
+  font-family:'Plus Jakarta Sans', sans-serif;
+  font-size:1.35rem; font-weight:800;
+  letter-spacing:-0.4px; margin-bottom:10px;
+}
+.extra-block p {
+  color:var(--muted); font-size:0.9rem;
+  line-height:1.75; margin-bottom:24px;
+}
+.extra-pills {
+  display:flex; flex-wrap:wrap; gap:8px; margin-bottom:28px;
+}
+.extra-pill {
+  padding:5px 14px; border-radius:50px;
+  font-size:0.76rem; font-weight:600;
+}
+.grammar   .extra-pill { background:rgba(108,99,255,0.12); color:#9B93FF; border:1px solid rgba(108,99,255,0.2); }
+.worksheet .extra-pill { background:rgba(0,229,195,0.10); color:var(--mint); border:1px solid rgba(0,229,195,0.2); }
+.quiz      .extra-pill { background:rgba(255,179,71,0.10); color:#FFB347; border:1px solid rgba(255,179,71,0.25); }
+
+.extra-meta {
+  display:flex; gap:20px; flex-wrap:wrap;
+  padding-top:20px;
+  border-top:1px solid var(--border);
+}
+.extra-meta-item { font-size:0.8rem; color:var(--muted); }
+.extra-meta-item strong {
+  display:block;
+  font-family:'Plus Jakarta Sans', sans-serif;
+  font-size:1.05rem; font-weight:800;
+  color:var(--text); margin-bottom:1px;
+}
+
+/* Quiz full-width card */
+.extra-block.quiz-full {
+  grid-column: 1 / -1;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:32px;
+  align-items:center;
+}
+@media(max-width:768px){ .extra-block.quiz-full { grid-template-columns:1fr; grid-column:auto; } }
+
+.quiz-preview {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+.quiz-mini-card {
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:16px;
+  text-align:center;
+  font-size:0.8rem;
+  color:var(--muted);
+  transition:border-color 0.2s;
+}
+.quiz-mini-card:hover { border-color:rgba(255,179,71,0.4); }
+.quiz-mini-card .qm-icon { font-size:1.6rem; margin-bottom:8px; display:block; }
+.quiz-mini-card .qm-label { font-weight:600; font-size:0.78rem; color:var(--text); }
 </style>
 </head>
 <body>
@@ -431,6 +536,7 @@ footer {
   <ul class="nav-links">
     <li><a href="#features">Features</a></li>
     <li><a href="#grades">Grades</a></li>
+    <li><a href="#extras">More Tools</a></li>
     <li><a href="#pricing">Pricing</a></li>
     <li><a href="#faq">FAQ</a></li>
     <li><a href="#pricing" class="btn-nav">Get Started</a></li>
@@ -537,6 +643,109 @@ footer {
   </div>
 </section>
 
+<!-- ── GRAMMAR, WORKSHEET, QUIZ SECTIONS ── -->
+<section id="extras" class="extras-section section-pad">
+  <div class="container">
+    <div class="reveal">
+      <span class="section-eyebrow">Included in Every Plan</span>
+      <h2 class="section-title">Grammar, Worksheets <em>&amp; Games</em></h2>
+      <p class="section-sub">More than just lessons — your child gets a complete learning toolkit, all in one subscription.</p>
+    </div>
+
+    <div class="extras-grid">
+
+      <!-- GRAMMAR -->
+      <div class="extra-block grammar reveal">
+        <div class="glow-orb" style="background:var(--purple)"></div>
+        <div class="extra-icon-wrap">📝</div>
+        <h3>Grammar Lessons</h3>
+        <p>Structured grammar content designed for elementary learners. Each topic is explained simply, then reinforced through interactive exercises — so knowledge actually sticks.</p>
+        <div class="extra-pills">
+          <span class="extra-pill">Tenses</span>
+          <span class="extra-pill">Parts of Speech</span>
+          <span class="extra-pill">Sentence Structure</span>
+          <span class="extra-pill">Punctuation</span>
+          <span class="extra-pill">Adjectives &amp; Adverbs</span>
+          <span class="extra-pill">Pronouns</span>
+        </div>
+        <div class="extra-meta">
+          <div class="extra-meta-item"><strong>10+</strong>Grammar Topics</div>
+          <div class="extra-meta-item"><strong>Grade 1–6</strong>All Levels</div>
+          <div class="extra-meta-item"><strong>Free</strong>With Subscription</div>
+        </div>
+      </div>
+
+      <!-- WORKSHEET -->
+      <div class="extra-block worksheet reveal">
+        <div class="glow-orb" style="background:var(--mint)"></div>
+        <div class="extra-icon-wrap">📄</div>
+        <h3>Printable Worksheets</h3>
+        <p>High-quality A4-ready worksheets for every grade and skill. Perfect for offline practice, homework support, or extra drilling — print anytime, as many times as you need.</p>
+        <div class="extra-pills">
+          <span class="extra-pill">Grade 1</span>
+          <span class="extra-pill">Grade 2</span>
+          <span class="extra-pill">Grade 3</span>
+          <span class="extra-pill">Grade 4</span>
+          <span class="extra-pill">Grade 5</span>
+          <span class="extra-pill">Grade 6</span>
+        </div>
+        <div class="extra-meta">
+          <div class="extra-meta-item"><strong>6</strong>Grade Levels</div>
+          <div class="extra-meta-item"><strong>A4</strong>Print Ready</div>
+          <div class="extra-meta-item"><strong>Free</strong>With Subscription</div>
+        </div>
+      </div>
+
+      <!-- QUIZ & GAMES — full width -->
+      <div class="extra-block quiz quiz-full reveal">
+        <div class="glow-orb" style="background:#FFB347"></div>
+        <div>
+          <div class="extra-icon-wrap">🎮</div>
+          <h3>Quiz &amp; Learning Games</h3>
+          <p>Learning is most effective when it feels like play. Our interactive quizzes and games are designed to reinforce vocabulary, grammar, and comprehension — while keeping kids genuinely engaged and motivated to keep going.</p>
+          <div class="extra-pills">
+            <span class="extra-pill">Vocabulary Quiz</span>
+            <span class="extra-pill">Word Match</span>
+            <span class="extra-pill">Listening Challenge</span>
+            <span class="extra-pill">Spelling Game</span>
+            <span class="extra-pill">Grammar Quiz</span>
+            <span class="extra-pill">Reading Race</span>
+          </div>
+          <div class="extra-meta">
+            <div class="extra-meta-item"><strong>6+</strong>Game Types</div>
+            <div class="extra-meta-item"><strong>All Ages</strong>Grade 1–6</div>
+            <div class="extra-meta-item"><strong>Interactive</strong>Browser-Based</div>
+            <div class="extra-meta-item"><strong>Free</strong>With Subscription</div>
+          </div>
+        </div>
+        <div class="quiz-preview">
+          <div class="quiz-mini-card">
+            <span class="qm-icon">🔤</span>
+            <div class="qm-label">Vocabulary Quiz</div>
+            <div style="font-size:0.72rem;margin-top:4px;color:var(--muted)">Match words to meanings</div>
+          </div>
+          <div class="quiz-mini-card">
+            <span class="qm-icon">👂</span>
+            <div class="qm-label">Listening Challenge</div>
+            <div style="font-size:0.72rem;margin-top:4px;color:var(--muted)">Hear &amp; answer questions</div>
+          </div>
+          <div class="quiz-mini-card">
+            <span class="qm-icon">✏️</span>
+            <div class="qm-label">Spelling Game</div>
+            <div style="font-size:0.72rem;margin-top:4px;color:var(--muted)">Type the correct word</div>
+          </div>
+          <div class="quiz-mini-card">
+            <span class="qm-icon">📚</span>
+            <div class="qm-label">Grammar Quiz</div>
+            <div style="font-size:0.72rem;margin-top:4px;color:var(--muted)">Fill in the blanks</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <section class="section-pad">
   <div class="container">
     <div class="reveal" style="text-align:center">
@@ -565,11 +774,11 @@ footer {
       <div class="pricing-period">per month · billed monthly</div>
       <ul class="pricing-features">
         <li>All 6 Grade Levels (Grade 1–6)</li>
-        <li>Listening, Reading, Speaking & Writing</li>
-        <li>Grammar Lessons — Tenses, Parts of Speech & more</li>
-        <li>Interactive Learning Games</li>
-        <li>Printable Worksheets for every grade</li>
-        <li>Access on Mobile, Tablet & Desktop</li>
+        <li>Listening, Reading, Speaking &amp; Writing</li>
+        <li>Grammar Lessons — Tenses, Parts of Speech &amp; more</li>
+        <li>Printable Worksheets — A4 ready, all grades</li>
+        <li>Interactive Quiz &amp; Learning Games</li>
+        <li>Access on Mobile, Tablet &amp; Desktop</li>
         <li>New content added regularly</li>
       </ul>
       <a href="#" class="btn-primary" style="width:100%;justify-content:center;font-size:1.05rem;padding:18px;">
