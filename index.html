@@ -148,10 +148,12 @@ nav {
 }
 .hero h1 em {
   font-style:normal;
-  background:linear-gradient(135deg, var(--purple) 0%, var(--mint) 100%);
+  background:linear-gradient(90deg, var(--purple), #FF6B9D, var(--mint), var(--purple), #FF6B9D);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
   background-clip:text;
+  background-size:300% 100%;
+  animation:colorFlow 4s ease infinite;
 }
 .hero-sub {
   font-size:1.1rem;
@@ -230,8 +232,10 @@ nav {
 .proof-item .num {
   font-family:'Plus Jakarta Sans', sans-serif;
   font-size:1.9rem; font-weight:800;
-  background:linear-gradient(135deg, var(--purple), var(--mint));
+  background:linear-gradient(90deg, var(--purple), #FF6B9D, var(--mint), var(--purple), #FF6B9D);
   -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+  background-size:300% 100%;
+  animation:colorFlow 4s ease infinite;
 }
 .proof-item .label { font-size:0.82rem; color:var(--muted); font-weight:500; margin-top:2px; }
 .proof-divider { width:1px; height:36px; background:var(--border); }
@@ -250,8 +254,10 @@ section { position:relative; z-index:1; }
 }
 .section-title em {
   font-style:normal;
-  background:linear-gradient(135deg, var(--purple), var(--mint));
+  background:linear-gradient(90deg, var(--purple), #FF6B9D, var(--mint), var(--purple), #FF6B9D);
   -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+  background-size:300% 100%;
+  animation:colorFlow 4s ease infinite;
 }
 .section-sub { color:var(--muted); font-size:1rem; max-width:500px; line-height:1.75; }
 .features-grid {
@@ -350,8 +356,10 @@ section { position:relative; z-index:1; }
 .pricing-price {
   font-family:'Plus Jakarta Sans', sans-serif;
   font-size:4rem; font-weight:800; letter-spacing:-2px;
-  background:linear-gradient(135deg, var(--purple), var(--mint));
+  background:linear-gradient(90deg, var(--purple), #FF6B9D, var(--mint), var(--purple), #FF6B9D);
   -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+  background-size:300% 100%;
+  animation:colorFlow 4s ease infinite;
   line-height:1; margin-bottom:4px;
 }
 .pricing-period { font-size:0.88rem; color:var(--muted); margin-bottom:32px; }
@@ -802,7 +810,7 @@ footer {
   <div class="cta-glow"></div>
   <div class="container">
     <div class="reveal">
-      <h2>Ready to <em style="background:linear-gradient(135deg,var(--purple),var(--mint));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-style:normal">light up</em> your child's English?</h2>
+      <h2>Ready to <em style="background:linear-gradient(90deg,var(--purple),#FF6B9D,var(--mint),var(--purple),#FF6B9D));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;background-size:300% 100%;animation:colorFlow 4s ease infinite;font-style:normal">light up</em> your child's English?</h2>
       <p>Join LittleLume today. Rp 29.000/month. All grades. Cancel anytime.</p>
       <button onclick="openAuthModal()" class="btn-primary" style="font-size:1.05rem;padding:18px 44px;border:none;cursor:pointer;">🚀 Get Started Now</button>
     </div>
