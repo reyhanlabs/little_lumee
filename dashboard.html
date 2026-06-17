@@ -773,13 +773,31 @@ function renderSubStatus(sub) {
 }
 
 onAuthStateChanged(auth, async (user) => {
-  if (!user) { window.location.href = '/index.html'; return; }
+  if (!user) {
+    // Belum login sama sekali → ke homepage
+    window.location.href = '/index.html';
+    return;
+  }
+
   renderUser(user);
   const sub = await checkSubscription(user.uid);
   renderSubStatus(sub);
+
+  // Kalau belum subscribe → tampilkan dashboard terbatas
+  // (paywall banner sudah muncul dari renderSubStatus)
+  // Tidak di-redirect paksa agar user bisa lihat preview dashboard
+  // dan termotivasi untuk subscribe
+
   const guard = document.getElementById('authGuard');
   guard.classList.add('hidden');
   setTimeout(() => guard.style.display = 'none', 400);
+
+  // Tampilkan toast sesuai status
+  if (sub && sub.active) {
+    showToast(`Selamat datang kembali! 🎉 Semangat belajar hari ini.`);
+  } else {
+    showToast(`Halo! Berlangganan untuk akses semua materi. 🚀`, 'info');
+  }
 });
 </script>
 </body>

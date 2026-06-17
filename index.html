@@ -1234,9 +1234,24 @@ onAuthStateChanged(auth, async (user) => {
   if (user) {
     // Cek subscription di Firestore
     const isActive = await checkSubscription(user.uid);
+
+    // ── SISTEM CERDAS ──
+    // Kalau user sudah subscribe & aktif → langsung ke dashboard
+    if (isActive) {
+      window.location.href = '/dashboard.html';
+      return;
+    }
+
+    // Belum subscribe → tetap di homepage, render avatar + banner
     renderLoggedIn(user, isActive);
-    showToast(`Welcome back, ${user.displayName?.split(' ')[0] || 'there'}! 👋`);
+    showToast(`Halo, ${user.displayName?.split(' ')[0] || 'Kamu'}! 👋 Yuk mulai berlangganan.`);
     closeAuthModal();
+
+    // Scroll ke pricing agar user langsung lihat harga
+    setTimeout(() => {
+      document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' });
+    }, 800);
+
   } else {
     renderLoggedOut();
   }
