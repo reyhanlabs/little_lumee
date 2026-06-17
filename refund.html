@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kebijakan Pengembalian Dana — LittleLume</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--midnight:#0D0B1E;--surface:#141230;--card:#1A1740;--purple:#6C63FF;--mint:#00E5C3;--text:#F0EEFF;--muted:#8B8AB8;--border:rgba(108,99,255,0.18);--orange:#FF9A3C;}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Inter',sans-serif;background:var(--midnight);color:var(--text);line-height:1.7;}
+nav{position:sticky;top:0;z-index:100;padding:16px 40px;display:flex;align-items:center;justify-content:space-between;background:rgba(13,11,30,0.9);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+.nav-logo{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:1.2rem;text-decoration:none;color:var(--text);display:flex;align-items:center;gap:8px;}
+.logo-lume{background:linear-gradient(135deg,var(--purple),var(--mint));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.btn-back{font-size:0.85rem;color:var(--muted);text-decoration:none;font-weight:600;transition:color 0.2s;}
+.btn-back:hover{color:var(--text);}
+.hero-legal{background:linear-gradient(135deg,rgba(255,154,60,0.1),rgba(108,99,255,0.06));border-bottom:1px solid var(--border);padding:56px 24px 48px;text-align:center;}
+.legal-tag{display:inline-block;background:rgba(255,154,60,0.12);border:1px solid rgba(255,154,60,0.3);color:var(--orange);padding:5px 16px;border-radius:50px;font-size:0.75rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:16px;}
+.hero-legal h1{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;letter-spacing:-0.8px;margin-bottom:10px;}
+.hero-legal p{color:var(--muted);font-size:0.9rem;}
+.hero-legal p strong{color:var(--orange);}
+.legal-layout{max-width:820px;margin:0 auto;padding:56px 24px 80px;display:grid;grid-template-columns:200px 1fr;gap:48px;align-items:start;}
+@media(max-width:768px){.legal-layout{grid-template-columns:1fr;}}
+.toc{position:sticky;top:80px;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;}
+.toc h3{font-family:'Plus Jakarta Sans',sans-serif;font-size:0.82rem;font-weight:700;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:14px;}
+.toc a{display:block;font-size:0.82rem;color:var(--muted);text-decoration:none;padding:6px 0;border-bottom:1px solid rgba(108,99,255,0.08);transition:color 0.2s;font-weight:500;}
+.toc a:last-child{border-bottom:none;}
+.toc a:hover{color:var(--orange);}
+.legal-content h2{font-family:'Plus Jakarta Sans',sans-serif;font-size:1.15rem;font-weight:800;color:var(--text);margin:36px 0 12px;padding-top:8px;border-top:1px solid var(--border);}
+.legal-content h2:first-child{margin-top:0;border-top:none;}
+.legal-content p{font-size:0.92rem;color:rgba(240,238,255,0.8);margin-bottom:12px;}
+.legal-content ul{padding-left:20px;margin-bottom:12px;}
+.legal-content ul li{font-size:0.92rem;color:rgba(240,238,255,0.8);margin-bottom:6px;}
+.legal-content strong{color:var(--text);font-weight:600;}
+.highlight-box{background:rgba(255,154,60,0.07);border:1px solid rgba(255,154,60,0.2);border-left:3px solid var(--orange);border-radius:10px;padding:16px 18px;margin:16px 0;font-size:0.88rem;color:var(--muted);}
+.highlight-box.green{background:rgba(0,229,195,0.07);border-color:rgba(0,229,195,0.2);border-left-color:var(--mint);}
+.email-link{color:var(--mint);text-decoration:none;font-weight:600;}
+.email-link:hover{text-decoration:underline;}
+
+/* Refund scenario table */
+.scenario-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0;}
+@media(max-width:600px){.scenario-grid{grid-template-columns:1fr;}}
+.scenario-card{border-radius:14px;padding:18px;border:1px solid;}
+.scenario-card.yes{background:rgba(0,229,195,0.07);border-color:rgba(0,229,195,0.2);}
+.scenario-card.no{background:rgba(255,107,107,0.07);border-color:rgba(255,107,107,0.2);}
+.scenario-card .sc-icon{font-size:1.4rem;margin-bottom:8px;display:block;}
+.scenario-card .sc-title{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:0.88rem;margin-bottom:6px;}
+.scenario-card.yes .sc-title{color:var(--mint);}
+.scenario-card.no .sc-title{color:#ff6b6b;}
+.scenario-card p{font-size:0.8rem;color:var(--muted);line-height:1.6;}
+
+footer{background:var(--surface);border-top:1px solid var(--border);padding:32px 24px;text-align:center;}
+.footer-links{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;margin-bottom:12px;}
+.footer-links a{color:var(--muted);text-decoration:none;font-size:0.82rem;transition:color 0.2s;}
+.footer-links a:hover{color:var(--text);}
+.footer-links a.active{color:var(--orange);font-weight:600;}
+.footer-copy{font-size:0.75rem;color:var(--muted);}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="/index.html">
+    <span>💡</span>Little<span class="logo-lume">Lume</span>
+  </a>
+  <a class="btn-back" href="/index.html">← Kembali ke Beranda</a>
+</nav>
+
+<div class="hero-legal">
+  <div class="legal-tag">Legal</div>
+  <h1>Kebijakan Pengembalian Dana</h1>
+  <p>Berlaku sejak <strong>1 Juli 2026</strong> · Terakhir diperbarui: <strong>1 Juli 2026</strong></p>
+</div>
+
+<div class="legal-layout">
+  <aside class="toc">
+    <h3>Daftar Isi</h3>
+    <a href="#r1">1. Prinsip Dasar</a>
+    <a href="#r2">2. Kapan Refund Disetujui</a>
+    <a href="#r3">3. Kapan Refund Ditolak</a>
+    <a href="#r4">4. Proses Pengajuan</a>
+    <a href="#r5">5. Waktu Pemrosesan</a>
+    <a href="#r6">6. Pembatalan Langganan</a>
+    <a href="#r7">7. Gangguan Layanan</a>
+    <a href="#r8">8. Hubungi Kami</a>
+  </aside>
+
+  <div class="legal-content">
+
+    <div class="highlight-box">
+      Kami ingin kamu puas dengan LittleLume. Kebijakan ini menjelaskan kondisi di mana pengembalian dana dapat diproses secara adil untuk kedua belah pihak.
+    </div>
+
+    <h2 id="r1">1. Prinsip Dasar</h2>
+    <p>LittleLume menawarkan langganan bulanan untuk akses platform pembelajaran digital. Karena sifatnya sebagai produk digital yang dapat langsung diakses setelah pembayaran berhasil, pengembalian dana hanya dapat diproses dalam kondisi tertentu yang dijelaskan di bawah ini.</p>
+
+    <h2 id="r2">2. Kapan Refund Disetujui</h2>
+    <div class="scenario-grid">
+      <div class="scenario-card yes">
+        <span class="sc-icon">✅</span>
+        <div class="sc-title">Pembayaran Ganda</div>
+        <p>Kamu tidak sengaja melakukan pembayaran dua kali untuk periode yang sama.</p>
+      </div>
+      <div class="scenario-card yes">
+        <span class="sc-icon">✅</span>
+        <div class="sc-title">Gagal Aktivasi</div>
+        <p>Pembayaran berhasil namun akses konten tidak aktif setelah 1x24 jam.</p>
+      </div>
+      <div class="scenario-card yes">
+        <span class="sc-icon">✅</span>
+        <div class="sc-title">Gangguan Total</div>
+        <p>Platform tidak dapat diakses sama sekali selama lebih dari 72 jam berturut-turut.</p>
+      </div>
+      <div class="scenario-card yes">
+        <span class="sc-icon">✅</span>
+        <div class="sc-title">Permintaan dalam 24 Jam</div>
+        <p>Pengajuan refund dilakukan dalam 24 jam setelah pembayaran pertama dan belum mengakses konten apapun.</p>
+      </div>
+    </div>
+
+    <h2 id="r3">3. Kapan Refund Tidak Disetujui</h2>
+    <div class="scenario-grid">
+      <div class="scenario-card no">
+        <span class="sc-icon">❌</span>
+        <div class="sc-title">Sudah Mengakses Konten</div>
+        <p>Jika kamu sudah mengakses materi, games, atau worksheet setelah pembayaran.</p>
+      </div>
+      <div class="scenario-card no">
+        <span class="sc-icon">❌</span>
+        <div class="sc-title">Lebih dari 24 Jam</div>
+        <p>Permintaan refund diajukan lebih dari 24 jam setelah tanggal pembayaran.</p>
+      </div>
+      <div class="scenario-card no">
+        <span class="sc-icon">❌</span>
+        <div class="sc-title">Alasan Preferensi</div>
+        <p>Tidak menyukai konten, berubah pikiran, atau tidak sempat menggunakan platform.</p>
+      </div>
+      <div class="scenario-card no">
+        <span class="sc-icon">❌</span>
+        <div class="sc-title">Pelanggaran Syarat</div>
+        <p>Akun dinonaktifkan karena melanggar Syarat &amp; Ketentuan LittleLume.</p>
+      </div>
+    </div>
+
+    <h2 id="r4">4. Proses Pengajuan Refund</h2>
+    <p>Untuk mengajukan pengembalian dana, ikuti langkah berikut:</p>
+    <ul>
+      <li>Kirim email ke <a class="email-link" href="mailto:hello@littlelume.id">hello@littlelume.id</a> dengan subjek: <strong>"Refund Request — [nama akun]"</strong></li>
+      <li>Sertakan: alamat email akun, tanggal pembayaran, dan alasan pengajuan</li>
+      <li>Lampirkan bukti pembayaran (screenshot atau nomor transaksi)</li>
+    </ul>
+    <p>Tim kami akan meninjau permintaan dan memberikan respons dalam <strong>2–3 hari kerja</strong>.</p>
+
+    <h2 id="r5">5. Waktu Pemrosesan</h2>
+    <p>Jika refund disetujui, dana akan dikembalikan melalui metode pembayaran yang sama:</p>
+    <ul>
+      <li><strong>Transfer Bank:</strong> 3–7 hari kerja</li>
+      <li><strong>QRIS / E-Wallet (GoPay, OVO, Dana):</strong> 1–3 hari kerja</li>
+      <li><strong>Kartu Kredit/Debit:</strong> 7–14 hari kerja (tergantung kebijakan bank)</li>
+    </ul>
+    <div class="highlight-box green">
+      Refund yang disetujui akan diproses melalui Midtrans dan dikembalikan ke sumber pembayaran asli. LittleLume tidak memungut biaya apapun untuk proses refund yang disetujui.
+    </div>
+
+    <h2 id="r6">6. Pembatalan Langganan</h2>
+    <p>Kamu dapat membatalkan langganan kapan saja melalui dashboard tanpa dikenakan biaya.</p>
+    <p>Setelah pembatalan:</p>
+    <ul>
+      <li>Akses konten tetap tersedia hingga akhir periode yang sudah dibayar</li>
+      <li>Langganan tidak akan diperpanjang otomatis</li>
+      <li>Data progress belajar tetap tersimpan selama 90 hari</li>
+    </ul>
+    <p>Pembatalan langganan <strong>tidak otomatis</strong> menghasilkan pengembalian dana untuk sisa periode.</p>
+
+    <h2 id="r7">7. Gangguan Layanan</h2>
+    <p>Jika terjadi gangguan teknis yang menyebabkan platform tidak dapat diakses:</p>
+    <ul>
+      <li><strong>Kurang dari 24 jam:</strong> Tidak ada kompensasi</li>
+      <li><strong>24–72 jam:</strong> Perpanjangan masa aktif sesuai durasi gangguan</li>
+      <li><strong>Lebih dari 72 jam:</strong> Dapat mengajukan refund proporsional untuk hari yang terpengaruh</li>
+    </ul>
+
+    <h2 id="r8">8. Hubungi Kami</h2>
+    <p>Untuk pertanyaan mengenai kebijakan ini atau pengajuan refund:</p>
+    <p>📧 <a class="email-link" href="mailto:hello@littlelume.id">hello@littlelume.id</a></p>
+    <p>Kami berkomitmen untuk menangani setiap permintaan dengan adil dan transparan dalam 2–3 hari kerja.</p>
+
+  </div>
+</div>
+
+<footer>
+  <div class="footer-links">
+    <a href="/index.html">Beranda</a>
+    <a href="/terms.html">Syarat &amp; Ketentuan</a>
+    <a href="/privacy.html">Kebijakan Privasi</a>
+    <a href="/refund.html" class="active">Kebijakan Pengembalian Dana</a>
+  </div>
+  <p class="footer-copy">© 2026 LittleLume. Hak cipta dilindungi undang-undang.</p>
+</footer>
+
+</body>
+</html>

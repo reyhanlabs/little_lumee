@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Syarat & Ketentuan — LittleLume</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --midnight: #0D0B1E; --surface: #141230; --card: #1A1740;
+  --purple: #6C63FF; --mint: #00E5C3; --text: #F0EEFF;
+  --muted: #8B8AB8; --border: rgba(108,99,255,0.18);
+}
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Inter',sans-serif; background:var(--midnight); color:var(--text); line-height:1.7; }
+
+nav {
+  position:sticky; top:0; z-index:100;
+  padding:16px 40px; display:flex; align-items:center; justify-content:space-between;
+  background:rgba(13,11,30,0.9); backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+}
+.nav-logo {
+  font-family:'Plus Jakarta Sans',sans-serif; font-weight:800; font-size:1.2rem;
+  text-decoration:none; color:var(--text); display:flex; align-items:center; gap:8px;
+}
+.logo-lume { background:linear-gradient(135deg,var(--purple),var(--mint)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.btn-back {
+  font-size:0.85rem; color:var(--muted); text-decoration:none; font-weight:600;
+  display:flex; align-items:center; gap:6px; transition:color 0.2s;
+}
+.btn-back:hover { color:var(--text); }
+
+.hero-legal {
+  background:linear-gradient(135deg, rgba(108,99,255,0.12), rgba(0,229,195,0.06));
+  border-bottom:1px solid var(--border);
+  padding:56px 24px 48px; text-align:center;
+}
+.legal-tag {
+  display:inline-block; background:rgba(108,99,255,0.15); border:1px solid rgba(108,99,255,0.3);
+  color:var(--mint); padding:5px 16px; border-radius:50px;
+  font-size:0.75rem; font-weight:700; letter-spacing:1px; text-transform:uppercase; margin-bottom:16px;
+}
+.hero-legal h1 {
+  font-family:'Plus Jakarta Sans',sans-serif; font-size:clamp(1.8rem,4vw,2.8rem);
+  font-weight:800; letter-spacing:-0.8px; margin-bottom:10px;
+}
+.hero-legal p { color:var(--muted); font-size:0.9rem; }
+.hero-legal p strong { color:var(--mint); }
+
+.legal-layout { max-width:820px; margin:0 auto; padding:56px 24px 80px; display:grid; grid-template-columns:200px 1fr; gap:48px; align-items:start; }
+@media(max-width:768px){ .legal-layout { grid-template-columns:1fr; } }
+
+.toc {
+  position:sticky; top:80px;
+  background:var(--card); border:1px solid var(--border);
+  border-radius:16px; padding:20px;
+}
+.toc h3 { font-family:'Plus Jakarta Sans',sans-serif; font-size:0.82rem; font-weight:700; color:var(--muted); letter-spacing:1px; text-transform:uppercase; margin-bottom:14px; }
+.toc a {
+  display:block; font-size:0.82rem; color:var(--muted); text-decoration:none;
+  padding:6px 0; border-bottom:1px solid rgba(108,99,255,0.08);
+  transition:color 0.2s; font-weight:500;
+}
+.toc a:last-child { border-bottom:none; }
+.toc a:hover { color:var(--purple); }
+
+.legal-content h2 {
+  font-family:'Plus Jakarta Sans',sans-serif; font-size:1.15rem; font-weight:800;
+  color:var(--text); margin:36px 0 12px; padding-top:8px;
+  border-top:1px solid var(--border);
+}
+.legal-content h2:first-child { margin-top:0; border-top:none; }
+.legal-content p { font-size:0.92rem; color:rgba(240,238,255,0.8); margin-bottom:12px; }
+.legal-content ul { padding-left:20px; margin-bottom:12px; }
+.legal-content ul li { font-size:0.92rem; color:rgba(240,238,255,0.8); margin-bottom:6px; }
+.legal-content strong { color:var(--text); font-weight:600; }
+.highlight-box {
+  background:rgba(108,99,255,0.08); border:1px solid rgba(108,99,255,0.2);
+  border-left:3px solid var(--purple); border-radius:10px; padding:16px 18px; margin:16px 0;
+  font-size:0.88rem; color:var(--muted);
+}
+.email-link { color:var(--mint); text-decoration:none; font-weight:600; }
+.email-link:hover { text-decoration:underline; }
+
+footer {
+  background:var(--surface); border-top:1px solid var(--border);
+  padding:32px 24px; text-align:center;
+}
+.footer-links { display:flex; gap:24px; justify-content:center; flex-wrap:wrap; margin-bottom:12px; }
+.footer-links a { color:var(--muted); text-decoration:none; font-size:0.82rem; transition:color 0.2s; }
+.footer-links a:hover { color:var(--text); }
+.footer-links a.active { color:var(--purple); font-weight:600; }
+.footer-copy { font-size:0.75rem; color:var(--muted); }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="/index.html">
+    <span>💡</span>Little<span class="logo-lume">Lume</span>
+  </a>
+  <a class="btn-back" href="/index.html">← Kembali ke Beranda</a>
+</nav>
+
+<div class="hero-legal">
+  <div class="legal-tag">Legal</div>
+  <h1>Syarat &amp; Ketentuan</h1>
+  <p>Berlaku sejak <strong>1 Juli 2026</strong> · Terakhir diperbarui: <strong>1 Juli 2026</strong></p>
+</div>
+
+<div class="legal-layout">
+  <!-- TOC -->
+  <aside class="toc">
+    <h3>Daftar Isi</h3>
+    <a href="#s1">1. Penerimaan Syarat</a>
+    <a href="#s2">2. Layanan LittleLume</a>
+    <a href="#s3">3. Akun Pengguna</a>
+    <a href="#s4">4. Langganan & Pembayaran</a>
+    <a href="#s5">5. Penggunaan yang Diizinkan</a>
+    <a href="#s6">6. Hak Kekayaan Intelektual</a>
+    <a href="#s7">7. Penghentian Layanan</a>
+    <a href="#s8">8. Batasan Tanggung Jawab</a>
+    <a href="#s9">9. Perubahan Syarat</a>
+    <a href="#s10">10. Hubungi Kami</a>
+  </aside>
+
+  <!-- Content -->
+  <div class="legal-content">
+
+    <div class="highlight-box">
+      Dengan menggunakan layanan LittleLume, kamu menyetujui syarat dan ketentuan ini. Harap baca dengan seksama sebelum menggunakan platform kami.
+    </div>
+
+    <h2 id="s1">1. Penerimaan Syarat</h2>
+    <p>Dengan mengakses atau menggunakan platform LittleLume ("Layanan"), kamu menyatakan bahwa kamu telah membaca, memahami, dan menyetujui untuk terikat oleh Syarat &amp; Ketentuan ini.</p>
+    <p>Jika kamu menggunakan Layanan atas nama anak di bawah umur, kamu menyatakan bahwa kamu adalah orang tua atau wali yang sah dan menyetujui syarat ini atas nama mereka.</p>
+
+    <h2 id="s2">2. Layanan LittleLume</h2>
+    <p>LittleLume adalah platform pembelajaran bahasa Inggris berbasis langganan yang menyediakan:</p>
+    <ul>
+      <li>Materi pembelajaran digital untuk siswa SD Grade 1–6</li>
+      <li>Konten interaktif mencakup Listening, Reading, Speaking, Writing, dan Grammar</li>
+      <li>Games dan kuis edukasi</li>
+      <li>Worksheet yang dapat dicetak</li>
+    </ul>
+    <p>Seluruh konten bersifat <strong>self-paced</strong> (belajar mandiri) tanpa sesi mengajar langsung dari guru.</p>
+
+    <h2 id="s3">3. Akun Pengguna</h2>
+    <p>Untuk mengakses konten berbayar, kamu wajib membuat akun menggunakan Google Sign-In. Kamu bertanggung jawab untuk:</p>
+    <ul>
+      <li>Menjaga kerahasiaan akun Google yang digunakan</li>
+      <li>Seluruh aktivitas yang terjadi di bawah akunmu</li>
+      <li>Segera memberitahu kami jika terjadi penggunaan akun tanpa izin</li>
+    </ul>
+    <p>LittleLume berhak menonaktifkan akun yang melanggar syarat ini tanpa pemberitahuan sebelumnya.</p>
+
+    <h2 id="s4">4. Langganan &amp; Pembayaran</h2>
+    <p>LittleLume menggunakan model langganan bulanan dengan ketentuan sebagai berikut:</p>
+    <ul>
+      <li><strong>Harga Early Bird:</strong> Rp 29.000/bulan (berlaku untuk 3 bulan pertama atau hingga 50 pelanggan)</li>
+      <li><strong>Harga Normal:</strong> Rp 49.000/bulan</li>
+      <li>Pembayaran diproses melalui Midtrans dengan metode yang tersedia (QRIS, transfer bank, e-wallet)</li>
+      <li>Langganan aktif selama 30 hari sejak tanggal pembayaran berhasil</li>
+      <li>Pelanggan yang sudah aktif terlindungi dari kenaikan harga hingga masa aktif berakhir</li>
+    </ul>
+    <div class="highlight-box">
+      Harga dapat berubah sewaktu-waktu. Perubahan harga hanya berlaku untuk perpanjangan baru dan tidak mempengaruhi masa langganan yang sedang berjalan.
+    </div>
+
+    <h2 id="s5">5. Penggunaan yang Diizinkan</h2>
+    <p>Kamu diizinkan untuk menggunakan Layanan hanya untuk keperluan pribadi dan non-komersial. Kamu <strong>tidak diperbolehkan</strong> untuk:</p>
+    <ul>
+      <li>Menyebarkan, menjual, atau mendistribusikan ulang konten LittleLume</li>
+      <li>Menggunakan konten untuk keperluan komersial tanpa izin tertulis</li>
+      <li>Melakukan scraping, crawling, atau pengunduhan massal konten platform</li>
+      <li>Berbagi akun dengan pihak lain di luar keluarga inti</li>
+      <li>Melakukan tindakan yang dapat merusak atau mengganggu Layanan</li>
+    </ul>
+
+    <h2 id="s6">6. Hak Kekayaan Intelektual</h2>
+    <p>Seluruh konten di LittleLume — termasuk namun tidak terbatas pada teks, audio, gambar, soal, dan desain — adalah milik LittleLume dan dilindungi oleh hukum hak cipta yang berlaku di Indonesia.</p>
+    <p>Langganan yang aktif memberikan kamu <strong>lisensi terbatas, non-eksklusif, dan tidak dapat dipindahtangankan</strong> untuk mengakses konten selama masa berlangganan.</p>
+
+    <h2 id="s7">7. Penghentian Layanan</h2>
+    <p>Kamu dapat menghentikan langganan kapan saja melalui dashboard. Akses konten akan tetap tersedia hingga akhir periode langganan yang sudah dibayar.</p>
+    <p>LittleLume berhak menghentikan atau menangguhkan akses kamu jika terbukti melanggar syarat ini, tanpa kewajiban pengembalian dana.</p>
+
+    <h2 id="s8">8. Batasan Tanggung Jawab</h2>
+    <p>LittleLume menyediakan Layanan "sebagaimana adanya" tanpa jaminan apapun. Kami tidak bertanggung jawab atas:</p>
+    <ul>
+      <li>Gangguan atau ketidaktersediaan Layanan akibat pemeliharaan atau force majeure</li>
+      <li>Hasil belajar yang diharapkan dari penggunaan platform</li>
+      <li>Kerugian tidak langsung akibat penggunaan atau ketidakmampuan menggunakan Layanan</li>
+    </ul>
+
+    <h2 id="s9">9. Perubahan Syarat</h2>
+    <p>LittleLume berhak mengubah Syarat &amp; Ketentuan ini sewaktu-waktu. Perubahan signifikan akan diberitahukan melalui email atau notifikasi di platform minimal 7 hari sebelum berlaku.</p>
+    <p>Penggunaan Layanan setelah perubahan berlaku dianggap sebagai penerimaan syarat yang baru.</p>
+
+    <h2 id="s10">10. Hubungi Kami</h2>
+    <p>Jika ada pertanyaan mengenai Syarat &amp; Ketentuan ini, silakan hubungi kami di:</p>
+    <p>📧 <a class="email-link" href="mailto:hello@littlelume.id">hello@littlelume.id</a></p>
+    <p>Kami akan merespons dalam 2–3 hari kerja.</p>
+
+  </div>
+</div>
+
+<footer>
+  <div class="footer-links">
+    <a href="/index.html">Beranda</a>
+    <a href="/terms.html" class="active">Syarat &amp; Ketentuan</a>
+    <a href="/privacy.html">Kebijakan Privasi</a>
+    <a href="/refund.html">Kebijakan Pengembalian Dana</a>
+  </div>
+  <p class="footer-copy">© 2026 LittleLume. Hak cipta dilindungi undang-undang.</p>
+</footer>
+
+</body>
+</html>
