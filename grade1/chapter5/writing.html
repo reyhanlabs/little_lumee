@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Writing — Chapter 5: My School | LittleLume</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F5F3FF;--card:#FFFFFF;--purple:#6C63FF;--mint:#00C9A7;--text:#1A1740;--muted:#7B7A9E;--border:rgba(108,99,255,0.12);--shadow:0 4px 20px rgba(108,99,255,0.10);--skill:#FF6B9D;--skill-bg:#FFEFF5;--sidebar:260px;}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html,body{height:100%;}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);display:flex;min-height:100vh;background-image:radial-gradient(circle,rgba(108,99,255,0.05) 1px,transparent 1px);background-size:28px 28px;}
+.sidebar{width:var(--sidebar);background:linear-gradient(180deg,#1E1B4B,#1A1740,#15123A);position:fixed;top:0;left:0;bottom:0;display:flex;flex-direction:column;box-shadow:4px 0 28px rgba(108,99,255,0.2);z-index:50;overflow-y:auto;}
+.sidebar-logo{padding:20px;border-bottom:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;gap:8px;text-decoration:none;font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:1.1rem;color:#fff;}
+.logo-lume{background:linear-gradient(135deg,#6C63FF,#00E5C3);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.chapter-nav{padding:16px 12px;flex:1;}
+.nav-label{font-size:0.65rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.35);padding:0 8px;margin:14px 0 6px;}
+.ch-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;font-size:0.82rem;font-weight:500;color:rgba(255,255,255,0.55);text-decoration:none;margin-bottom:2px;transition:background 0.15s,color 0.15s;}
+.ch-item:hover{background:rgba(255,255,255,0.07);color:#fff;}
+.ch-item.done{color:rgba(255,255,255,0.7);}
+.ch-item.active{background:rgba(108,99,255,0.3);color:#fff;font-weight:600;border-left:3px solid #6C63FF;}
+.ch-item.locked{opacity:0.4;pointer-events:none;}
+.ch-num{width:24px;height:24px;border-radius:50%;background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.5);display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:700;flex-shrink:0;}
+.ch-item.done .ch-num{background:#00C9A7;color:#fff;}
+.ch-item.active .ch-num{background:#6C63FF;color:#fff;}
+.skill-tabs{padding:12px;border-top:1px solid rgba(255,255,255,0.08);}
+.skill-tab{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:10px;font-size:0.82rem;font-weight:500;text-decoration:none;margin-bottom:3px;color:rgba(255,255,255,0.5);transition:background 0.15s,color 0.15s;}
+.skill-tab:hover{background:rgba(255,255,255,0.07);color:#fff;}
+.skill-tab.active{color:#fff;font-weight:700;}
+.skill-tab.s-listening.active{background:rgba(108,99,255,0.3);}
+.skill-tab.s-reading.active{background:rgba(0,201,167,0.25);}
+.skill-tab.s-speaking.active{background:rgba(255,154,60,0.25);}
+.skill-tab.s-writing.active{background:rgba(255,107,157,0.25);}
+.skill-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.s-listening .skill-dot{background:#6C63FF;}.s-reading .skill-dot{background:#00C9A7;}.s-speaking .skill-dot{background:#FF9A3C;}.s-writing .skill-dot{background:#FF6B9D;}
+.sidebar-bottom{padding:14px 12px;border-top:1px solid rgba(255,255,255,0.08);}
+.btn-back{display:flex;align-items:center;gap:8px;padding:10px 12px;border-radius:10px;font-size:0.82rem;font-weight:600;color:rgba(255,255,255,0.6);text-decoration:none;transition:all 0.15s;}
+.btn-back:hover{background:rgba(255,255,255,0.07);color:#fff;}
+.main{margin-left:var(--sidebar);flex:1;display:flex;flex-direction:column;}
+.topbar{position:sticky;top:0;z-index:40;background:rgba(255,255,255,0.9);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:14px 32px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 12px rgba(108,99,255,0.06);}
+.breadcrumb{display:flex;align-items:center;gap:8px;font-size:0.82rem;color:var(--muted);}
+.breadcrumb a{color:var(--muted);text-decoration:none;}
+.breadcrumb a:hover{color:var(--purple);}
+.breadcrumb span{color:var(--text);font-weight:600;}
+.btn-next{background:linear-gradient(135deg,var(--skill),var(--purple));color:#fff;padding:9px 20px;border-radius:50px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:0.82rem;text-decoration:none;display:flex;align-items:center;gap:6px;transition:transform 0.2s,box-shadow 0.2s;box-shadow:0 4px 14px rgba(255,107,157,0.3);}
+.btn-next:hover{transform:translateY(-1px);}
+.btn-prev{background:var(--card);color:var(--text);padding:9px 20px;border-radius:50px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:0.82rem;text-decoration:none;display:flex;align-items:center;gap:6px;border:1px solid var(--border);transition:all 0.2s;}
+.btn-prev:hover{border-color:var(--skill);color:var(--skill);}
+.content{padding:32px;max-width:860px;}
+.skill-progress{display:flex;gap:6px;margin-bottom:28px;}
+.sp-item{flex:1;height:5px;border-radius:5px;background:rgba(108,99,255,0.12);position:relative;}
+.sp-item.done{background:var(--mint);}
+.sp-item.current{background:var(--skill);}
+.sp-label{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);font-size:0.62rem;font-weight:700;color:var(--muted);white-space:nowrap;}
+.ch-header{background:linear-gradient(135deg,#FF6B9D,#6C63FF);border-radius:24px;padding:28px 32px;margin-bottom:28px;position:relative;overflow:hidden;box-shadow:0 8px 32px rgba(255,107,157,0.3);}
+.ch-header::after{content:'✍️';position:absolute;right:24px;top:50%;transform:translateY(-50%);font-size:4rem;opacity:0.15;}
+.ch-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.2);border-radius:50px;padding:4px 14px;font-size:0.72rem;font-weight:700;color:#fff;letter-spacing:0.5px;text-transform:uppercase;margin-bottom:10px;}
+.ch-header h1{font-family:'Plus Jakarta Sans',sans-serif;font-size:1.6rem;font-weight:800;color:#fff;letter-spacing:-0.5px;margin-bottom:6px;}
+.ch-header p{color:rgba(255,255,255,0.8);font-size:0.88rem;}
+.ch-meta{display:flex;gap:16px;margin-top:14px;flex-wrap:wrap;}
+.ch-meta-item{background:rgba(255,255,255,0.15);border-radius:50px;padding:4px 12px;font-size:0.75rem;color:#fff;font-weight:600;}
+.sec-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:28px;margin-bottom:20px;box-shadow:var(--shadow);}
+.sec-head{display:flex;align-items:center;gap:12px;margin-bottom:20px;}
+.sec-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;}
+.sec-icon.pink{background:var(--skill-bg);}
+.sec-icon.purple{background:#EEF0FF;}
+.sec-icon.green{background:#E8FFF8;}
+.sec-title{font-family:'Plus Jakarta Sans',sans-serif;font-size:1rem;font-weight:800;color:var(--text);}
+.sec-sub{font-size:0.78rem;color:var(--muted);margin-top:2px;}
+
+/* WORD BANK */
+.wordbank{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;}
+.wb-chip{background:var(--skill-bg);border:1px solid rgba(255,107,157,0.25);border-radius:50px;padding:7px 16px;font-size:0.84rem;font-weight:700;color:#C2185B;display:flex;align-items:center;gap:6px;}
+
+/* GUIDED SENTENCES */
+.fitb-item{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:16px 18px;margin-bottom:12px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.fitb-num{color:var(--skill);font-weight:700;font-size:0.85rem;flex-shrink:0;}
+.fitb-text{font-size:0.9rem;color:var(--text);line-height:1.8;flex:1;}
+.fitb-input{border:none;border-bottom:2px solid var(--skill);background:transparent;padding:2px 8px;font-size:0.9rem;color:#C2185B;font-weight:600;width:130px;outline:none;font-family:'Inter',sans-serif;}
+.fitb-input.correct{border-color:#00C9A7;color:#006B54;}
+.fitb-input.wrong{border-color:#ff6b6b;color:#8B0000;}
+
+/* OPEN WRITING TASKS */
+.task-card{background:linear-gradient(135deg,rgba(255,107,157,0.06),rgba(108,99,255,0.04));border:1px solid rgba(255,107,157,0.2);border-radius:16px;padding:20px 22px;margin-bottom:16px;}
+.task-num{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:var(--skill);color:#fff;font-size:0.78rem;font-weight:700;margin-right:8px;}
+.task-prompt{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:0.95rem;color:var(--text);display:inline;}
+.task-id{font-size:0.78rem;color:var(--muted);margin:6px 0 12px 34px;}
+.task-textarea{width:100%;min-height:90px;border:1.5px solid var(--border);border-radius:12px;padding:12px 14px;font-family:'Inter',sans-serif;font-size:0.9rem;color:var(--text);resize:vertical;outline:none;transition:border-color 0.2s;}
+.task-textarea:focus{border-color:var(--skill);}
+.task-footer{display:flex;justify-content:space-between;align-items:center;margin-top:8px;}
+.word-count{font-size:0.72rem;color:var(--muted);}
+.btn-save{background:var(--skill-bg);color:#C2185B;border:1px solid rgba(255,107,157,0.3);border-radius:50px;padding:7px 16px;font-size:0.78rem;font-weight:700;cursor:pointer;transition:all 0.2s;}
+.btn-save:hover{background:var(--skill);color:#fff;}
+.btn-save.saved{background:#E8FFF8;color:#006B54;border-color:#00C9A7;}
+
+.tip-box{background:#FFF9E6;border:1px solid #FFE082;border-left:3px solid #F4B400;border-radius:12px;padding:14px 16px;margin:14px 0;display:flex;gap:10px;align-items:flex-start;}
+.tip-icon{font-size:1rem;flex-shrink:0;margin-top:1px;}
+.tip-box p{font-size:0.83rem;color:#5A4000;line-height:1.6;}
+.tip-box strong{color:#3D2B00;}
+
+/* CHAPTER COMPLETE CARD */
+.complete-card{background:linear-gradient(135deg,#6C63FF,#FF6B9D,#00C9A7);border-radius:24px;padding:36px 32px;text-align:center;color:#fff;margin-bottom:24px;position:relative;overflow:hidden;box-shadow:0 12px 40px rgba(108,99,255,0.35);}
+.complete-emoji{font-size:3rem;margin-bottom:10px;}
+.complete-title{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:1.4rem;margin-bottom:6px;}
+.complete-desc{font-size:0.88rem;opacity:0.9;margin-bottom:20px;}
+.complete-stats{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:22px;}
+.stat-pill{background:rgba(255,255,255,0.18);border-radius:14px;padding:10px 18px;}
+.stat-num{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:1.15rem;}
+.stat-label{font-size:0.68rem;opacity:0.85;}
+.complete-btn{background:#fff;color:var(--purple);padding:12px 28px;border-radius:50px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:0.92rem;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:transform 0.2s;}
+.complete-btn:hover{transform:translateY(-2px);}
+@media(max-width:768px){.sidebar{transform:translateX(-100%);}.main{margin-left:0;}.content{padding:20px;}.topbar{padding:12px 20px;}.ch-header{padding:20px;}}
+</style>
+</head>
+<body>
+
+<aside class="sidebar">
+  <a href="/dashboard.html" class="sidebar-logo"><span>💡</span>Little<span class="logo-lume">Lume</span></a>
+  <div class="chapter-nav">
+    <div class="nav-label">Grade 1 — Chapters</div>
+    <a class="ch-item done" href="/grade1/chapter1/listening.html"><span class="ch-num">1</span> Hello, World!</a>
+    <a class="ch-item done" href="/grade1/chapter2/listening.html"><span class="ch-num">2</span> My Body</a>
+    <a class="ch-item done" href="/grade1/chapter3/listening.html"><span class="ch-num">3</span> My Family</a>
+    <a class="ch-item done" href="/grade1/chapter4/listening.html"><span class="ch-num">4</span> Colors &amp; Shapes</a>
+    <a class="ch-item active" href="#"><span class="ch-num">5</span> My School</a>
+    <a class="ch-item locked" href="#"><span class="ch-num">6</span> Animals I Know</a>
+    <a class="ch-item locked" href="#"><span class="ch-num">7</span> Food &amp; Drinks</a>
+    <a class="ch-item locked" href="#"><span class="ch-num">8</span> My Day</a>
+  </div>
+  <div class="skill-tabs">
+    <div class="nav-label">Chapter 5 — Skills</div>
+    <a class="skill-tab s-listening" href="listening.html"><span class="skill-dot"></span> 🎧 Listening</a>
+    <a class="skill-tab s-reading" href="reading.html"><span class="skill-dot"></span> 📖 Reading</a>
+    <a class="skill-tab s-speaking" href="speaking.html"><span class="skill-dot"></span> 🗣️ Speaking</a>
+    <a class="skill-tab s-writing active" href="writing.html"><span class="skill-dot"></span> ✍️ Writing</a>
+  </div>
+  <div class="sidebar-bottom"><a class="btn-back" href="/dashboard.html">← Kembali ke Dasbor</a></div>
+</aside>
+
+<main class="main">
+  <div class="topbar">
+    <div class="breadcrumb">
+      <a href="/dashboard.html">Dasbor</a> › <a href="#">Grade 1</a> › <a href="#">Chapter 5</a> › <span>Writing</span>
+    </div>
+    <div style="display:flex;gap:8px;">
+      <a class="btn-prev" href="speaking.html">← Speaking</a>
+      <a class="btn-next" href="/dashboard.html">Dasbor →</a>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="skill-progress">
+      <div class="sp-item done"><div class="sp-label">🎧 Listening</div></div>
+      <div class="sp-item done"><div class="sp-label">📖 Reading</div></div>
+      <div class="sp-item done"><div class="sp-label">🗣️ Speaking</div></div>
+      <div class="sp-item current"><div class="sp-label">✍️ Writing</div></div>
+    </div>
+
+    <div class="ch-header">
+      <div class="ch-tag">✍️ Writing · Chapter 5</div>
+      <h1>My School</h1>
+      <p>Latihan menulis kalimat dan cerita pendek tentang sekolahmu sendiri.</p>
+      <div class="ch-meta">
+        <div class="ch-meta-item">⏱ ~20 menit</div>
+        <div class="ch-meta-item">📝 4 kalimat + 2 esai bebas</div>
+        <div class="ch-meta-item">🏫 8 kosakata sekolah</div>
+      </div>
+    </div>
+
+    <!-- Section 1: Word Bank -->
+    <div class="sec-card">
+      <div class="sec-head">
+        <div class="sec-icon pink">🧰</div>
+        <div><div class="sec-title">Word Bank — Kosakata Sekolah</div><div class="sec-sub">Gunakan kata-kata ini saat menulis</div></div>
+      </div>
+      <div class="wordbank">
+        <span class="wb-chip">🏫 school</span>
+        <span class="wb-chip">🚪 classroom</span>
+        <span class="wb-chip">👩‍🏫 teacher</span>
+        <span class="wb-chip">🧒 student</span>
+        <span class="wb-chip">📖 book</span>
+        <span class="wb-chip">✏️ pencil</span>
+        <span class="wb-chip">🪑 desk</span>
+        <span class="wb-chip">🖍️ blackboard</span>
+      </div>
+    </div>
+
+    <!-- Section 2: Guided Writing -->
+    <div class="sec-card">
+      <div class="sec-head">
+        <div class="sec-icon purple">✏️</div>
+        <div><div class="sec-title">Latihan Terbimbing</div><div class="sec-sub">Lengkapi kalimat berikut dengan kata yang tepat</div></div>
+      </div>
+      <div class="fitb-item"><span class="fitb-num">1.</span><div class="fitb-text">This is my <input class="fitb-input" id="f1" placeholder="..." data-answer="school" autocomplete="off">.</div></div>
+      <div class="fitb-item"><span class="fitb-num">2.</span><div class="fitb-text">My <input class="fitb-input" id="f2" placeholder="..." data-answer="teacher" autocomplete="off"> is kind.</div></div>
+      <div class="fitb-item"><span class="fitb-num">3.</span><div class="fitb-text">I write with a <input class="fitb-input" id="f3" placeholder="..." data-answer="pencil" autocomplete="off">.</div></div>
+      <div class="fitb-item"><span class="fitb-num">4.</span><div class="fitb-text">I look at the <input class="fitb-input" id="f4" placeholder="..." data-answer="blackboard" autocomplete="off">.</div></div>
+      <button class="btn-check" style="background:linear-gradient(135deg,var(--skill),var(--purple));color:#fff;padding:12px 28px;border-radius:50px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:0.88rem;border:none;cursor:pointer;margin-top:6px;" onclick="checkGuided()">✅ Periksa Jawaban</button>
+      <div class="score-card" id="scoreCard" style="display:none;border-radius:14px;padding:14px 18px;margin-top:14px;font-weight:700;font-size:0.88rem;"></div>
+      <div class="tip-box" style="margin-top:18px">
+        <span class="tip-icon">💡</span>
+        <p><strong>Tips:</strong> Perhatikan ejaan dengan teliti. Semua jawaban menggunakan huruf kecil.</p>
+      </div>
+    </div>
+
+    <!-- Section 3: Open Writing Tasks -->
+    <div class="sec-card">
+      <div class="sec-head">
+        <div class="sec-icon green">📝</div>
+        <div><div class="sec-title">Tantangan Menulis</div><div class="sec-sub">Tulis dengan kata-katamu sendiri, minimal 2-3 kalimat</div></div>
+      </div>
+
+      <div class="task-card">
+        <div><span class="task-num">1</span><span class="task-prompt">Describe your school. What does it look like? Who is your teacher?</span></div>
+        <div class="task-id">Ceritakan tentang sekolahmu. Bagaimana bentuknya? Siapa gurumu?</div>
+        <textarea class="task-textarea" id="task1" placeholder="Write your answer here... (e.g. My school is big. My teacher is...)" oninput="updateCount('task1','count1')"></textarea>
+        <div class="task-footer">
+          <span class="word-count" id="count1">0 kata</span>
+          <button class="btn-save" onclick="saveTask(this)">💾 Simpan</button>
+        </div>
+      </div>
+
+      <div class="task-card">
+        <div><span class="task-num">2</span><span class="task-prompt">What things do you bring to school? Describe 3 items.</span></div>
+        <div class="task-id">Apa saja barang yang kamu bawa ke sekolah? Ceritakan 3 benda.</div>
+        <textarea class="task-textarea" id="task2" placeholder="Write your answer here... (e.g. I bring my book and my pencil...)" oninput="updateCount('task2','count2')"></textarea>
+        <div class="task-footer">
+          <span class="word-count" id="count2">0 kata</span>
+          <button class="btn-save" onclick="saveTask(this)">💾 Simpan</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 4: Chapter Complete -->
+    <div class="complete-card">
+      <div class="complete-emoji">🎉🏆</div>
+      <div class="complete-title">Chapter 5 Selesai!</div>
+      <div class="complete-desc">Selamat! Kamu sudah menyelesaikan semua skill di Chapter 5 — My School.</div>
+      <div class="complete-stats">
+        <div class="stat-pill"><div class="stat-num">4/4</div><div class="stat-label">Skill Selesai</div></div>
+        <div class="stat-pill"><div class="stat-num">8</div><div class="stat-label">Kosakata Baru</div></div>
+        <div class="stat-pill"><div class="stat-num">32</div><div class="stat-label">Soal Dikerjakan</div></div>
+      </div>
+      <a href="/dashboard.html" class="complete-btn">Kembali ke Dasbor →</a>
+    </div>
+
+  </div>
+</main>
+
+<script>
+const correct={f1:'school',f2:'teacher',f3:'pencil',f4:'blackboard'};
+function checkGuided(){
+  let c=0;
+  Object.keys(correct).forEach(id=>{
+    const inp=document.getElementById(id);
+    const v=inp.value.trim().toLowerCase();
+    inp.classList.remove('correct','wrong');
+    if(v===correct[id]){inp.classList.add('correct');c++;}
+    else{inp.classList.add('wrong');}
+  });
+  const card=document.getElementById('scoreCard');
+  card.style.display='block';
+  if(c===4){card.style.background='#E8FFF8';card.style.color='#006B54';card.textContent=`🎉 Sempurna! ${c}/4 jawaban benar.`;}
+  else if(c>=3){card.style.background='#FFF9E6';card.style.color='#5A4000';card.textContent=`⭐ Bagus! ${c}/4 jawaban benar.`;}
+  else{card.style.background='#FFF0F5';card.style.color='#8B0000';card.textContent=`💪 ${c}/4 jawaban benar. Coba lagi!`;}
+}
+function updateCount(taId,countId){
+  const text=document.getElementById(taId).value.trim();
+  const words=text.length?text.split(/\s+/).length:0;
+  document.getElementById(countId).textContent=words+' kata';
+}
+function saveTask(btn){
+  btn.classList.add('saved');
+  btn.textContent='✅ Tersimpan';
+  setTimeout(()=>{btn.classList.remove('saved');btn.innerHTML='💾 Simpan';},2000);
+}
+</script>
+</body>
+</html>
