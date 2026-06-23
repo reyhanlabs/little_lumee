@@ -1,21 +1,13 @@
 /**
  * dev-unlock.js — LittleLume Dev Mode
  * =====================================
- * File ini HANYA untuk testing UI/UX sebelum sistem pembayaran aktif.
- * Fungsi: membuka semua chapter di sidebar tanpa perlu subscription.
- *
- * CARA PAKAI:
- * Tambahkan tag berikut sebelum </body> di setiap file chapter:
- *   <script src="/dev-unlock.js"></script>
- *
- * CARA RESTORE (saat MVP siap):
- * Hapus tag <script src="/dev-unlock.js"></script> dari semua file,
- * atau rename file ini menjadi dev-unlock.js.bak
+ * HANYA untuk testing UI/UX sebelum sistem pembayaran aktif.
+ * CARA RESTORE: rename/hapus file ini dari repo → semua kunci kembali aktif.
  * =====================================
  */
 
 (function() {
-  // Map chapter number ke path listening.html-nya
+  // Path tiap chapter (Grade 1)
   const chapterPaths = {
     1: '/grade1/chapter1/listening.html',
     2: '/grade1/chapter2/listening.html',
@@ -28,39 +20,36 @@
   };
 
   function unlockSidebar() {
-    // Ambil semua chapter item yang locked
-    const lockedItems = document.querySelectorAll('.ch-item.locked');
-
-    lockedItems.forEach(item => {
-      // Hapus class locked
-      item.classList.remove('locked');
-
-      // Ambil nomor chapter dari teks badge
+    // Unlock SEMUA ch-item (done, active, locked) — pastikan href benar
+    document.querySelectorAll('.ch-item').forEach(item => {
       const badge = item.querySelector('.ch-num');
       if (!badge) return;
+
       const chNum = parseInt(badge.textContent.trim());
       if (!chNum || !chapterPaths[chNum]) return;
 
-      // Set href ke path yang benar
-      item.setAttribute('href', chapterPaths[chNum]);
+      // Hapus locked, set href benar, aktifkan pointer
+      item.classList.remove('locked');
+      item.style.opacity   = '1';
       item.style.pointerEvents = 'auto';
-      item.style.opacity = '1';
 
-      // Ganti icon angka menjadi tampilan done
-      // (opsional — biarkan angka agar user tahu posisinya)
+      // Hanya ganti href jika masih # atau kosong
+      const currentHref = item.getAttribute('href');
+      if (!currentHref || currentHref === '#') {
+        item.setAttribute('href', chapterPaths[chNum]);
+      }
     });
 
-    // Unlock juga skill tabs jika ada yang locked
-    document.querySelectorAll('.skill-tab.locked').forEach(tab => {
+    // Unlock skill tabs jika ada yang terkunci
+    document.querySelectorAll('.skill-tab').forEach(tab => {
       tab.classList.remove('locked');
       tab.style.pointerEvents = 'auto';
       tab.style.opacity = '1';
     });
 
-    console.log('[DEV MODE] Sidebar unlocked — semua chapter dapat diakses.');
+    console.log('[LittleLume DEV MODE] Sidebar unlocked ✅');
   }
 
-  // Jalankan setelah DOM siap
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', unlockSidebar);
   } else {
