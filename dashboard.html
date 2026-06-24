@@ -576,7 +576,7 @@ body {
     </div>
     <div class="grade-grid">
 
-      <div class="grade-card" id="gc1" onclick="showGradePreview(1)">
+      <div class="grade-card" id="gc1" onclick="showToast('Konten Grade 1 segera hadir!')">
         <div class="gc-watermark">🌟</div>
         <div class="gc-color-bar" style="background:linear-gradient(90deg,var(--g1),#FF9A8B)"></div>
         <div class="gc-top">
@@ -589,7 +589,7 @@ body {
         <div class="progress-label"><span id="prog1pct">0% selesai</span><span>0 / 8 chapter</span></div>
       </div>
 
-      <div class="grade-card" id="gc2" onclick="showGradePreview(2)">
+      <div class="grade-card" id="gc2" onclick="showToast('Konten Grade 2 segera hadir!')">
         <div class="gc-watermark">🚀</div>
         <div class="gc-color-bar" style="background:linear-gradient(90deg,var(--g2),#FFD93D)"></div>
         <div class="gc-top">
@@ -602,7 +602,7 @@ body {
         <div class="progress-label"><span id="prog2pct">0% selesai</span><span>0 / 8 chapter</span></div>
       </div>
 
-      <div class="grade-card" id="gc3" onclick="showGradePreview(3)">
+      <div class="grade-card" id="gc3" onclick="showToast('Konten Grade 3 segera hadir!')">
         <div class="gc-watermark">📚</div>
         <div class="gc-color-bar" style="background:linear-gradient(90deg,var(--g3),#FF9A3C)"></div>
         <div class="gc-top">
@@ -615,7 +615,7 @@ body {
         <div class="progress-label"><span id="prog3pct">0% selesai</span><span>0 / 8 chapter</span></div>
       </div>
 
-      <div class="grade-card" id="gc4" onclick="showGradePreview(4)">
+      <div class="grade-card" id="gc4" onclick="showToast('Konten Grade 4 segera hadir!')">
         <div class="gc-watermark">✏️</div>
         <div class="gc-color-bar" style="background:linear-gradient(90deg,var(--g4),#00C9A7)"></div>
         <div class="gc-top">
@@ -628,7 +628,7 @@ body {
         <div class="progress-label"><span id="prog4pct">0% selesai</span><span>0 / 8 chapter</span></div>
       </div>
 
-      <div class="grade-card" id="gc5" onclick="showGradePreview(5)">
+      <div class="grade-card" id="gc5" onclick="showToast('Konten Grade 5 segera hadir!')">
         <div class="gc-watermark">💬</div>
         <div class="gc-color-bar" style="background:linear-gradient(90deg,var(--g5),#6C63FF)"></div>
         <div class="gc-top">
@@ -641,7 +641,7 @@ body {
         <div class="progress-label"><span id="prog5pct">0% selesai</span><span>0 / 8 chapter</span></div>
       </div>
 
-      <div class="grade-card" id="gc6" onclick="showGradePreview(6)">
+      <div class="grade-card" id="gc6" onclick="showToast('Konten Grade 6 segera hadir!')">
         <div class="gc-watermark">🏆</div>
         <div class="gc-color-bar" style="background:linear-gradient(90deg,var(--g6),#FF6B9D)"></div>
         <div class="gc-top">
@@ -758,6 +758,20 @@ function renderSubStatus(sub) {
   const el = document.getElementById('subStatus');
   const label = document.getElementById('subLabel');
   const banner = document.getElementById('paywallBanner');
+
+  /* ============================================================
+     DEV MODE — Semua grade dibuka untuk testing UI/UX
+     Untuk RESTORE: hapus blok DEV MODE ini dan uncomment blok PROD
+     ============================================================ */
+  el.className = 'sub-status active';
+  label.textContent = 'Dev Mode · Semua akses terbuka';
+  banner.style.display = 'none';
+  for(let i=1;i<=6;i++) document.getElementById(`lock${i}`).textContent = '✅';
+  document.getElementById('greetingSub').textContent = 'Dev Mode aktif — semua konten terbuka untuk testing.';
+  unlockGradeCards(); // DEV MODE
+  return;
+  /* ============================================================
+     PROD — Aktifkan kembali saat MVP siap
   if (sub?.active) {
     el.className = 'sub-status active';
     const exp = sub.expiredAt.toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'});
@@ -771,8 +785,13 @@ function renderSubStatus(sub) {
     label.textContent = 'Belum berlangganan';
     banner.style.display = 'flex';
   }
+  ============================================================ */
 }
 
+/* ============================================================
+   DEV MODE — fungsi unlock grade card onclick ke konten nyata
+   Hapus fungsi ini saat PROD
+   ============================================================ */
 function unlockGradeCards() {
   const gradeLinks = {
     1: '/grade1/chapter1/listening.html',
@@ -789,6 +808,7 @@ function unlockGradeCards() {
     card.onclick = gradeLinks[i] === '#'
       ? () => showToast(`Grade ${i} belum tersedia — segera hadir!`)
       : () => { window.location.href = gradeLinks[i]; };
+    card.classList.remove('locked');
   }
 }
 
@@ -812,10 +832,12 @@ onAuthStateChanged(auth, async (user) => {
   guard.classList.add('hidden');
   setTimeout(() => guard.style.display = 'none', 400);
 
+  // DEV MODE: tampilkan welcome tanpa cek subscription
   if (sub && sub.active) {
     showToast(`Selamat datang kembali! 🎉 Semangat belajar hari ini.`);
   } else {
-    showToast(`Halo! Berlangganan untuk akses semua materi. 🚀`, 'info');
+    showToast(`Dev Mode aktif 🛠️ — semua konten terbuka untuk testing.`); /* DEV MODE — restore ke bawah saat PROD */
+    // showToast(`Halo! Berlangganan untuk akses semua materi. 🚀`, 'info'); /* PROD */
   }
 });
 </script>
