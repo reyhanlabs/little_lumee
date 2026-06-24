@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reading — Chapter 4: House & Rooms | LittleLume Grade 2</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F5F3FF;--card:#FFFFFF;--text:#1A1740;--muted:#7B7A9E;--border:rgba(14,165,233,0.12);--shadow:0 4px 20px rgba(14,165,233,0.10);--skill:#0EA5E9;--skill-bg:#F0F9FF;--sidebar:260px;}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html,body{height:100%;}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);display:flex;min-height:100vh;background-image:radial-gradient(circle,rgba(14,165,233,0.05) 1px,transparent 1px);background-size:28px 28px;}
+.sidebar{width:var(--sidebar);background:linear-gradient(180deg,#1E1B4B,#1A1740,#15123A);position:fixed;top:0;left:0;bottom:0;display:flex;flex-direction:column;box-shadow:4px 0 28px rgba(108,99,255,0.2);z-index:50;overflow-y:auto;}
+.sidebar-logo{padding:20px;border-bottom:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;gap:8px;text-decoration:none;font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:1.1rem;color:#fff;}
+.logo-lume{background:linear-gradient(135deg,#6C63FF,#00E5C3);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.chapter-nav{padding:16px 12px;flex:1;}
+.nav-label{font-size:0.65rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.35);padding:0 8px;margin:14px 0 6px;}
+.ch-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;font-size:0.82rem;font-weight:500;color:rgba(255,255,255,0.55);text-decoration:none;margin-bottom:2px;transition:background 0.15s,color 0.15s;}
+.ch-item:hover{background:rgba(255,255,255,0.07);color:#fff;}
+.ch-item.done{color:rgba(255,255,255,0.7);}
+.ch-item.active{background:rgba(14,165,233,0.2);color:#fff;font-weight:600;border-left:3px solid #0EA5E9;}
+.ch-num{width:24px;height:24px;border-radius:50%;background:rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:700;flex-shrink:0;}
+.ch-item.done .ch-num{background:#00C9A7;color:#fff;}
+.ch-item.active .ch-num{background:#00C9A7;color:#fff;}
+.skill-tabs{padding:12px;border-top:1px solid rgba(255,255,255,0.08);}
+.skill-tab{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:10px;font-size:0.82rem;font-weight:500;text-decoration:none;margin-bottom:3px;color:rgba(255,255,255,0.5);transition:background 0.15s,color 0.15s;}
+.skill-tab:hover{background:rgba(255,255,255,0.07);color:#fff;}
+.skill-tab.active{color:#fff;font-weight:700;}
+.skill-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;background:#0EA5E9;}
+.sidebar-bottom{padding:14px 12px;border-top:1px solid rgba(255,255,255,0.08);}
+.btn-back{display:flex;align-items:center;gap:8px;padding:10px 12px;border-radius:10px;font-size:0.82rem;font-weight:600;color:rgba(255,255,255,0.6);text-decoration:none;transition:all 0.15s;}
+.btn-back:hover{background:rgba(255,255,255,0.07);color:#fff;}
+.main{margin-left:var(--sidebar);flex:1;display:flex;flex-direction:column;}
+.topbar{position:sticky;top:0;z-index:40;background:rgba(255,255,255,0.9);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:14px 32px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 12px rgba(14,165,233,0.06);}
+.breadcrumb{display:flex;align-items:center;gap:8px;font-size:0.82rem;color:var(--muted);}
+.breadcrumb a{color:var(--muted);text-decoration:none;}
+.breadcrumb a:hover{color:var(--skill);}
+.breadcrumb span{color:var(--text);font-weight:600;}
+.btn-next{background:linear-gradient(135deg,var(--skill),#0369A1);color:#fff;padding:9px 20px;border-radius:50px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:0.82rem;text-decoration:none;display:flex;align-items:center;gap:6px;transition:transform 0.2s,box-shadow 0.2s;box-shadow:0 4px 14px rgba(14,165,233,0.3);}
+.btn-next:hover{transform:translateY(-1px);}
+.btn-prev{background:var(--card);color:var(--text);padding:9px 20px;border-radius:50px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:0.82rem;text-decoration:none;display:flex;align-items:center;gap:6px;border:1px solid var(--border);transition:all 0.2s;}
+.btn-prev:hover{border-color:var(--skill);color:var(--skill);}
+.content{padding:32px;max-width:860px;}
+.progress-label{font-size:0.75rem;font-weight:700;color:var(--muted);letter-spacing:0.5px;text-transform:uppercase;text-align:center;margin-top:8px;}
+.progress-label.active{color:var(--skill);}
+.sp-item{flex:1;height:5px;border-radius:5px;background:rgba(14,165,233,0.12);}
+.sp-item.done{background:#0D9488;}
+.sp-item.current{background:var(--skill);}
+.ch-header{background:linear-gradient(135deg,#0EA5E9,#0369A1);border-radius:24px;padding:28px 32px;margin-bottom:28px;position:relative;overflow:hidden;box-shadow:0 8px 32px rgba(14,165,233,0.3);}
+.ch-header::after{content:'🏠';position:absolute;right:24px;top:50%;transform:translateY(-50%);font-size:4rem;opacity:0.15;}
+.ch-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.2);border-radius:50px;padding:4px 14px;font-size:0.72rem;font-weight:700;color:#fff;letter-spacing:0.5px;text-transform:uppercase;margin-bottom:10px;}
+.ch-header h1{font-family:'Plus Jakarta Sans',sans-serif;font-size:1.6rem;font-weight:800;color:#fff;letter-spacing:-0.5px;margin-bottom:6px;}
+.ch-header p{color:rgba(255,255,255,0.8);font-size:0.88rem;}
+.sec-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:28px;margin-bottom:20px;box-shadow:var(--shadow);}
+.sec-head{display:flex;align-items:center;gap:12px;margin-bottom:20px;}
+.sec-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;background:var(--skill-bg);}
+.sec-title{font-family:'Plus Jakarta Sans',sans-serif;font-size:1rem;font-weight:800;color:var(--text);}
+.sec-sub{font-size:0.78rem;color:var(--muted);margin-top:2px;}
+.passage{margin-bottom:16px;}
+.passage-title{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:0.9rem;color:var(--skill);margin-bottom:10px;}
+.passage p{font-size:0.85rem;color:var(--text);line-height:1.6;margin-bottom:10px;}
+.hl-g{font-weight:700;color:var(--skill);}
+.hl-p{font-weight:700;color:var(--skill);}
+.tip-box{background:#FFF9E6;border:1px solid #FFE082;border-left:3px solid #F4B400;border-radius:12px;padding:14px 16px;margin:16px 0;display:flex;gap:10px;align-items:flex-start;}
+.tip-icon{font-size:1rem;flex-shrink:0;margin-top:1px;}
+.tip-box p{font-size:0.83rem;color:#5A4000;line-height:1.6;}
+.tip-box strong{color:#3D2B00;}
+.ex-header{background:linear-gradient(135deg,rgba(14,165,233,0.1),rgba(14,165,233,0.06));border:1px solid rgba(14,165,233,0.15);border-radius:16px;padding:16px 20px;margin-bottom:20px;display:flex;align-items:center;gap:12px;}
+.ex-badge{background:var(--skill);color:#fff;padding:4px 12px;border-radius:50px;font-size:0.72rem;font-weight:700;white-space:nowrap;}
+.ex-title{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:0.92rem;color:var(--text);}
+.ex-desc{font-size:0.78rem;color:var(--muted);margin-top:2px;}
+.mc-q{margin-bottom:24px;}
+.mc-q-text{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:0.95rem;color:var(--text);margin-bottom:12px;padding:12px 16px;background:var(--bg);border-radius:10px;}
+.mc-num{color:var(--skill);margin-right:6px;}
+.mc-opts{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.mc-opt{border:1px solid var(--border);border-radius:10px;padding:10px 14px;cursor:pointer;font-size:0.88rem;font-weight:500;transition:all 0.2s;background:var(--card);color:var(--text);display:flex;align-items:center;gap:8px;text-align:left;}
+.mc-opt:hover{border-color:var(--skill);background:var(--skill-bg);}
+.opt-letter{display:flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:var(--skill);color:#fff;font-weight:700;font-size:0.75rem;flex-shrink:0;}
+.mc-opt.correct{border-color:#00C9A7;background:#ECFDF5;color:#065f46;font-weight:600;}
+.mc-opt.wrong{border-color:#FF4757;background:#FFE5E5;color:#8B0000;font-weight:600;}
+.fitb-q{margin-bottom:24px;}
+.fitb-q-text{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:0.95rem;color:var(--text);margin-bottom:0;padding:12px 16px;background:var(--bg);border-radius:10px;display:flex;align-items:baseline;gap:6px;}
+.fitb-num{color:var(--skill);margin-right:6px;font-weight:600;font-size:0.88rem;min-width:20px;display:inline-block;}
+.fitb-input{border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-family:'Inter',sans-serif;font-size:0.88rem;min-width:80px;max-width:150px;width:auto;}
+.fitb-input:focus{outline:none;border-color:var(--skill);box-shadow:0 0 0 3px rgba(14,165,233,0.1);}
+.fitb-input.correct{border-color:#00C9A7;background:#ECFDF5;color:#065f46;}
+.fitb-input.wrong{border-color:#FF4757;background:#FFE5E5;color:#8B0000;}
+.btn-check{background:linear-gradient(135deg,var(--skill),#0369A1);color:#fff;border:none;padding:10px 24px;border-radius:50px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:0.9rem;cursor:pointer;transition:transform 0.2s;margin-top:12px;}
+.btn-check:hover{transform:translateY(-2px);}
+.score-card{margin-top:20px;padding:20px;border-radius:16px;background:var(--bg);border:1px solid var(--border);text-align:center;display:none;}
+.score-card.show{display:block;animation:slideIn 0.4s ease-out;}
+@keyframes slideIn{from{opacity:0;transform:translateY(-10px);}to{opacity:1;transform:translateY(0);}}
+.score-emoji{font-size:3rem;display:block;margin-bottom:10px;}
+.score-title{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:1.1rem;color:var(--text);margin-bottom:6px;}
+.score-desc{font-size:0.9rem;color:var(--muted);}
+.score-card.great{background:linear-gradient(135deg,rgba(0,201,167,0.1),rgba(14,165,233,0.05));border-color:rgba(0,201,167,0.3);}
+.score-card.good{background:linear-gradient(135deg,rgba(14,165,233,0.1),rgba(59,130,246,0.05));border-color:rgba(14,165,233,0.3);}
+.score-card.try{background:linear-gradient(135deg,rgba(255,107,107,0.1),rgba(255,107,107,0.05));border-color:rgba(255,107,107,0.3);}
+@media(max-width:768px){.sidebar{width:0;}.main{margin-left:0;}.content{padding:20px;}.ch-header{padding:20px 24px;}.ch-header h1{font-size:1.3rem;}.topbar{padding:12px 16px;}}
+</style>
+</head>
+<body>
+<div class="sidebar">
+  <a href="/" class="sidebar-logo"><span class="logo-lume">Lume</span></a>
+  <div class="chapter-nav">
+    <div class="nav-label">GRADE 2</div>
+    <a href="/grade2/chapter1/reading.html" class="ch-item done"><span class="ch-num">1</span>Numbers & Counting</a>
+    <a href="/grade2/chapter2/reading.html" class="ch-item done"><span class="ch-num">2</span>Family & Pets</a>
+    <a href="/grade2/chapter3/reading.html" class="ch-item done"><span class="ch-num">3</span>Clothes & Appearance</a>
+    <a href="/grade2/chapter4/reading.html" class="ch-item active"><span class="ch-num">4</span>House & Rooms</a>
+  </div>
+  <div class="skill-tabs">
+    <div class="nav-label">CHAPTER 4</div>
+    <a href="listening.html" class="skill-tab s-listening"><span class="skill-dot"></span>🎧 Listening</a>
+    <a href="reading.html" class="skill-tab s-reading active"><span class="skill-dot"></span>📖 Reading</a>
+    <a href="speaking.html" class="skill-tab s-speaking"><span class="skill-dot"></span>🗣️ Speaking</a>
+    <a href="writing.html" class="skill-tab s-writing"><span class="skill-dot"></span>✍️ Writing</a>
+  </div>
+  <div class="sidebar-bottom">
+    <a href="/" class="btn-back">← Kembali ke Dasbor</a>
+  </div>
+</div>
+
+<div class="main">
+  <div class="topbar">
+    <div class="breadcrumb">
+      <a href="/">Dasbor</a> › <a href="/grade2">Grade 2</a> › <a href="/grade2/chapter4">Chapter 4</a> › <span>Reading</span>
+    </div>
+    <div style="display:flex;gap:12px;">
+      <a href="listening.html" class="btn-prev">← Listening</a>
+      <a href="speaking.html" class="btn-next">Speaking →</a>
+    </div>
+  </div>
+
+  <div class="content">
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:16px;margin-bottom:28px;">
+      <div style="text-align:center;"><div class="progress-label">Listening</div><div class="sp-item done"></div></div>
+      <div style="text-align:center;"><div class="progress-label active">Reading</div><div class="sp-item current"></div></div>
+      <div style="text-align:center;"><div class="progress-label">Speaking</div><div class="sp-item"></div></div>
+      <div style="text-align:center;"><div class="progress-label">Writing</div><div class="sp-item"></div></div>
+    </div>
+
+    <div class="ch-header">
+      <span class="ch-tag">📖 Reading</span>
+      <h1>House & Rooms</h1>
+      <p>Baca teks tentang rumah dan kamar untuk memahami kosakata dan ungkapan bahasa Inggris.</p>
+    </div>
+
+    <!-- Section 1: Grammar Patterns -->
+    <div class="sec-card">
+      <div class="sec-head">
+        <div class="sec-icon">📝</div>
+        <div><div class="sec-title">Grammar Patterns</div><div class="sec-sub">Pola kalimat yang sering muncul</div></div>
+      </div>
+      <div style="display:grid;gap:12px;margin-bottom:16px;">
+        <div style="background:linear-gradient(135deg,var(--skill-bg),rgba(14,165,233,0.05));border:1px solid rgba(14,165,233,0.1);border-radius:14px;padding:14px;font-size:0.85rem;">
+          <span style="color:var(--skill);font-weight:700;">"This is my [room]."</span> Contoh: This is my bedroom.
+        </div>
+        <div style="background:linear-gradient(135deg,var(--skill-bg),rgba(14,165,233,0.05));border:1px solid rgba(14,165,233,0.1);border-radius:14px;padding:14px;font-size:0.85rem;">
+          <span style="color:var(--skill);font-weight:700;">"My [room] has a [furniture]."</span> Contoh: My bedroom has a bed.
+        </div>
+        <div style="background:linear-gradient(135deg,var(--skill-bg),rgba(14,165,233,0.05));border:1px solid rgba(14,165,233,0.1);border-radius:14px;padding:14px;font-size:0.85rem;">
+          <span style="color:var(--skill);font-weight:700;">"The [furniture] is [adjective]."</span> Contoh: The sofa is comfortable.
+        </div>
+        <div style="background:linear-gradient(135deg,var(--skill-bg),rgba(14,165,233,0.05));border:1px solid rgba(14,165,233,0.1);border-radius:14px;padding:14px;font-size:0.85rem;">
+          <span style="color:var(--skill);font-weight:700;">"[Room] is located next to the [room]."</span> Contoh: The kitchen is located next to the dining room.
+        </div>
+      </div>
+      <div class="tip-box">
+        <span class="tip-icon">💡</span>
+        <p><strong>Tips:</strong> Kata yang <span style="color:var(--skill);font-weight:700;">biru bold</span> = struktur kalimat penting. Coba buat kalimatmu sendiri dengan pola ini!</p>
+      </div>
+    </div>
+
+    <!-- Section 2: Reading Passages -->
+    <div class="sec-card">
+      <div class="sec-head">
+        <div class="sec-icon">📚</div>
+        <div><div class="sec-title">Read & Understand</div><div class="sec-sub">Baca kedua teks berikut dengan teliti</div></div>
+      </div>
+
+      <div class="passage">
+        <div class="passage-title">📄 Text 1 — Our House Layout</div>
+        <p><span class="hl-g">Welcome to our house!</span> <span class="hl-g">The living room is very big</span> and comfortable. There is a soft sofa and a large table in the living room. <span class="hl-g">Next to the living room is the kitchen.</span> The kitchen is clean and modern. <span class="hl-g">The dining room is next to the kitchen.</span> We have a big table in the dining room for family meals. Upstairs, there are three bedrooms. <span class="hl-g">The hallway</span> connects all the rooms. We also have a bathroom on each floor. <span class="hl-g">Our house is our happy home!</span></p>
+      </div>
+
+      <div class="passage">
+        <div class="passage-title">📄 Text 2 — My Bedroom is Cozy</div>
+        <p>My bedroom is my favorite room in the house. <span class="hl-g">It is small but very comfortable.</span> I have a <span class="hl-p">soft bed</span> where I sleep every night. Next to my bed is a <span class="hl-p">small desk</span> where I do my homework. <span class="hl-g">My room has a big window.</span> <span class="hl-g">From the window, I can see the beautiful garden</span> with green plants and flowers. The walls are painted light blue, which makes the room feel calm and peaceful. I have a clean floor and like to keep everything neat. <span class="hl-g">My bedroom is my own special place</span> where I can rest and study.</p>
+      </div>
+
+      <div class="tip-box">
+        <span class="tip-icon">💡</span>
+        <p><strong>Tips:</strong> Kata yang <span style="color:var(--skill);font-weight:700;">biru</span> = frasa penting yang perlu diingat. Underline atau tandai kata-kata sulit, lalu coba pahami artinya dari konteks.</p>
+      </div>
+    </div>
+
+    <!-- Section 3: Exercises -->
+    <div class="sec-card">
+      <div class="ex-header">
+        <span class="ex-badge">PART A</span>
+        <div><div class="ex-title">Multiple Choice / Pilihan Ganda</div><div class="ex-desc">Pilih jawaban berdasarkan teks yang telah dibaca</div></div>
+      </div>
+
+      <div class="mc-q">
+        <div class="mc-q-text"><span class="mc-num">1.</span> What is the living room like?</div>
+        <div class="mc-opts">
+          <button class="mc-opt" onclick="sel(this,'q1')"><span class="opt-letter">A</span> Small and dark</button>
+          <button class="mc-opt" onclick="sel(this,'q1')"><span class="opt-letter">B</span> Big and comfortable</button>
+          <button class="mc-opt" onclick="sel(this,'q1')"><span class="opt-letter">C</span> Small and clean</button>
+          <button class="mc-opt" onclick="sel(this,'q1')"><span class="opt-letter">D</span> Big and modern</button>
+        </div>
+      </div>
+
+      <div class="mc-q">
+        <div class="mc-q-text"><span class="mc-num">2.</span> What room is next to the living room?</div>
+        <div class="mc-opts">
+          <button class="mc-opt" onclick="sel(this,'q2')"><span class="opt-letter">A</span> Bedroom</button>
+          <button class="mc-opt" onclick="sel(this,'q2')"><span class="opt-letter">B</span> Kitchen</button>
+          <button class="mc-opt" onclick="sel(this,'q2')"><span class="opt-letter">C</span> Bathroom</button>
+          <button class="mc-opt" onclick="sel(this,'q2')"><span class="opt-letter">D</span> Hallway</button>
+        </div>
+      </div>
+
+      <div class="mc-q">
+        <div class="mc-q-text"><span class="mc-num">3.</span> Where is the dining room located?</div>
+        <div class="mc-opts">
+          <button class="mc-opt" onclick="sel(this,'q3')"><span class="opt-letter">A</span> Next to the kitchen</button>
+          <button class="mc-opt" onclick="sel(this,'q3')"><span class="opt-letter">B</span> Next to bedroom</button>
+          <button class="mc-opt" onclick="sel(this,'q3')"><span class="opt-letter">C</span> Upstairs</button>
+          <button class="mc-opt" onclick="sel(this,'q3')"><span class="opt-letter">D</span> In the garage</button>
+        </div>
+      </div>
+
+      <div class="mc-q">
+        <div class="mc-q-text"><span class="mc-num">4.</span> What color is the bedroom painted?</div>
+        <div class="mc-opts">
+          <button class="mc-opt" onclick="sel(this,'q4')"><span class="opt-letter">A</span> White</button>
+          <button class="mc-opt" onclick="sel(this,'q4')"><span class="opt-letter">B</span> Yellow</button>
+          <button class="mc-opt" onclick="sel(this,'q4')"><span class="opt-letter">C</span> Light blue</button>
+          <button class="mc-opt" onclick="sel(this,'q4')"><span class="opt-letter">D</span> Pink</button>
+        </div>
+      </div>
+
+      <div class="mc-q">
+        <div class="mc-q-text"><span class="mc-num">5.</span> What can be seen from the bedroom window?</div>
+        <div class="mc-opts">
+          <button class="mc-opt" onclick="sel(this,'q5')"><span class="opt-letter">A</span> The street</button>
+          <button class="mc-opt" onclick="sel(this,'q5')"><span class="opt-letter">B</span> The garden</button>
+          <button class="mc-opt" onclick="sel(this,'q5')"><span class="opt-letter">C</span> The kitchen</button>
+          <button class="mc-opt" onclick="sel(this,'q5')"><span class="opt-letter">D</span> The garage</button>
+        </div>
+      </div>
+
+      <div class="mc-q">
+        <div class="mc-q-text"><span class="mc-num">6.</span> How many bedrooms does the house have?</div>
+        <div class="mc-opts">
+          <button class="mc-opt" onclick="sel(this,'q6')"><span class="opt-letter">A</span> One</button>
+          <button class="mc-opt" onclick="sel(this,'q6')"><span class="opt-letter">B</span> Two</button>
+          <button class="mc-opt" onclick="sel(this,'q6')"><span class="opt-letter">C</span> Three</button>
+          <button class="mc-opt" onclick="sel(this,'q6')"><span class="opt-letter">D</span> Four</button>
+        </div>
+      </div>
+
+      <div class="ex-header" style="margin-top:28px">
+        <span class="ex-badge">PART B</span>
+        <div><div class="ex-title">Fill in the Blanks / Isian</div><div class="ex-desc">Lengkapi kalimat berdasarkan teks</div></div>
+      </div>
+
+      <div class="fitb-q">
+        <div class="fitb-q-text"><span class="fitb-num">7.</span> The living room is <input class="fitb-input" id="f7" placeholder="___" data-answer="big" autocomplete="off"> and comfortable.</div>
+      </div>
+
+      <div class="fitb-q">
+        <div class="fitb-q-text"><span class="fitb-num">8.</span> The kitchen is <input class="fitb-input" id="f8" placeholder="___" data-answer="next to the living room" autocomplete="off">.</div>
+      </div>
+
+      <div class="fitb-q">
+        <div class="fitb-q-text"><span class="fitb-num">9.</span> The dining room is <input class="fitb-input" id="f9" placeholder="___" data-answer="next to the kitchen" autocomplete="off">.</div>
+      </div>
+
+      <div class="fitb-q">
+        <div class="fitb-q-text"><span class="fitb-num">10.</span> The bedroom is <input class="fitb-input" id="f10" placeholder="___" data-answer="small" autocomplete="off"> but comfortable.</div>
+      </div>
+
+      <div class="fitb-q">
+        <div class="fitb-q-text"><span class="fitb-num">11.</span> From the window, I can see the <input class="fitb-input" id="f11" placeholder="___" data-answer="garden" autocomplete="off">.</div>
+      </div>
+
+      <div class="fitb-q">
+        <div class="fitb-q-text"><span class="fitb-num">12.</span> The walls are painted <input class="fitb-input" id="f12" placeholder="___" data-answer="light blue" autocomplete="off">.</div>
+      </div>
+
+      <button class="btn-check" onclick="checkAll()">✅ Periksa Jawaban</button>
+      <div class="score-card" id="scoreCard">
+        <span class="score-emoji" id="scoreEmoji"></span>
+        <div class="score-title" id="scoreTitle"></div>
+        <div class="score-desc" id="scoreDesc"></div>
+      </div>
+
+      <div class="tip-box">
+        <span class="tip-icon">💡</span>
+        <p><strong>Tips:</strong> Jika salah, baca ulang teks dan cari jawaban yang tepat. Membaca berkali-kali membantu otak mengingat kalimat dan vocabulary dengan lebih baik!</p>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div style="background:linear-gradient(135deg,rgba(14,165,233,0.1),rgba(14,165,233,0.06));border:1px solid rgba(14,165,233,0.15);border-radius:20px;padding:24px 28px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:32px">
+      <div>
+        <div style="font-size:0.72rem;font-weight:700;color:var(--skill);letter-spacing:0.5px;text-transform:uppercase;margin-bottom:4px">Skill Berikutnya</div>
+        <div style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:1rem;color:var(--text)">🗣️ Speaking</div>
+        <div style="font-size:0.78rem;color:var(--muted);margin-top:2px">Latihan pengucapan kosakata rumah dan kamar</div>
+      </div>
+      <a href="speaking.html" class="btn-next">Lanjut ke Speaking →</a>
+    </div>
+  </div>
+</div>
+
+<script>
+const ans={},correct={q1:'b',q2:'b',q3:'a',q4:'c',q5:'b',q6:'c'};
+function sel(btn,id){btn.closest('.mc-q').querySelectorAll('.mc-opt').forEach(b=>{b.style.background='';b.style.borderColor='';});ans[id]=btn.textContent.trim()[0].toLowerCase();btn.style.background='var(--skill-bg)';btn.style.borderColor='var(--skill)';}
+function checkAll(){
+  let c=0;const total=12;
+  Object.keys(correct).forEach(k=>{if(ans[k]===correct[k])c++;});
+  document.querySelectorAll('.mc-q').forEach((q,i)=>{
+    const keys=['q1','q2','q3','q4','q5','q6'],key=keys[i],a=correct[key];
+    q.querySelectorAll('.mc-opt').forEach((b,j)=>{const l=['a','b','c','d'];b.style.pointerEvents='none';b.style.background='';b.style.borderColor='';if(l[j]===a)b.classList.add('correct');else if(ans[key]===l[j])b.classList.add('wrong');});
+  });
+  document.querySelectorAll('.fitb-input').forEach(inp=>{const v=inp.value.trim().toLowerCase(),a=inp.dataset.answer;if(v===a){inp.classList.add('correct');inp.classList.remove('wrong');c++;}else{inp.classList.add('wrong');inp.classList.remove('correct');}});
+  const card=document.getElementById('scoreCard');card.classList.add('show');
+  document.getElementById('scoreDesc').textContent=`You got ${c} out of ${total} correct answers!`;
+  if(c===total){card.className='score-card show great';document.getElementById('scoreEmoji').textContent='🎉';document.getElementById('scoreTitle').textContent='Perfect! Amazing!';}
+  else if(c>=total*0.7){card.className='score-card show good';document.getElementById('scoreEmoji').textContent='⭐';document.getElementById('scoreTitle').textContent='Great Job!';}
+  else{card.className='score-card show try';document.getElementById('scoreEmoji').textContent='💪';document.getElementById('scoreTitle').textContent='Try Again!';}
+  card.scrollIntoView({behavior:'smooth',block:'center'});
+}
+</script>
+</body>
+</html>

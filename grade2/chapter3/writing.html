@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Writing — Chapter 3: Clothes & Appearance | LittleLume Grade 2</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F5F3FF;--card:#FFFFFF;--purple:#6C63FF;--mint:#00E5C3;--text:#1A1740;--muted:#7B7A9E;--border:rgba(16,185,129,0.12);--shadow:0 4px 20px rgba(16,185,129,0.10);--skill:#10B981;--skill-bg:#F0FDF4;--sidebar:260px;}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html,body{height:100%;}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);display:flex;min-height:100vh;background-image:radial-gradient(circle,rgba(16,185,129,0.05) 1px,transparent 1px);background-size:28px 28px;}
+.sidebar{width:var(--sidebar);background:linear-gradient(180deg,#1E1B4B,#1A1740,#15123A);position:fixed;top:0;left:0;bottom:0;display:flex;flex-direction:column;box-shadow:4px 0 28px rgba(108,99,255,0.2);z-index:50;overflow-y:auto;}
+.sidebar-logo{padding:20px;border-bottom:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;gap:8px;text-decoration:none;font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:1.1rem;color:#fff;}
+.logo-lume{background:linear-gradient(135deg,#6C63FF,#00E5C3);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.chapter-nav{padding:16px 12px;flex:1;}
+.nav-label{font-size:0.65rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.35);padding:0 8px;margin:14px 0 6px;}
+.ch-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;font-size:0.82rem;font-weight:500;color:rgba(255,255,255,0.55);text-decoration:none;margin-bottom:2px;transition:background 0.15s,color 0.15s;}
+.ch-item:hover{background:rgba(255,255,255,0.07);color:#fff;}
+.ch-item.done{color:rgba(255,255,255,0.7);}
+.ch-item.active{background:rgba(16,185,129,0.2);color:#fff;font-weight:600;border-left:3px solid #10B981;}
+.ch-item.locked{opacity:0.4;pointer-events:none;}
+.ch-num{width:24px;height:24px;border-radius:50%;background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.5);display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:700;flex-shrink:0;}
+.ch-item.done .ch-num{background:#00C9A7;color:#fff;}
+.ch-item.active .ch-num{background:#00C9A7;color:#fff;}
+.skill-tabs{padding:12px;border-top:1px solid rgba(255,255,255,0.08);}
+.skill-tab{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:10px;font-size:0.82rem;font-weight:500;text-decoration:none;margin-bottom:3px;color:rgba(255,255,255,0.5);transition:background 0.15s,color 0.15s;}
+.skill-tab:hover{background:rgba(255,255,255,0.07);color:#fff;}
+.skill-tab.active{color:#fff;font-weight:700;}
+.skill-tab.s-listening.active{background:rgba(37,99,235,0.3);}
+.skill-tab.s-reading.active{background:rgba(124,58,237,0.25);}
+.skill-tab.s-speaking.active{background:rgba(6,182,212,0.25);}
+.skill-tab.s-writing.active{background:rgba(16,185,129,0.25);}
+.skill-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.s-listening .skill-dot{background:#2563EB;}.s-reading .skill-dot{background:#7C3AED;}.s-speaking .skill-dot{background:#06B6D4;}.s-writing .skill-dot{background:#10B981;}
+.sidebar-bottom{padding:14px 12px;border-top:1px solid rgba(255,255,255,0.08);}
+.btn-back{display:flex;align-items:center;gap:8px;padding:10px 12px;border-radius:10px;font-size:0.82rem;font-weight:600;color:rgba(255,255,255,0.6);text-decoration:none;transition:all 0.15s;}
+.btn-back:hover{background:rgba(255,255,255,0.07);color:#fff;}
+.main{margin-left:var(--sidebar);flex:1;display:flex;flex-direction:column;}
+.topbar{position:sticky;top:0;z-index:40;background:rgba(255,255,255,0.9);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:14px 32px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 12px rgba(16,185,129,0.06);}
+.breadcrumb{display:flex;align-items:center;gap:8px;font-size:0.82rem;color:var(--muted);}
+.breadcrumb a{color:var(--muted);text-decoration:none;}
+.breadcrumb a:hover{color:var(--skill);}
+.breadcrumb span{color:var(--text);font-weight:600;}
+.btn-next{background:linear-gradient(135deg,var(--skill),#059669);color:#fff;padding:9px 20px;border-radius:50px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:0.82rem;text-decoration:none;display:flex;align-items:center;gap:6px;transition:transform 0.2s,box-shadow 0.2s;box-shadow:0 4px 14px rgba(16,185,129,0.3);}
+.btn-next:hover{transform:translateY(-1px);}
+.btn-prev{background:var(--card);color:var(--text);padding:9px 20px;border-radius:50px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:0.82rem;text-decoration:none;display:flex;align-items:center;gap:6px;border:1px solid var(--border);transition:all 0.2s;}
+.btn-prev:hover{border-color:var(--skill);color:var(--skill);}
+.content{padding:32px;max-width:860px;}
+.progress-label{font-size:0.75rem;font-weight:700;color:var(--muted);letter-spacing:0.5px;text-transform:uppercase;text-align:center;margin-top:8px;}
+.progress-label.active{color:var(--skill);}
+.sp-item{flex:1;height:5px;border-radius:5px;background:rgba(16,185,129,0.12);}
+.sp-item.done{background:#0D9488;}
+.sp-item.current{background:var(--skill);}
+.ch-header{background:linear-gradient(135deg,#10B981,#059669);border-radius:24px;padding:28px 32px;margin-bottom:28px;position:relative;overflow:hidden;box-shadow:0 8px 32px rgba(16,185,129,0.3);}
+.ch-header::after{content:'👕';position:absolute;right:24px;top:50%;transform:translateY(-50%);font-size:4rem;opacity:0.15;}
+.ch-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.2);border-radius:50px;padding:4px 14px;font-size:0.72rem;font-weight:700;color:#fff;letter-spacing:0.5px;text-transform:uppercase;margin-bottom:10px;}
+.ch-header h1{font-family:'Plus Jakarta Sans',sans-serif;font-size:1.6rem;font-weight:800;color:#fff;letter-spacing:-0.5px;margin-bottom:6px;}
+.ch-header p{color:rgba(255,255,255,0.8);font-size:0.88rem;}
+.sec-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:28px;margin-bottom:20px;box-shadow:var(--shadow);}
+.sec-head{display:flex;align-items:center;gap:12px;margin-bottom:20px;}
+.sec-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;background:var(--skill-bg);}
+.sec-icon.green{background:linear-gradient(135deg,rgba(13,148,136,0.15),rgba(0,201,167,0.1));}
+.sec-title{font-family:'Plus Jakarta Sans',sans-serif;font-size:1rem;font-weight:800;color:var(--text);}
+.sec-sub{font-size:0.78rem;color:var(--muted);margin-top:2px;}
+.word-bank{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;}
+.word-chip{background:linear-gradient(135deg,var(--skill-bg),rgba(16,185,129,0.05));border:1px solid rgba(16,185,129,0.1);border-radius:50px;padding:8px 14px;font-size:0.82rem;font-weight:600;color:var(--skill);cursor:pointer;transition:all 0.2s;}
+.word-chip:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(16,185,129,0.15);}
+.prompt-card{background:linear-gradient(135deg,rgba(16,185,129,0.08),rgba(16,185,129,0.03));border:1px solid rgba(16,185,129,0.1);border-radius:14px;padding:16px;margin-bottom:12px;}
+.prompt-title{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:0.9rem;color:var(--skill);margin-bottom:10px;}
+.prompt-text{font-size:0.85rem;color:var(--muted);margin-bottom:10px;line-height:1.4;}
+.textarea-input{width:100%;border:1px solid var(--border);border-radius:10px;padding:12px;font-family:'Inter',sans-serif;font-size:0.85rem;color:var(--text);resize:vertical;min-height:100px;}
+.textarea-input:focus{outline:none;border-color:var(--skill);box-shadow:0 0 0 3px rgba(16,185,129,0.1);}
+.ex-header{background:linear-gradient(135deg,rgba(16,185,129,0.1),rgba(16,185,129,0.06));border:1px solid rgba(16,185,129,0.15);border-radius:16px;padding:16px 20px;margin-bottom:20px;display:flex;align-items:center;gap:12px;}
+.ex-badge{background:var(--skill);color:#fff;padding:4px 12px;border-radius:50px;font-size:0.72rem;font-weight:700;white-space:nowrap;}
+.ex-title{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:0.92rem;color:var(--text);}
+.ex-desc{font-size:0.78rem;color:var(--muted);margin-top:2px;}
+.mc-q{margin-bottom:24px;}
+.mc-q-text{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:0.95rem;color:var(--text);margin-bottom:12px;padding:12px 16px;background:var(--bg);border-radius:10px;}
+.mc-num{color:var(--skill);margin-right:6px;}
+.mc-opts{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.mc-opt{border:1px solid var(--border);border-radius:10px;padding:10px 14px;cursor:pointer;font-size:0.88rem;font-weight:500;transition:all 0.2s;background:var(--card);color:var(--text);display:flex;align-items:center;gap:8px;text-align:left;}
+.mc-opt:hover{border-color:var(--skill);background:var(--skill-bg);}
+.opt-letter{display:flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:var(--skill);color:#fff;font-weight:700;font-size:0.75rem;flex-shrink:0;}
+.mc-opt.correct{border-color:#00C9A7;background:#ECFDF5;color:#065f46;font-weight:600;}
+.mc-opt.wrong{border-color:#FF4757;background:#FFE5E5;color:#8B0000;font-weight:600;}
+.fitb-q{margin-bottom:24px;}
+.fitb-q-text{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:0.95rem;color:var(--text);margin-bottom:0;padding:12px 16px;background:var(--bg);border-radius:10px;display:flex;align-items:baseline;gap:6px;}
+.fitb-num{color:var(--skill);margin-right:6px;font-weight:600;font-size:0.88rem;min-width:20px;display:inline-block;}
+.fitb-input{border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-family:'Inter',sans-serif;font-size:0.88rem;min-width:80px;max-width:150px;width:auto;}
+.fitb-input:focus{outline:none;border-color:var(--skill);box-shadow:0 0 0 3px rgba(16,185,129,0.1);}
+.fitb-input.correct{border-color:#00C9A7;background:#ECFDF5;color:#065f46;}
+.fitb-input.wrong{border-color:#FF4757;background:#FFE5E5;color:#8B0000;}
+.btn-check{background:linear-gradient(135deg,var(--skill),#059669);color:#fff;border:none;padding:10px 24px;border-radius:50px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:0.9rem;cursor:pointer;transition:transform 0.2s;margin-top:12px;}
+.btn-check:hover{transform:translateY(-2px);}
+.score-card{margin-top:20px;padding:20px;border-radius:16px;background:var(--bg);border:1px solid var(--border);text-align:center;display:none;}
+.score-card.show{display:block;animation:slideIn 0.4s ease-out;}
+@keyframes slideIn{from{opacity:0;transform:translateY(-10px);}to{opacity:1;transform:translateY(0);}}
+.score-emoji{font-size:3rem;display:block;margin-bottom:10px;}
+.score-title{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:1.1rem;color:var(--text);margin-bottom:6px;}
+.score-desc{font-size:0.9rem;color:var(--muted);}
+.score-card.great{background:linear-gradient(135deg,rgba(0,201,167,0.1),rgba(16,185,129,0.05));border-color:rgba(0,201,167,0.3);}
+.score-card.good{background:linear-gradient(135deg,rgba(16,185,129,0.1),rgba(59,130,246,0.05));border-color:rgba(16,185,129,0.3);}
+.score-card.try{background:linear-gradient(135deg,rgba(255,107,107,0.1),rgba(255,107,107,0.05));border-color:rgba(255,107,107,0.3);}
+.chapter-complete{background:linear-gradient(135deg,#10B981,#059669);border-radius:20px;padding:32px;text-align:center;box-shadow:0 8px 32px rgba(16,185,129,0.3);position:relative;overflow:hidden;margin-top:28px;}
+.chapter-complete::before{content:'✨';position:absolute;left:20px;top:20px;font-size:3rem;opacity:0.2;}
+.chapter-complete::after{content:'🎉';position:absolute;right:20px;bottom:20px;font-size:3rem;opacity:0.2;}
+.complete-emoji{font-size:4rem;display:block;margin-bottom:16px;}
+.complete-title{font-family:'Plus Jakarta Sans',sans-serif;font-size:1.4rem;font-weight:800;color:#fff;margin-bottom:8px;}
+.complete-desc{color:rgba(255,255,255,0.9);font-size:0.95rem;line-height:1.5;margin-bottom:20px;}
+.complete-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px;}
+.stat-box{background:rgba(255,255,255,0.15);border-radius:12px;padding:12px;backdrop-filter:blur(10px);}
+.stat-num{font-size:1.8rem;font-weight:800;color:#fff;display:block;}
+.stat-label{font-size:0.75rem;color:rgba(255,255,255,0.8);margin-top:4px;}
+.btn-next-ch{background:#fff;color:var(--skill);padding:12px 28px;border-radius:50px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:0.92rem;text-decoration:none;display:inline-block;transition:transform 0.2s;}
+.btn-next-ch:hover{transform:translateY(-2px);}
+@media(max-width:768px){.sidebar{width:0;}.sidebar.open{width:260px;}.main{margin-left:0;}.content{padding:20px;}.ch-header{padding:20px 24px;}.ch-header h1{font-size:1.3rem;}.ch-header::after{font-size:3rem;}.topbar{padding:12px 16px;}.complete-stats{grid-template-columns:1fr;}.word-bank{justify-content:center;}}
+.tip-box{background:#FFF9E6;border:1px solid #FFE082;border-left:3px solid #F4B400;border-radius:12px;padding:14px 16px;margin:16px 0;display:flex;gap:10px;align-items:flex-start;}
+.tip-icon{font-size:1rem;flex-shrink:0;margin-top:1px;}
+.tip-box p{font-size:0.83rem;color:#5A4000;line-height:1.6;}
+.tip-box strong{color:#3D2B00;}
+
+.dlg-line{display:flex;align-items:flex-end;gap:10px;margin-bottom:12px;}
+.dlg-line.right{flex-direction:row-reverse;}
+.dlg-avatar{font-size:2rem;flex-shrink:0;}
+.dlg-bubble{background:linear-gradient(135deg,rgba(37,99,235,0.08),rgba(37,99,235,0.03));border:1px solid rgba(37,99,235,0.1);border-radius:14px;padding:12px 14px;flex:1;}
+.dlg-line.right .dlg-bubble{background:linear-gradient(135deg,rgba(59,130,246,0.1),rgba(59,130,246,0.05));border-color:rgba(59,130,246,0.15);}
+.dlg-name{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:0.8rem;color:var(--skill);margin-bottom:4px;}
+.dlg-text{font-size:0.85rem;color:var(--text);line-height:1.4;}
+.dlg-text strong{color:var(--skill);font-weight:700;}
+
+.audio-card{background:linear-gradient(135deg,rgba(37,99,235,0.06),rgba(37,99,235,0.03));border:1px solid rgba(37,99,235,0.1);border-radius:14px;padding:14px 16px;margin-bottom:14px;display:flex;align-items:center;gap:14px;transition:all 0.2s;}
+.audio-btn{background:var(--skill);color:#fff;border:none;border-radius:8px;width:40px;height:40px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;cursor:pointer;transition:all 0.2s;flex-shrink:0;}
+.audio-info{flex:1;min-width:0;}
+.audio-title{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:0.9rem;color:var(--text);margin-bottom:3px;}
+.audio-desc{font-size:0.75rem;color:var(--muted);line-height:1.3;}
+.wave{display:flex;align-items:center;gap:3px;flex-shrink:0;}
+.wave span{width:3px;height:12px;background:var(--skill);border-radius:2px;animation:wave 0.6s ease-in-out infinite;}
+.wave span:nth-child(1){animation-delay:0s;}.wave span:nth-child(2){animation-delay:0.1s;}.wave span:nth-child(3){animation-delay:0.2s;}.wave span:nth-child(4){animation-delay:0.1s;}.wave span:nth-child(5){animation-delay:0s;}
+@keyframes wave{0%,100%{height:12px;}50%{height:20px;}}
+</style>
+</head>
+<body>
+<div class="sidebar">
+  <a href="/" class="sidebar-logo"><span class="logo-lume">Lume</span></a>
+  <div class="chapter-nav">
+    <div class="nav-label">GRADE 2 — CHAPTERS</div>
+    <a href="/grade2/chapter1/writing.html" class="ch-item done"><span class="ch-num" style="background:#00C9A7;color:#fff;">1</span>Numbers & Counting</a>
+    <a href="/grade2/chapter2/writing.html" class="ch-item done"><span class="ch-num" style="background:#00C9A7;color:#fff;">2</span>Family & Pets</a>
+    <a href="/grade2/chapter3/writing.html" class="ch-item active"><span class="ch-num" style="background:#00C9A7;color:#fff;">3</span>Clothes & Appearance</a>
+    <a href="/grade2/chapter4/writing.html" class="ch-item"><span class="ch-num">4</span>House & Rooms</a>
+    <a href="/grade2/chapter5/writing.html" class="ch-item"><span class="ch-num">5</span>Sports & Games</a>
+    <a href="/grade2/chapter6/writing.html" class="ch-item"><span class="ch-num">6</span>Food & Healthy Eating</a>
+    <a href="/grade2/chapter7/writing.html" class="ch-item"><span class="ch-num">7</span>Weather & Seasons</a>
+    <a href="/grade2/chapter8/writing.html" class="ch-item"><span class="ch-num">8</span>School & Learning</a>
+  </div>
+  <div class="skill-tabs">
+    <div class="nav-label">CHAPTER 3 — SKILLS</div>
+    <a href="listening.html" class="skill-tab s-listening"><span class="skill-dot"></span>🎧 Listening</a>
+    <a href="reading.html" class="skill-tab s-reading"><span class="skill-dot"></span>📖 Reading</a>
+    <a href="speaking.html" class="skill-tab s-speaking"><span class="skill-dot"></span>🗣️ Speaking</a>
+    <a href="writing.html" class="skill-tab s-writing active"><span class="skill-dot"></span>✍️ Writing</a>
+  </div>
+  <div class="sidebar-bottom">
+    <a href="/" class="btn-back">← Dashboard</a>
+  </div>
+</div>
+
+<div class="main">
+  <div class="topbar">
+    <div class="breadcrumb">
+      <a href="/">Dasbor</a> <span>›</span> <a href="/grade2">Grade 2</a> <span>›</span> <a href="/grade2/chapter3">Chapter 3</a> <span>›</span> <span>Writing</span>
+    </div>
+    <div style="display:flex;gap:12px;">
+      <a href="speaking.html" class="btn-prev">← Speaking</a>
+      <a href="/" class="btn-next">Dashboard →</a>
+    </div>
+  </div>
+
+  <div class="content">
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:16px;margin-bottom:28px;">
+      <div style="text-align:center;"><div class="progress-label">Listening</div><div class="sp-item done"></div></div>
+      <div style="text-align:center;"><div class="progress-label">Reading</div><div class="sp-item done"></div></div>
+      <div style="text-align:center;"><div class="progress-label">Speaking</div><div class="sp-item done"></div></div>
+      <div style="text-align:center;"><div class="progress-label active">Writing</div><div class="sp-item current"></div></div>
+    </div>
+
+    <div class="ch-header">
+      <span class="ch-tag">✍️ Writing</span>
+      <h1>Clothes & Appearance</h1>
+      <p>Write about clothing and describe people's appearance in English sentences.</p>
+    </div>
+
+    <!-- Section 1: Word Bank -->
+    <div class="sec-card">
+      <div class="sec-head">
+        <div class="sec-icon">📚</div>
+        <div><div class="sec-title">Word Bank</div><div class="sec-sub">Gunakan bank kata ini untuk membantu menulis</div></div>
+      </div>
+      <div class="word-bank">
+        <div class="word-chip">shirt</div>
+        <div class="word-chip">pants</div>
+        <div class="word-chip">dress</div>
+        <div class="word-chip">shoes</div>
+        <div class="word-chip">hat</div>
+        <div class="word-chip">jacket</div>
+        <div class="word-chip">hair</div>
+        <div class="word-chip">eyes</div>
+        <div class="word-chip">face</div>
+        <div class="word-chip">nose</div>
+        <div class="word-chip">mouth</div>
+        <div class="word-chip">smile</div>
+        <div class="word-chip">tall</div>
+        <div class="word-chip">short</div>
+        <div class="word-chip">pretty</div>
+        <div class="word-chip">handsome</div>
+        <div class="word-chip">wearing</div>
+        <div class="word-chip">has</div>
+        <div class="word-chip">is</div>
+        <div class="word-chip">my</div>
+        <div class="word-chip">the</div>
+        <div class="word-chip">and</div>
+        <div class="word-chip">very</div>
+        <div class="word-chip">blue</div>
+        <div class="word-chip">black</div>
+        <div class="word-chip">white</div>
+        <div class="word-chip">brown</div>
+      
+      <div class="tip-box">
+        <span class="tip-icon">💡</span>
+        <p><strong>Tips:</strong> Check plural forms: shirt-shirts, dress-dresses. Colors tidak berubah: blue, red, yellow. Use possessive: my shirt, your dress!</p>
+      </div>
+    </div>
+
+    <!-- Section 2: Guided Writing Prompts -->
+    <div class="sec-card">
+      <div class="sec-head">
+        <div class="sec-icon">✏️</div>
+        <div><div class="sec-title">Guided Writing Prompts</div><div class="sec-sub">Panduan menulis kalimat yang benar</div>
+      </div>
+      </div>
+
+      <div class="prompt-card">
+        <div class="prompt-title">Prompt 1: What Am I Wearing Today?</div>
+        <div class="prompt-text">Describe the clothes you are wearing today. Start with "Today I am wearing..." Use at least 3-4 clothing items and describe their colors.</div>
+        <textarea class="textarea-input" id="prompt1" placeholder="Write your answer here..."></textarea>
+      </div>
+
+      <div class="prompt-card">
+        <div class="prompt-title">Prompt 2: Describe a Friend's Appearance</div>
+        <div class="prompt-text">Describe how a friend looks. Include their hair color, eye color, whether they are tall or short, and any other features you like about them.</div>
+        <textarea class="textarea-input" id="prompt2" placeholder="Write your answer here..."></textarea>
+      </div>
+
+      <div class="prompt-card">
+        <div class="prompt-title">Prompt 3: My Favorite Clothes</div>
+        <div class="prompt-text">Write about your favorite piece of clothing. Explain what it looks like, what color it is, and why you like wearing it.</div>
+        <textarea class="textarea-input" id="prompt3" placeholder="Write your answer here..."></textarea>
+      
+      <div class="tip-box">
+        <span class="tip-icon">📌</span>
+        <p>Pelajari polanya terlebih dahulu, kemudian coba buat versimu sendiri dengan pakaian dan deskripsi yang berbeda!</p>
+      </div>
+    </div>
+
+    <!-- Section 3: Exercises -->
+    <div class="sec-card">
+      <div class="ex-header">
+        <span class="ex-badge">PART A</span>
+        <div><div class="ex-title">Multiple Choice Questions</div><div class="ex-desc">Pilih jawaban yang tepat — 6 soal</div></div>
+      </div>
+
+      <div class="mc-q">
+        <div class="mc-q-text"><span class="mc-num">1.</span> Which sentence is correct?</div>
+        <div class="mc-opts">
+          <button class="mc-opt" onclick="sel(this,'q1')"><span class="opt-letter">A</span> I wearing blue shirt</button>
+          <button class="mc-opt" onclick="sel(this,'q1')"><span class="opt-letter">B</span> I am wearing a blue shirt</button>
+          <button class="mc-opt" onclick="sel(this,'q1')"><span class="opt-letter">C</span> I am wear blue shirt</span></button>
+          <button class="mc-opt" onclick="sel(this,'q1')"><span class="opt-letter">D</span> I am wearing blue</button>
+        </div>
+      </div>
+
+      <div class="mc-q">
+        <div class="mc-q-text"><span class="mc-num">2.</span> How do you describe someone's hair?</div>
+        <div class="mc-opts">
+          <button class="mc-opt" onclick="sel(this,'q2')"><span class="opt-letter">A</span> She is hair black</button>
+          <button class="mc-opt" onclick="sel(this,'q2')"><span class="opt-letter">B</span> She have black hair</button>
+          <button class="mc-opt" onclick="sel(this,'q2')"><span class="opt-letter">C</span> She has black hair</button>
+          <button class="mc-opt" onclick="sel(this,'q2')"><span class="opt-letter">D</span> She is black hair</button>
+        </div>
+      </div>
+
+      <div class="mc-q">
+        <div class="mc-q-text"><span class="mc-num">3.</span> Which is correct?</div>
+        <div class="mc-opts">
+          <button class="mc-opt" onclick="sel(this,'q3')"><span class="opt-letter">A</span> My eyes is brown</button>
+          <button class="mc-opt" onclick="sel(this,'q3')"><span class="opt-letter">B</span> My eye are brown</button>
+          <button class="mc-opt" onclick="sel(this,'q3')"><span class="opt-letter">C</span> My eyes are brown</button>
+          <button class="mc-opt" onclick="sel(this,'q3')"><span class="opt-letter">D</span> My brown eyes is</button>
+        </div>
+      </div>
+
+      <div class="mc-q">
+        <div class="mc-q-text"><span class="mc-num">4.</span> How do you describe height?</div>
+        <div class="mc-opts">
+          <button class="mc-opt" onclick="sel(this,'q4')"><span class="opt-letter">A</span> Ali is a tall</button>
+          <button class="mc-opt" onclick="sel(this,'q4')"><span class="opt-letter">B</span> Ali tall is</button>
+          <button class="mc-opt" onclick="sel(this,'q4')"><span class="opt-letter">C</span> Ali is tall</button>
+          <button class="mc-opt" onclick="sel(this,'q4')"><span class="opt-letter">D</span> Ali are tall</button>
+        </div>
+      </div>
+
+      <div class="mc-q">
+        <div class="mc-q-text"><span class="mc-num">5.</span> Which describes clothing color correctly?</div>
+        <div class="mc-opts">
+          <button class="mc-opt" onclick="sel(this,'q5')"><span class="opt-letter">A</span> My shirt is blue</button>
+          <button class="mc-opt" onclick="sel(this,'q5')"><span class="opt-letter">B</span> My blue shirt is</button>
+          <button class="mc-opt" onclick="sel(this,'q5')"><span class="opt-letter">C</span> My shirt blue is</button>
+          <button class="mc-opt" onclick="sel(this,'q5')"><span class="opt-letter">D</span> Blue my shirt is</button>
+        </div>
+      </div>
+
+      <div class="mc-q">
+        <div class="mc-q-text"><span class="mc-num">6.</span> What makes a complete sentence?</div>
+        <div class="mc-opts">
+          <button class="mc-opt" onclick="sel(this,'q6')"><span class="opt-letter">A</span> Subject + verb + adjective</button>
+          <button class="mc-opt" onclick="sel(this,'q6')"><span class="opt-letter">B</span> Just adjectives</button>
+          <button class="mc-opt" onclick="sel(this,'q6')"><span class="opt-letter">C</span> Nouns only</button>
+          <button class="mc-opt" onclick="sel(this,'q6')"><span class="opt-letter">D</span> Random words</button>
+        </div>
+      </div>
+
+      <div class="ex-header" style="margin-top:28px">
+        <span class="ex-badge">PART B</span>
+        <div><div class="ex-title">Fill in the Blanks</div><div class="ex-desc">Ketik kata yang tepat — 6 soal</div></div>
+      </div>
+
+      <div class="fitb-q">
+        <div class="fitb-q-text"><span class="fitb-num">7.</span> She <input class="fitb-input" id="f7" placeholder="___" data-answer="has" autocomplete="off"> long black hair.</div>
+      </div>
+
+      <div class="fitb-q">
+        <div class="fitb-q-text"><span class="fitb-num">8.</span> I <input class="fitb-input" id="f8" placeholder="___" data-answer="am wearing" autocomplete="off"> a white dress.</div>
+      </div>
+
+      <div class="fitb-q">
+        <div class="fitb-q-text"><span class="fitb-num">9.</span> My shoes <input class="fitb-input" id="f9" placeholder="___" data-answer="are" autocomplete="off"> blue.</div>
+      </div>
+
+      <div class="fitb-q">
+        <div class="fitb-q-text"><span class="fitb-num">10.</span> Ali <input class="fitb-input" id="f10" placeholder="___" data-answer="is" autocomplete="off"> tall and handsome.</div>
+      </div>
+
+      <div class="fitb-q">
+        <div class="fitb-q-text"><span class="fitb-num">11.</span> My friend has a <input class="fitb-input" id="f11" placeholder="___" data-answer="pretty" autocomplete="off"> smile.</div>
+      </div>
+
+      <div class="fitb-q">
+        <div class="fitb-q-text"><span class="fitb-num">12.</span> We like to <input class="fitb-input" id="f12" placeholder="___" data-answer="wear" autocomplete="off"> nice clothes.</div>
+      </div>
+
+      <button class="btn-check" onclick="checkAll()">✅ Check Answers</button>
+      <div class="score-card" id="scoreCard">
+        <span class="score-emoji" id="scoreEmoji"></span>
+        <div class="score-title" id="scoreTitle"></div>
+        <div class="score-desc" id="scoreDesc"></div>
+      </div>
+    </div>
+
+    <!-- Chapter Complete Card -->
+    <div class="chapter-complete">
+      <div class="complete-emoji">🎓</div>
+      <div class="complete-title">Chapter 3 Complete!</div>
+      <div class="complete-desc">Congratulations! You've finished the Clothes & Appearance chapter. You learned vocabulary about clothing and physical appearance, practiced listening, reading, speaking, and writing skills!</div>
+      <div class="complete-stats">
+        <div class="stat-box">
+          <span class="stat-num">20</span>
+          <span class="stat-label">Vocabulary Words</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-num">4</span>
+          <span class="stat-label">Skills Practiced</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-num">48</span>
+          <span class="stat-label">Questions Done</span>
+        </div>
+      </div>
+      <a href="/grade2/chapter4/listening.html" class="btn-next-ch">Next Chapter: House & Rooms →</a>
+    </div>
+  </div>
+</div>
+
+<script>
+
+function speak(t){if('speechSynthesis' in window){const u=new SpeechSynthesisUtterance(t);u.lang='en-US';u.rate=0.9;speechSynthesis.speak(u);}}
+const dialogs={};
+function playAudio(n){if(dialogs[n]){speak(dialogs[n]);const wave=document.getElementById('wave'+n);if(wave){wave.style.animation='none';setTimeout(()=>{wave.style.animation='';},10);}}}
+const ans={},correct={q1:'b',q2:'c',q3:'c',q4:'c',q5:'a',q6:'a'};
+function sel(btn,id){btn.closest('.mc-q').querySelectorAll('.mc-opt').forEach(b=>{b.style.background='';b.style.borderColor='';});ans[id]=btn.textContent.trim()[0].toLowerCase();btn.style.background='var(--skill-bg)';btn.style.borderColor='var(--skill)';}
+function checkAll(){
+  let c=0;const total=12;
+  Object.keys(correct).forEach(k=>{if(ans[k]===correct[k])c++;});
+  document.querySelectorAll('.mc-q').forEach((q,i)=>{
+    const keys=['q1','q2','q3','q4','q5','q6'],key=keys[i],a=correct[key];
+    q.querySelectorAll('.mc-opt').forEach((b,j)=>{const l=['a','b','c','d'];b.style.pointerEvents='none';b.style.background='';b.style.borderColor='';if(l[j]===a)b.classList.add('correct');else if(ans[key]===l[j])b.classList.add('wrong');});
+  });
+  document.querySelectorAll('.fitb-input').forEach(inp=>{const v=inp.value.trim().toLowerCase(),a=inp.dataset.answer;if(v===a){inp.classList.add('correct');inp.classList.remove('wrong');c++;}else{inp.classList.add('wrong');inp.classList.remove('correct');}});
+  const card=document.getElementById('scoreCard');card.classList.add('show');
+  document.getElementById('scoreDesc').textContent=`You got ${c} out of ${total} correct answers!`;
+  if(c===total){card.className='score-card show great';document.getElementById('scoreEmoji').textContent='🎉';document.getElementById('scoreTitle').textContent='Perfect! Amazing!';}
+  else if(c>=total*0.7){card.className='score-card show good';document.getElementById('scoreEmoji').textContent='⭐';document.getElementById('scoreTitle').textContent='Great Job!';}
+  else{card.className='score-card show try';document.getElementById('scoreEmoji').textContent='💪';document.getElementById('scoreTitle').textContent='Try Again!';}
+  card.scrollIntoView({behavior:'smooth',block:'center'});
+}
+</script>
+</body>
+</html>
