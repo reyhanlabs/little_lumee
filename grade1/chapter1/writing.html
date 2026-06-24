@@ -146,14 +146,14 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);displ
   <a href="/dashboard.html" class="sidebar-logo"><span>💡</span>Little<span class="logo-lume">Lume</span></a>
   <div class="chapter-nav">
     <div class="nav-section-label">Grade 1 — Chapters</div>
-    <a class="chapter-item active" href="#"><span class="ch-num">1</span> Hello, World!</a>
-    <a class="chapter-item" href="#"><span class="ch-num">2</span> My Body</a>
-    <a class="chapter-item" href="#"><span class="ch-num">3</span> My Family</a>
-    <a class="chapter-item" href="#"><span class="ch-num">4</span> Colors &amp; Shapes</a>
-    <a class="chapter-item" href="#"><span class="ch-num">5</span> My School</a>
-    <a class="chapter-item" href="#"><span class="ch-num">6</span> Animals I Know</a>
-    <a class="chapter-item" href="#"><span class="ch-num">7</span> Food &amp; Drinks</a>
-    <a class="chapter-item" href="#"><span class="ch-num">8</span> My Day</a>
+    <a class="chapter-item active" href="/grade1/chapter1/listening.html"><span class="ch-num">1</span> Hello, World!</a>
+    <a class="chapter-item done" href="/grade1/chapter2/listening.html"><span class="ch-num">2</span> My Body</a>
+    <a class="chapter-item done" href="/grade1/chapter3/listening.html"><span class="ch-num">3</span> My Family</a>
+    <a class="chapter-item done" href="/grade1/chapter4/listening.html"><span class="ch-num">4</span> Colors &amp; Shapes</a>
+    <a class="chapter-item done" href="/grade1/chapter5/listening.html"><span class="ch-num">5</span> My School</a>
+    <a class="chapter-item done" href="/grade1/chapter6/listening.html"><span class="ch-num">6</span> Animals I Know</a>
+    <a class="chapter-item done" href="/grade1/chapter7/listening.html"><span class="ch-num">7</span> Food &amp; Drinks</a>
+    <a class="chapter-item done" href="/grade1/chapter8/listening.html"><span class="ch-num">8</span> My Day</a>
   </div>
   <div class="skill-tabs">
     <div class="nav-section-label">Chapter 1 — Skills</div>
@@ -353,6 +353,7 @@ const correctMC={mc1:'b',mc2:'c',mc3:'c',mc4:'b'};
 function selectMC(btn,qId){const parent=btn.closest('.mc-question');parent.querySelectorAll('.mc-opt').forEach(b=>{b.classList.remove('correct','wrong');b.style.background='';b.style.borderColor='';});mcAnswers[qId]=btn.textContent.trim()[0].toLowerCase();btn.style.background='var(--skill-bg)';btn.style.borderColor='var(--skill)';}
 function checkAllAnswers(){let correct=0;const total=8;Object.keys(correctMC).forEach(key=>{if(mcAnswers[key]===correctMC[key])correct++;});const mcQs=document.querySelectorAll('.mc-question');const mcKeys=['mc1','mc2','mc3','mc4'];mcQs.forEach((q,i)=>{const key=mcKeys[i];const ans=correctMC[key];q.querySelectorAll('.mc-opt').forEach((btn,idx)=>{const letters=['a','b','c','d'];btn.style.pointerEvents='none';btn.style.background='';btn.style.borderColor='';if(letters[idx]===ans)btn.classList.add('correct');else if(mcAnswers[key]===letters[idx])btn.classList.add('wrong');});});document.querySelectorAll('.fitb-input').forEach(inp=>{const val=inp.value.trim().toLowerCase();const ans=inp.dataset.answer.toLowerCase();if(val===ans){inp.classList.add('correct');inp.classList.remove('wrong');correct++;}else{inp.classList.add('wrong');inp.classList.remove('correct');}});const card=document.getElementById('scoreCard');card.classList.add('show');document.getElementById('scoreDesc').textContent=`Kamu mendapat ${correct} dari ${total} jawaban benar!`;if(correct===total){card.className='score-card show great';document.getElementById('scoreEmoji').textContent='🎉';document.getElementById('scoreTitle').textContent='Sempurna! Luar Biasa!';}else if(correct>=total*0.7){card.className='score-card show good';document.getElementById('scoreEmoji').textContent='⭐';document.getElementById('scoreTitle').textContent='Bagus Sekali!';}else{card.className='score-card show try';document.getElementById('scoreEmoji').textContent='💪';document.getElementById('scoreTitle').textContent='Ayo Coba Lagi!';}card.scrollIntoView({behavior:'smooth',block:'center'});}
 </script>
+<script src="/auth-guard.js"></script>
 </body>
 <script src="/dev-unlock.js"></script>
 </html>
