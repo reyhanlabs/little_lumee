@@ -13,7 +13,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
-  --midnight:   #EDEAFB;
+  --midnight:   #F5F3FF;
   --surface:    #FFFFFF;
   --card:       #FFFFFF;
   --card-hover: #F8F6FF;
@@ -22,19 +22,13 @@
   --mint:       #00C9A7;
   --mint-dim:   #00A88F;
   --text:       #1A1740;
-  --muted:      #6B6A8E;
-  --border:     rgba(108,99,255,0.22);
-  --glow-p:     rgba(108,99,255,0.25);
-  --glow-m:     rgba(0,201,167,0.2);
-  --shadow-sm:  0 2px 10px rgba(108,99,255,0.12);
-  --shadow-md:  0 8px 28px rgba(108,99,255,0.18);
-  --shadow-lg:  0 14px 42px rgba(108,99,255,0.24);
-  --c1: #FF6B9D; --c1bg: #FFF0F6;
-  --c2: #FF9A3C; --c2bg: #FFF6EE;
-  --c3: #F4B400; --c3bg: #FFFBEE;
-  --c4: #34C759; --c4bg: #F0FFF4;
-  --c5: #4D96FF; --c5bg: #EEF4FF;
-  --c6: #A855F7; --c6bg: #F8F0FF;
+  --muted:      #7B7A9E;
+  --border:     rgba(108,99,255,0.12);
+  --glow-p:     rgba(108,99,255,0.18);
+  --glow-m:     rgba(0,201,167,0.15);
+  --shadow-sm:  0 2px 8px rgba(108,99,255,0.08);
+  --shadow-md:  0 6px 24px rgba(108,99,255,0.13);
+  --shadow-lg:  0 10px 36px rgba(108,99,255,0.18);
 }
 *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
 html { scroll-behavior:smooth; }
@@ -60,41 +54,19 @@ nav {
   display:flex;
   align-items:center;
   justify-content:space-between;
-  background:rgba(26,23,64,0.97);
-  backdrop-filter:blur(16px);
-  border:1px solid rgba(255,255,255,0.08);
-  border-radius:0;
-  box-shadow:none;
-  transition:top 0.35s cubic-bezier(.4,0,.2,1), left 0.35s cubic-bezier(.4,0,.2,1),
-             right 0.35s cubic-bezier(.4,0,.2,1), padding 0.35s ease,
-             border-radius 0.35s ease, box-shadow 0.35s ease, background 0.35s ease,
-             backdrop-filter 0.35s ease;
-}
-nav.scrolled {
-  top:16px; left:16px; right:16px;
-  padding:14px 28px;
-  background:rgba(26,23,64,0.55);
+  background:rgba(245,243,255,0.75);
   backdrop-filter:blur(20px);
-  border-radius:28px;
-  box-shadow:var(--shadow-lg);
+  border-bottom:1px solid var(--border);
+  transition:background 0.3s;
 }
-nav .nav-logo { color:#F0EEFF; }
-nav .nav-links a { color:rgba(240,238,255,0.65); }
-nav .nav-links a:hover { color:#FFFFFF; }
-nav .user-avatar-btn {
-  background:rgba(255,255,255,0.08);
-  border:1px solid rgba(255,255,255,0.14);
-}
-nav .user-avatar-btn:hover { border-color:rgba(255,255,255,0.3); }
-nav .user-name { color:#F0EEFF; }
 .nav-logo {
   font-family:'Plus Jakarta Sans', sans-serif;
   font-weight:800;
-  font-size:1.35rem;
-  letter-spacing:-0.3px;
+  font-size:2.1rem;
+  letter-spacing:-0.5px;
   display:flex;
   align-items:center;
-  gap:8px;
+  gap:10px;
   text-decoration:none;
   color:var(--text);
 }
@@ -104,7 +76,7 @@ nav .user-name { color:#F0EEFF; }
   -webkit-text-fill-color:transparent;
   background-clip:text;
   background-size:300% 100%;
-  animation:colorFlow 4s ease infinite;
+  animation:colorFlow 3s ease infinite;
 }
 
 @keyframes colorFlow {
@@ -313,28 +285,18 @@ section { position:relative; z-index:1; }
   position:relative; overflow:hidden;
 }
 .feature-card::before {
-  content:''; position:absolute; top:0; left:0; right:0; height:4px;
-  background:var(--c1); opacity:1;
+  content:''; position:absolute; top:0; left:0; right:0; height:2px;
+  background:linear-gradient(90deg, var(--purple), var(--mint));
+  opacity:0; transition:opacity 0.25s;
 }
 .feature-card:hover { border-color:rgba(108,99,255,0.45); transform:translateY(-4px); background:var(--card-hover); box-shadow:var(--shadow-md); }
+.feature-card:hover::before { opacity:1; }
 .feature-icon {
   width:52px; height:52px; border-radius:14px;
   background:rgba(108,99,255,0.12);
   display:flex; align-items:center; justify-content:center;
   font-size:1.5rem; margin-bottom:20px;
 }
-.feature-card:nth-child(6n+1) .feature-icon { background:var(--c1bg); }
-.feature-card:nth-child(6n+2) .feature-icon { background:var(--c2bg); }
-.feature-card:nth-child(6n+3) .feature-icon { background:var(--c3bg); }
-.feature-card:nth-child(6n+4) .feature-icon { background:var(--c4bg); }
-.feature-card:nth-child(6n+5) .feature-icon { background:var(--c5bg); }
-.feature-card:nth-child(6n+1)::before { background:var(--c1); }
-.feature-card:nth-child(6n+2)::before { background:var(--c2); }
-.feature-card:nth-child(6n+3)::before { background:var(--c3); }
-.feature-card:nth-child(6n+4)::before { background:var(--c4); }
-.feature-card:nth-child(6n+5)::before { background:var(--c5); }
-.feature-card:nth-child(6n+6)::before { background:var(--c6); }
-.feature-card:nth-child(6n+6) .feature-icon { background:var(--c6bg); }
 .feature-card h3 { font-family:'Plus Jakarta Sans', sans-serif; font-size:1.08rem; font-weight:700; margin-bottom:10px; }
 .feature-card p { color:var(--muted); font-size:0.9rem; line-height:1.7; }
 .grades-section { background:var(--surface); }
@@ -365,9 +327,9 @@ section { position:relative; z-index:1; }
   font-size:1.3rem; flex-shrink:0;
 }
 .skill-icon.listening { background:rgba(108,99,255,0.15); }
-.skill-icon.reading   { background:rgba(0,201,167,0.14); }
-.skill-icon.speaking  { background:rgba(255,165,80,0.14); }
-.skill-icon.writing   { background:rgba(255,99,160,0.14); }
+.skill-icon.reading   { background:rgba(0,229,195,0.12); }
+.skill-icon.speaking  { background:rgba(255,165,80,0.12); }
+.skill-icon.writing   { background:rgba(255,99,160,0.12); }
 .skill-card h4 { font-family:'Plus Jakarta Sans', sans-serif; font-size:0.95rem; font-weight:700; margin-bottom:3px; }
 .skill-card p { font-size:0.78rem; color:var(--muted); }
 .lock-badge { margin-left:auto; font-size:0.85rem; color:var(--muted); opacity:0.5; }
@@ -381,30 +343,9 @@ section { position:relative; z-index:1; }
   background:var(--card); border:1px solid var(--border); box-shadow:var(--shadow-sm);
   border-radius:20px; padding:32px 24px; text-align:center;
   transition:border-color 0.25s, transform 0.25s, background 0.25s;
-  position:relative; overflow:hidden;
-}
-.material-card::before {
-  content:''; position:absolute; top:0; left:0; right:0; height:4px;
-  background:var(--c1);
 }
 .material-card:hover { border-color:rgba(108,99,255,0.45); transform:translateY(-4px); background:var(--card-hover); box-shadow:var(--shadow-md); }
-.material-icon {
-  width:64px; height:64px; border-radius:16px;
-  display:flex; align-items:center; justify-content:center;
-  font-size:1.8rem; margin:0 auto 16px;
-}
-.material-card:nth-child(6n+1) .material-icon { background:var(--c1bg); }
-.material-card:nth-child(6n+2) .material-icon { background:var(--c2bg); }
-.material-card:nth-child(6n+3) .material-icon { background:var(--c3bg); }
-.material-card:nth-child(6n+4) .material-icon { background:var(--c4bg); }
-.material-card:nth-child(6n+5) .material-icon { background:var(--c5bg); }
-.material-card:nth-child(6n+1)::before { background:var(--c1); }
-.material-card:nth-child(6n+2)::before { background:var(--c2); }
-.material-card:nth-child(6n+3)::before { background:var(--c3); }
-.material-card:nth-child(6n+4)::before { background:var(--c4); }
-.material-card:nth-child(6n+5)::before { background:var(--c5); }
-.material-card:nth-child(6n+6)::before { background:var(--c6); }
-.material-card:nth-child(6n+6) .material-icon { background:var(--c6bg); }
+.material-icon { font-size:3rem; margin-bottom:16px; }
 .material-count {
   font-family:'Plus Jakarta Sans', sans-serif;
   font-size:2.2rem; font-weight:800;
@@ -517,30 +458,9 @@ section { position:relative; z-index:1; }
   background:var(--card); border:1px solid var(--border); box-shadow:var(--shadow-sm);
   border-radius:20px; padding:32px; 
   transition:border-color 0.25s, transform 0.25s, background 0.25s;
-  position:relative; overflow:hidden;
-}
-.why-card::before {
-  content:''; position:absolute; top:0; left:0; right:0; height:4px;
-  background:var(--c1);
 }
 .why-card:hover { border-color:rgba(108,99,255,0.45); transform:translateY(-4px); background:var(--card-hover); box-shadow:var(--shadow-md); }
-.why-icon {
-  width:56px; height:56px; border-radius:14px;
-  display:flex; align-items:center; justify-content:center;
-  font-size:1.6rem; margin-bottom:16px;
-}
-.why-card:nth-child(6n+1) .why-icon { background:var(--c1bg); }
-.why-card:nth-child(6n+2) .why-icon { background:var(--c2bg); }
-.why-card:nth-child(6n+3) .why-icon { background:var(--c3bg); }
-.why-card:nth-child(6n+4) .why-icon { background:var(--c4bg); }
-.why-card:nth-child(6n+5) .why-icon { background:var(--c5bg); }
-.why-card:nth-child(6n+6) .why-icon { background:var(--c6bg); }
-.why-card:nth-child(6n+1)::before { background:var(--c1); }
-.why-card:nth-child(6n+2)::before { background:var(--c2); }
-.why-card:nth-child(6n+3)::before { background:var(--c3); }
-.why-card:nth-child(6n+4)::before { background:var(--c4); }
-.why-card:nth-child(6n+5)::before { background:var(--c5); }
-.why-card:nth-child(6n+6)::before { background:var(--c6); }
+.why-icon { font-size:2.8rem; margin-bottom:16px; }
 .why-card h3 { font-family:'Plus Jakarta Sans', sans-serif; font-size:1.05rem; font-weight:700; margin-bottom:12px; color:var(--text); }
 .why-card p { font-size:0.9rem; color:var(--muted); line-height:1.7; }
 
@@ -811,7 +731,7 @@ footer {
 <nav>
   <a class="nav-logo" href="#">
     <span>💡</span>
-    <span>Little<span class="logo-lume">Lume</span></span>
+    <span class="logo-lume">LittleLume</span>
   </a>
   <ul class="nav-links">
     <li><a href="#features">Fitur</a></li>
@@ -1150,7 +1070,7 @@ footer {
 </section>
 
 <footer>
-  <div class="footer-logo">💡 Little<span class="logo-lume">Lume</span></div>
+  <div class="footer-logo">💡 <span class="logo-lume">LittleLume</span></div>
   <div class="footer-links">
     <a href="#">Beranda</a>
     <a href="#features">Fitur</a>
@@ -1385,7 +1305,8 @@ const observer = new IntersectionObserver(entries=>{
 document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
 
 window.addEventListener('scroll', ()=>{
-  document.querySelector('nav').classList.toggle('scrolled', window.scrollY > 40);
+  document.querySelector('nav').style.background =
+    window.scrollY > 40 ? 'rgba(245,243,255,0.95)' : 'rgba(245,243,255,0.75)';
 });
 </script>
 <!-- ── AUTH MODAL ── -->
