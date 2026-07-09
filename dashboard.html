@@ -759,19 +759,6 @@ function renderSubStatus(sub) {
   const label = document.getElementById('subLabel');
   const banner = document.getElementById('paywallBanner');
 
-  /* ============================================================
-     DEV MODE — Semua grade dibuka untuk testing UI/UX
-     Untuk RESTORE: hapus blok DEV MODE ini dan uncomment blok PROD
-     ============================================================ */
-  el.className = 'sub-status active';
-  label.textContent = 'Dev Mode · Semua akses terbuka';
-  banner.style.display = 'none';
-  for(let i=1;i<=6;i++) document.getElementById(`lock${i}`).textContent = '✅';
-  document.getElementById('greetingSub').textContent = 'Dev Mode aktif — semua konten terbuka untuk testing.';
-  unlockGradeCards(); // DEV MODE
-  return;
-  /* ============================================================
-     PROD — Aktifkan kembali saat MVP siap
   if (sub?.active) {
     el.className = 'sub-status active';
     const exp = sub.expiredAt.toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'});
@@ -785,13 +772,9 @@ function renderSubStatus(sub) {
     label.textContent = 'Belum berlangganan';
     banner.style.display = 'flex';
   }
-  ============================================================ */
 }
 
-/* ============================================================
-   DEV MODE — fungsi unlock grade card onclick ke konten nyata
-   Hapus fungsi ini saat PROD
-   ============================================================ */
+/* Unlock grade card onclick ke konten nyata — dipanggil saat subscription aktif */
 function unlockGradeCards() {
   const gradeLinks = {
     1: '/grade1/chapter1/listening.html',
@@ -832,12 +815,10 @@ onAuthStateChanged(auth, async (user) => {
   guard.classList.add('hidden');
   setTimeout(() => guard.style.display = 'none', 400);
 
-  // DEV MODE: tampilkan welcome tanpa cek subscription
   if (sub && sub.active) {
     showToast(`Selamat datang kembali! 🎉 Semangat belajar hari ini.`);
   } else {
-    showToast(`Dev Mode aktif 🛠️ — semua konten terbuka untuk testing.`); /* DEV MODE — restore ke bawah saat PROD */
-    // showToast(`Halo! Berlangganan untuk akses semua materi. 🚀`, 'info'); /* PROD */
+    showToast(`Halo! Berlangganan untuk akses semua materi. 🚀`, 'info');
   }
 });
 </script>

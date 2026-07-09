@@ -1,0 +1,254 @@
+diff --git a/dashboard.html b/dashboard.html
+index 4d394c2..a009ccc 100644
+--- a/dashboard.html
++++ b/dashboard.html
+@@ -759,19 +759,6 @@ function renderSubStatus(sub) {
+   const label = document.getElementById('subLabel');
+   const banner = document.getElementById('paywallBanner');
+ 
+-  /* ============================================================
+-     DEV MODE — Semua grade dibuka untuk testing UI/UX
+-     Untuk RESTORE: hapus blok DEV MODE ini dan uncomment blok PROD
+-     ============================================================ */
+-  el.className = 'sub-status active';
+-  label.textContent = 'Dev Mode · Semua akses terbuka';
+-  banner.style.display = 'none';
+-  for(let i=1;i<=6;i++) document.getElementById(`lock${i}`).textContent = '✅';
+-  document.getElementById('greetingSub').textContent = 'Dev Mode aktif — semua konten terbuka untuk testing.';
+-  unlockGradeCards(); // DEV MODE
+-  return;
+-  /* ============================================================
+-     PROD — Aktifkan kembali saat MVP siap
+   if (sub?.active) {
+     el.className = 'sub-status active';
+     const exp = sub.expiredAt.toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'});
+@@ -785,13 +772,9 @@ function renderSubStatus(sub) {
+     label.textContent = 'Belum berlangganan';
+     banner.style.display = 'flex';
+   }
+-  ============================================================ */
+ }
+ 
+-/* ============================================================
+-   DEV MODE — fungsi unlock grade card onclick ke konten nyata
+-   Hapus fungsi ini saat PROD
+-   ============================================================ */
++/* Unlock grade card onclick ke konten nyata — dipanggil saat subscription aktif */
+ function unlockGradeCards() {
+   const gradeLinks = {
+     1: '/grade1/chapter1/listening.html',
+@@ -832,12 +815,10 @@ onAuthStateChanged(auth, async (user) => {
+   guard.classList.add('hidden');
+   setTimeout(() => guard.style.display = 'none', 400);
+ 
+-  // DEV MODE: tampilkan welcome tanpa cek subscription
+   if (sub && sub.active) {
+     showToast(`Selamat datang kembali! 🎉 Semangat belajar hari ini.`);
+   } else {
+-    showToast(`Dev Mode aktif 🛠️ — semua konten terbuka untuk testing.`); /* DEV MODE — restore ke bawah saat PROD */
+-    // showToast(`Halo! Berlangganan untuk akses semua materi. 🚀`, 'info'); /* PROD */
++    showToast(`Halo! Berlangganan untuk akses semua materi. 🚀`, 'info');
+   }
+ });
+ </script>
+diff --git a/dev-unlock.js b/dev-unlock.js
+deleted file mode 100644
+index 4c3c4b7..0000000
+--- a/dev-unlock.js
++++ /dev/null
+@@ -1,58 +0,0 @@
+-/**
+- * dev-unlock.js — LittleLume Dev Mode
+- * =====================================
+- * HANYA untuk testing UI/UX sebelum sistem pembayaran aktif.
+- * CARA RESTORE: rename/hapus file ini dari repo → semua kunci kembali aktif.
+- * =====================================
+- */
+-
+-(function() {
+-  // Path tiap chapter (Grade 1)
+-  const chapterPaths = {
+-    1: '/grade1/chapter1/listening.html',
+-    2: '/grade1/chapter2/listening.html',
+-    3: '/grade1/chapter3/listening.html',
+-    4: '/grade1/chapter4/listening.html',
+-    5: '/grade1/chapter5/listening.html',
+-    6: '/grade1/chapter6/listening.html',
+-    7: '/grade1/chapter7/listening.html',
+-    8: '/grade1/chapter8/listening.html',
+-  };
+-
+-  function unlockSidebar() {
+-    // Unlock SEMUA ch-item (done, active, locked) — pastikan href benar
+-    document.querySelectorAll('.ch-item').forEach(item => {
+-      const badge = item.querySelector('.ch-num');
+-      if (!badge) return;
+-
+-      const chNum = parseInt(badge.textContent.trim());
+-      if (!chNum || !chapterPaths[chNum]) return;
+-
+-      // Hapus locked, set href benar, aktifkan pointer
+-      item.classList.remove('locked');
+-      item.style.opacity   = '1';
+-      item.style.pointerEvents = 'auto';
+-
+-      // Hanya ganti href jika masih # atau kosong
+-      const currentHref = item.getAttribute('href');
+-      if (!currentHref || currentHref === '#') {
+-        item.setAttribute('href', chapterPaths[chNum]);
+-      }
+-    });
+-
+-    // Unlock skill tabs jika ada yang terkunci
+-    document.querySelectorAll('.skill-tab').forEach(tab => {
+-      tab.classList.remove('locked');
+-      tab.style.pointerEvents = 'auto';
+-      tab.style.opacity = '1';
+-    });
+-
+-    console.log('[LittleLume DEV MODE] Sidebar unlocked ✅');
+-  }
+-
+-  if (document.readyState === 'loading') {
+-    document.addEventListener('DOMContentLoaded', unlockSidebar);
+-  } else {
+-    unlockSidebar();
+-  }
+-})();
+diff --git a/firestore.rules b/firestore.rules
+new file mode 100644
+index 0000000..6aa0242
+--- /dev/null
++++ b/firestore.rules
+@@ -0,0 +1,37 @@
++rules_version = '2';
++
++/**
++ * LittleLume — Firestore Security Rules
++ * SEC-001 fix: least-privilege access.
++ *
++ * Temuan dari code review (index.html, dashboard.html):
++ *  - Client HANYA membaca dokumen users/{uid} untuk cek status subscription.
++ *  - TIDAK ADA kode client yang menulis (create/update/delete) ke collection 'users'.
++ *  - Kesimpulan: penulisan data subscription harus dilakukan lewat backend
++ *    terpercaya (mis. Cloud Function via Admin SDK setelah webhook payment),
++ *    yang otomatis bypass rules ini. Client TIDAK diberi izin tulis sama sekali.
++ *
++ * Prinsip: user hanya boleh membaca dokumennya sendiri. Tidak ada write dari client.
++ * Jika di masa depan ada fitur baru yang butuh write dari client (mis. update nama
++ * profil), tambahkan rule write yang eksplisit dan sesempit mungkin — jangan
++ * gunakan `allow write: if true` atau rule generik.
++ */
++
++service cloud.firestore {
++  match /databases/{database}/documents {
++
++    match /users/{userId} {
++      // User hanya boleh membaca dokumen miliknya sendiri.
++      allow read: if request.auth != null && request.auth.uid == userId;
++
++      // Tidak ada write dari client — subscription hanya diupdate via backend
++      // (Admin SDK, yang tidak tunduk pada rules ini).
++      allow write: if false;
++    }
++
++    // Default deny — collection lain yang belum didefinisikan otomatis ditolak.
++    match /{document=**} {
++      allow read, write: if false;
++    }
++  }
++}
+diff --git a/grade1/chapter1/listening.html b/grade1/chapter1/listening.html
+index 1da7e39..53562d7 100644
+--- a/grade1/chapter1/listening.html
++++ b/grade1/chapter1/listening.html
+@@ -880,7 +880,6 @@ function checkAllAnswers() {
+   card.scrollIntoView({ behavior:'smooth', block:'center' });
+ }
+ </script>
+-<script src="/dev-unlock.js"></script>
+ <script src="/auth-guard.js"></script>
+ </body>
+ </html>
+diff --git a/grade1/chapter1/reading.html b/grade1/chapter1/reading.html
+index f6fe35c..ea19fed 100644
+--- a/grade1/chapter1/reading.html
++++ b/grade1/chapter1/reading.html
+@@ -363,7 +363,6 @@ function checkAllAnswers(){
+   card.scrollIntoView({behavior:'smooth',block:'center'});
+ }
+ </script>
+-<script src="/dev-unlock.js"></script>
+ <script src="/auth-guard.js"></script>
+ </body>
+ </html>
+diff --git a/grade1/chapter1/speaking.html b/grade1/chapter1/speaking.html
+index 18ec827..4087230 100644
+--- a/grade1/chapter1/speaking.html
++++ b/grade1/chapter1/speaking.html
+@@ -395,7 +395,6 @@ const correctMC={mc1:'b',mc2:'c',mc3:'c',mc4:'d'};
+ function selectMC(btn,qId){const parent=btn.closest('.mc-question');parent.querySelectorAll('.mc-opt').forEach(b=>{b.classList.remove('correct','wrong');b.style.background='';b.style.borderColor='';});mcAnswers[qId]=btn.textContent.trim()[0].toLowerCase();btn.style.background='var(--skill-bg)';btn.style.borderColor='#FF9A3C';}
+ function checkAllAnswers(){let correct=0;const total=8;Object.keys(correctMC).forEach(key=>{if(mcAnswers[key]===correctMC[key])correct++;});const mcQs=document.querySelectorAll('.mc-question');const mcKeys=['mc1','mc2','mc3','mc4'];mcQs.forEach((q,i)=>{const key=mcKeys[i];const ans=correctMC[key];q.querySelectorAll('.mc-opt').forEach((btn,idx)=>{const letters=['a','b','c','d'];btn.style.pointerEvents='none';btn.style.background='';btn.style.borderColor='';if(letters[idx]===ans)btn.classList.add('correct');else if(mcAnswers[key]===letters[idx])btn.classList.add('wrong');});});document.querySelectorAll('.fitb-input').forEach(inp=>{const val=inp.value.trim().toLowerCase();const ans=inp.dataset.answer.toLowerCase();if(val===ans){inp.classList.add('correct');inp.classList.remove('wrong');correct++;}else{inp.classList.add('wrong');inp.classList.remove('correct');}});const card=document.getElementById('scoreCard');card.classList.add('show');document.getElementById('scoreDesc').textContent=`Kamu mendapat ${correct} dari ${total} jawaban benar!`;if(correct===total){card.className='score-card show great';document.getElementById('scoreEmoji').textContent='🎉';document.getElementById('scoreTitle').textContent='Sempurna! Luar Biasa!';}else if(correct>=total*0.7){card.className='score-card show good';document.getElementById('scoreEmoji').textContent='⭐';document.getElementById('scoreTitle').textContent='Bagus Sekali!';}else{card.className='score-card show try';document.getElementById('scoreEmoji').textContent='💪';document.getElementById('scoreTitle').textContent='Ayo Coba Lagi!';}card.scrollIntoView({behavior:'smooth',block:'center'});}
+ </script>
+-<script src="/dev-unlock.js"></script>
+ <script src="/auth-guard.js"></script>
+ </body>
+ </html>
+diff --git a/grade1/chapter1/writing.html b/grade1/chapter1/writing.html
+index a9376c7..e28261b 100644
+--- a/grade1/chapter1/writing.html
++++ b/grade1/chapter1/writing.html
+@@ -355,5 +355,4 @@ function checkAllAnswers(){let correct=0;const total=8;Object.keys(correctMC).fo
+ </script>
+ <script src="/auth-guard.js"></script>
+ </body>
+-<script src="/dev-unlock.js"></script>
+ </html>
+diff --git a/grade1/chapter2/listening.html b/grade1/chapter2/listening.html
+index 54b5e1d..d0a6994 100644
+--- a/grade1/chapter2/listening.html
++++ b/grade1/chapter2/listening.html
+@@ -472,7 +472,6 @@ function checkAll(){
+   card.scrollIntoView({behavior:'smooth',block:'center'});
+ }
+ </script>
+-<script src="/dev-unlock.js"></script>
+ <script src="/auth-guard.js"></script>
+ </body>
+ </html>
+diff --git a/grade1/chapter2/reading.html b/grade1/chapter2/reading.html
+index 40b56b3..4abd2a3 100644
+--- a/grade1/chapter2/reading.html
++++ b/grade1/chapter2/reading.html
+@@ -347,7 +347,6 @@ function checkAll(){
+   card.scrollIntoView({behavior:'smooth',block:'center'});
+ }
+ </script>
+-<script src="/dev-unlock.js"></script>
+ <script src="/auth-guard.js"></script>
+ </body>
+ </html>
+diff --git a/grade1/chapter2/speaking.html b/grade1/chapter2/speaking.html
+index 22b15e8..2cd29aa 100644
+--- a/grade1/chapter2/speaking.html
++++ b/grade1/chapter2/speaking.html
+@@ -475,7 +475,6 @@ function checkAll(){
+   card.scrollIntoView({behavior:'smooth',block:'center'});
+ }
+ </script>
+-<script src="/dev-unlock.js"></script>
+ <script src="/auth-guard.js"></script>
+ </body>
+ </html>
+diff --git a/grade1/chapter2/writing.html b/grade1/chapter2/writing.html
+index d2dd0a6..bc4f490 100644
+--- a/grade1/chapter2/writing.html
++++ b/grade1/chapter2/writing.html
+@@ -368,7 +368,6 @@ function checkAll(){
+   card.scrollIntoView({behavior:'smooth',block:'center'});
+ }
+ </script>
+-<script src="/dev-unlock.js"></script>
+ <script src="/auth-guard.js"></script>
+ </body>
+ </html>

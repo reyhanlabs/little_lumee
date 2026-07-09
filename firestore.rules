@@ -1,0 +1,37 @@
+rules_version = '2';
+
+/**
+ * LittleLume — Firestore Security Rules
+ * SEC-001 fix: least-privilege access.
+ *
+ * Temuan dari code review (index.html, dashboard.html):
+ *  - Client HANYA membaca dokumen users/{uid} untuk cek status subscription.
+ *  - TIDAK ADA kode client yang menulis (create/update/delete) ke collection 'users'.
+ *  - Kesimpulan: penulisan data subscription harus dilakukan lewat backend
+ *    terpercaya (mis. Cloud Function via Admin SDK setelah webhook payment),
+ *    yang otomatis bypass rules ini. Client TIDAK diberi izin tulis sama sekali.
+ *
+ * Prinsip: user hanya boleh membaca dokumennya sendiri. Tidak ada write dari client.
+ * Jika di masa depan ada fitur baru yang butuh write dari client (mis. update nama
+ * profil), tambahkan rule write yang eksplisit dan sesempit mungkin — jangan
+ * gunakan `allow write: if true` atau rule generik.
+ */
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    match /users/{userId} {
+      // User hanya boleh membaca dokumen miliknya sendiri.
+      allow read: if request.auth != null && request.auth.uid == userId;
+
+      // Tidak ada write dari client — subscription hanya diupdate via backend
+      // (Admin SDK, yang tidak tunduk pada rules ini).
+      allow write: if false;
+    }
+
+    // Default deny — collection lain yang belum didefinisikan otomatis ditolak.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
