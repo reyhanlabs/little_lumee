@@ -366,20 +366,26 @@ section { position:relative; z-index:1; overflow:hidden; }
 @keyframes fadeIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
 .skill-card {
   background:var(--card); border:1px solid var(--border); box-shadow:var(--shadow-sm);
+  border-left:4px solid var(--border);
   border-radius:16px; padding:24px;
   display:flex; align-items:center; gap:14px;
-  transition:border-color 0.2s, background 0.2s; cursor:pointer;
+  transition:border-color 0.2s, background 0.2s, transform 0.2s, box-shadow 0.2s;
+  cursor:pointer;
 }
-.skill-card:hover { border-color:rgba(108,99,255,0.4); background:var(--card-hover); }
+.skill-card:hover { border-color:rgba(108,99,255,0.4); background:var(--card-hover); transform:translateY(-3px); box-shadow:var(--shadow-md); }
+.skill-card:has(.skill-icon.listening) { border-left-color:var(--purple); }
+.skill-card:has(.skill-icon.reading)   { border-left-color:var(--mint); }
+.skill-card:has(.skill-icon.speaking)  { border-left-color:#FF9A3C; }
+.skill-card:has(.skill-icon.writing)   { border-left-color:#FF6B9D; }
 .skill-icon {
-  width:44px; height:44px; border-radius:12px;
+  width:48px; height:48px; border-radius:12px;
   display:flex; align-items:center; justify-content:center;
-  font-size:1.3rem; flex-shrink:0;
+  font-size:1.4rem; flex-shrink:0;
 }
-.skill-icon.listening { background:rgba(108,99,255,0.15); }
-.skill-icon.reading   { background:rgba(0,201,167,0.14); }
-.skill-icon.speaking  { background:rgba(255,165,80,0.14); }
-.skill-icon.writing   { background:rgba(255,99,160,0.14); }
+.skill-icon.listening { background:rgba(108,99,255,0.22); }
+.skill-icon.reading   { background:rgba(0,201,167,0.2); }
+.skill-icon.speaking  { background:rgba(255,154,60,0.2); }
+.skill-icon.writing   { background:rgba(255,107,157,0.2); }
 .skill-card h4 { font-family:'Plus Jakarta Sans', sans-serif; font-size:0.95rem; font-weight:700; margin-bottom:3px; }
 .skill-card p { font-size:0.78rem; color:var(--muted); }
 .lock-badge { margin-left:auto; font-size:0.85rem; color:var(--muted); opacity:0.5; }
