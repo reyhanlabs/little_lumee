@@ -281,7 +281,19 @@ nav .user-name { color:#F0EEFF; }
 }
 .proof-item .label { font-size:0.82rem; color:var(--muted); font-weight:500; margin-top:2px; }
 .proof-divider { width:1px; height:36px; background:var(--border); }
-section { position:relative; z-index:1; }
+section { position:relative; z-index:1; overflow:hidden; }
+.blob {
+  position:absolute; border-radius:50%; filter:blur(70px);
+  pointer-events:none; opacity:0.32;
+}
+@keyframes sparkleFloat {
+  0%, 100% { transform:translateY(0) rotate(0deg); }
+  50% { transform:translateY(-10px) rotate(12deg); }
+}
+.sparkle {
+  position:absolute; pointer-events:none; user-select:none;
+  animation:sparkleFloat 3.5s ease-in-out infinite;
+}
 .container { max-width:1100px; margin:0 auto; padding:0 24px; }
 .section-pad { padding:100px 0; }
 .section-eyebrow {
@@ -828,6 +840,12 @@ footer {
 </nav>
 
 <section class="hero">
+  <div class="blob" style="width:340px;height:340px;background:var(--c1);top:-60px;left:-80px;"></div>
+  <div class="blob" style="width:280px;height:280px;background:var(--c5);bottom:-40px;right:-60px;"></div>
+  <div class="blob" style="width:220px;height:220px;background:var(--c4);top:40%;left:60%;opacity:0.2;"></div>
+  <span class="sparkle" style="top:18%;left:12%;font-size:1.6rem;animation-delay:0s;">✨</span>
+  <span class="sparkle" style="top:28%;right:14%;font-size:1.3rem;animation-delay:0.8s;">⭐</span>
+  <span class="sparkle" style="bottom:22%;left:18%;font-size:1.2rem;animation-delay:1.6s;">✨</span>
   <div class="hero-eyebrow">✦ <span>Trusted English Learning Platform for Kids</span> ✦</div>
   <h1>Where Kids <em>Shine</em> in English</h1>
   <p class="hero-sub">A premium self-paced English course for Grade 1–6. Interactive lessons, games, and worksheets — designed so your child learns independently, anytime, anywhere.</p>
@@ -853,6 +871,8 @@ footer {
 </div>
 
 <section id="features" class="section-pad">
+  <div class="blob" style="width:260px;height:260px;background:var(--c2);top:-40px;right:5%;"></div>
+  <span class="sparkle" style="top:8%;left:6%;font-size:1.3rem;animation-delay:0.4s;">✨</span>
   <div class="container">
     <div class="reveal">
       <span class="section-eyebrow">Mengapa LittleLume</span>
@@ -1007,6 +1027,7 @@ footer {
 </section>
 
 <section class="section-pad" style="background:var(--surface)">
+  <div class="blob" style="width:300px;height:300px;background:var(--c3);bottom:-60px;left:6%;"></div>
   <div class="container">
     <div class="reveal" style="text-align:center;margin-bottom:60px">
       <span class="section-eyebrow">Kenapa Pilih Kami</span>
@@ -1049,6 +1070,8 @@ footer {
 </section>
 
 <section id="pricing" class="pricing-section section-pad">
+  <div class="blob" style="width:320px;height:320px;background:var(--c5);top:-50px;right:8%;opacity:0.22;"></div>
+  <span class="sparkle" style="top:10%;left:8%;font-size:1.4rem;animation-delay:1.2s;">⭐</span>
   <div class="container" style="text-align:center">
     <div class="reveal">
       <span class="section-eyebrow">Harga</span>
@@ -1140,6 +1163,9 @@ footer {
 
 <section class="cta-section">
   <div class="cta-glow"></div>
+  <div class="blob" style="width:220px;height:220px;background:var(--c1);top:-30px;left:8%;opacity:0.2;"></div>
+  <div class="blob" style="width:200px;height:200px;background:var(--c4);bottom:-30px;right:10%;opacity:0.2;"></div>
+  <span class="sparkle" style="top:14%;right:16%;font-size:1.4rem;animation-delay:0.5s;">✨</span>
   <div class="container">
     <div class="reveal">
       <h2>Siap untuk <em class="gradient-glow">tingkatkan</em> bahasa Inggris anak kamu?</h2>
