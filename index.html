@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
 <meta charset="UTF-8">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -637,8 +637,25 @@ section { position:relative; z-index:1; overflow:hidden; }
 }
 .testi-name { font-weight:700; font-size:0.88rem; }
 .testi-role { font-size:0.78rem; color:var(--muted); }
-.faq-list { max-width:680px; margin:56px auto 0; }
-.faq-item { border-bottom:1px solid var(--border); }
+.faq-list { max-width:680px; margin:56px auto 0; display:flex; flex-direction:column; gap:12px; }
+.faq-item {
+  background:var(--card); border:1px solid var(--border); border-left:4px solid var(--border);
+  border-radius:16px; padding:4px 24px; box-shadow:var(--shadow-sm);
+  transition:border-color 0.25s, background 0.25s, box-shadow 0.25s;
+}
+.faq-list .faq-item:nth-child(6n+1) { border-left-color:var(--c1); }
+.faq-list .faq-item:nth-child(6n+2) { border-left-color:var(--c2); }
+.faq-list .faq-item:nth-child(6n+3) { border-left-color:var(--c3); }
+.faq-list .faq-item:nth-child(6n+4) { border-left-color:var(--c4); }
+.faq-list .faq-item:nth-child(6n+5) { border-left-color:var(--c5); }
+.faq-list .faq-item:nth-child(6n+6) { border-left-color:var(--c6); }
+.faq-item.open { box-shadow:var(--shadow-md); }
+.faq-list .faq-item:nth-child(6n+1).open { background:var(--c1bg); }
+.faq-list .faq-item:nth-child(6n+2).open { background:var(--c2bg); }
+.faq-list .faq-item:nth-child(6n+3).open { background:var(--c3bg); }
+.faq-list .faq-item:nth-child(6n+4).open { background:var(--c4bg); }
+.faq-list .faq-item:nth-child(6n+5).open { background:var(--c5bg); }
+.faq-list .faq-item:nth-child(6n+6).open { background:var(--c6bg); }
 .faq-q {
   width:100%; background:none; border:none; color:var(--text);
   text-align:left; padding:22px 0;
@@ -646,7 +663,7 @@ section { position:relative; z-index:1; overflow:hidden; }
   cursor:pointer; display:flex; justify-content:space-between; align-items:center; gap:16px;
 }
 .faq-q .chevron { color:var(--muted); transition:transform 0.25s; font-style:normal; flex-shrink:0; }
-.faq-item.open .chevron { transform:rotate(180deg); }
+.faq-item.open .chevron { transform:rotate(180deg); color:var(--purple); }
 .faq-a {
   overflow:hidden; max-height:0;
   transition:max-height 0.35s ease, padding 0.25s;
@@ -852,9 +869,9 @@ footer {
   <span class="sparkle" style="top:18%;left:12%;font-size:1.6rem;animation-delay:0s;">✨</span>
   <span class="sparkle" style="top:28%;right:14%;font-size:1.3rem;animation-delay:0.8s;">⭐</span>
   <span class="sparkle" style="bottom:22%;left:18%;font-size:1.2rem;animation-delay:1.6s;">✨</span>
-  <div class="hero-eyebrow">✦ <span>Trusted English Learning Platform for Kids</span> ✦</div>
-  <h1>Where Kids <em>Shine</em> in English</h1>
-  <p class="hero-sub">A premium self-paced English course for Grade 1–6. Interactive lessons, games, and worksheets — designed so your child learns independently, anytime, anywhere.</p>
+  <div class="hero-eyebrow">✦ <span>Platform Belajar Bahasa Inggris Terpercaya untuk Anak</span> ✦</div>
+  <h1>Saatnya Anak <em>Bersinar</em> dalam Bahasa Inggris</h1>
+  <p class="hero-sub">Kursus Bahasa Inggris premium dengan ritme belajar mandiri untuk Grade 1–6. Pelajaran interaktif, game, dan worksheet — dirancang supaya anak Anda belajar mandiri, kapan saja, di mana saja.</p>
   <div class="hero-cta">
     <a href="#pricing" class="btn-primary">🚀 Mulai Belajar — Rp 29.000/bln</a>
     <a href="#grades" class="btn-ghost">📚 Lihat Materi</a>
@@ -882,19 +899,19 @@ footer {
   <div class="container">
     <div class="reveal">
       <span class="section-eyebrow">Mengapa LittleLume</span>
-      <h2 class="section-title">Everything your child needs to <em>excel</em> in English</h2>
-      <p class="section-sub">We combined curriculum expertise with interactive design so kids actually enjoy learning.</p>
+      <h2 class="section-title">Semua yang Dibutuhkan Anak untuk <em>Unggul</em> dalam Bahasa Inggris</h2>
+      <p class="section-sub">Kami memadukan keahlian kurikulum dengan desain interaktif supaya anak benar-benar menikmati proses belajar.</p>
     </div>
     <div class="features-grid">
-      <div class="feature-card reveal"><div class="feature-icon">🎧</div><h3>Listening Practice</h3><p>Audio-based exercises with real-world topics help kids tune their ears and build comprehension naturally.</p></div>
-      <div class="feature-card reveal"><div class="feature-icon">📖</div><h3>Reading Comprehension</h3><p>Engaging passages and questions at the right difficulty level for each grade, building reading fluency step by step.</p></div>
-      <div class="feature-card reveal"><div class="feature-icon">🗣️</div><h3>Speaking Confidence</h3><p>Guided speaking activities that help children practice pronunciation and express themselves in English.</p></div>
-      <div class="feature-card reveal"><div class="feature-icon">✍️</div><h3>Writing Skills</h3><p>Structured writing exercises from simple sentences to paragraphs, growing with your child's ability.</p></div>
-      <div class="feature-card reveal"><div class="feature-icon">📝</div><h3>Grammar Mastery</h3><p>Tenses, parts of speech, sentence structure — explained clearly and practiced with fun interactive exercises.</p></div>
-      <div class="feature-card reveal"><div class="feature-icon">🎮</div><h3>Learning Games</h3><p>Gamified exercises keep kids engaged and motivated — because the best learning happens when it feels like play.</p></div>
-      <div class="feature-card reveal"><div class="feature-icon">📄</div><h3>Worksheet Cetak</h3><p>High-quality worksheets for every grade and skill — perfect for offline practice or homework support.</p></div>
-      <div class="feature-card reveal"><div class="feature-icon">📱</div><h3>Learn Anywhere</h3><p>Fully responsive on mobile, tablet, and desktop. Your child's lessons are always available, no app required.</p></div>
-      <div class="feature-card reveal"><div class="feature-icon">🔓</div><h3>All Grades, One Price</h3><p>One subscription unlocks every grade from 1 to 6. As your child advances, so does their access — no upgrade needed.</p></div>
+      <div class="feature-card reveal"><div class="feature-icon">🎧</div><h3>Latihan Listening</h3><p>Latihan berbasis audio dengan topik dunia nyata membantu anak melatih pendengaran dan membangun pemahaman secara alami.</p></div>
+      <div class="feature-card reveal"><div class="feature-icon">📖</div><h3>Pemahaman Reading</h3><p>Teks bacaan dan pertanyaan pada level kesulitan yang tepat untuk tiap grade, membangun kelancaran membaca tahap demi tahap.</p></div>
+      <div class="feature-card reveal"><div class="feature-icon">🗣️</div><h3>Kepercayaan Diri Speaking</h3><p>Aktivitas speaking terbimbing yang membantu anak melatih pelafalan dan mengekspresikan diri dalam Bahasa Inggris.</p></div>
+      <div class="feature-card reveal"><div class="feature-icon">✍️</div><h3>Kemampuan Writing</h3><p>Latihan menulis terstruktur dari kalimat sederhana hingga paragraf, berkembang seiring kemampuan anak Anda.</p></div>
+      <div class="feature-card reveal"><div class="feature-icon">📝</div><h3>Penguasaan Grammar</h3><p>Tenses, parts of speech, struktur kalimat — dijelaskan dengan jelas dan dilatih lewat latihan interaktif yang menyenangkan.</p></div>
+      <div class="feature-card reveal"><div class="feature-icon">🎮</div><h3>Game Pembelajaran</h3><p>Latihan bergaya game menjaga anak tetap terlibat dan termotivasi — karena belajar paling efektif saat terasa seperti bermain.</p></div>
+      <div class="feature-card reveal"><div class="feature-icon">📄</div><h3>Worksheet Cetak</h3><p>Worksheet berkualitas tinggi untuk setiap grade dan skill — cocok untuk latihan offline atau bantuan tugas sekolah.</p></div>
+      <div class="feature-card reveal"><div class="feature-icon">📱</div><h3>Belajar di Mana Saja</h3><p>Sepenuhnya responsif di HP, tablet, dan desktop. Pelajaran anak Anda selalu tersedia, tanpa perlu instal aplikasi.</p></div>
+      <div class="feature-card reveal"><div class="feature-icon">🔓</div><h3>Semua Grade, Satu Harga</h3><p>Satu langganan membuka semua grade dari 1 sampai 6. Seiring anak naik kelas, aksesnya ikut mengikuti — tanpa biaya tambahan.</p></div>
     </div>
   </div>
 </section>
@@ -903,8 +920,8 @@ footer {
   <div class="container">
     <div class="reveal">
       <span class="section-eyebrow">Kurikulum</span>
-      <h2 class="section-title">Structured for every <em>grade level</em></h2>
-      <p class="section-sub">Each grade has its own curated lessons covering all four core English skills plus grammar.</p>
+      <h2 class="section-title">Terstruktur untuk Setiap <em>Level Grade</em></h2>
+      <p class="section-sub">Setiap grade punya pelajaran pilihan yang mencakup keempat skill inti Bahasa Inggris plus grammar.</p>
     </div>
     <div class="grade-tabs reveal">
       <button class="grade-tab active" onclick="showGrade('g1',this)">Grade 1</button>
@@ -915,40 +932,40 @@ footer {
       <button class="grade-tab" onclick="showGrade('g6',this)">Grade 6</button>
     </div>
     <div id="g1" class="grade-content active">
-      <div class="skill-card"><div class="skill-icon listening">🎧</div><div><h4>Listening</h4><p>Daily Activities, Hobbies, Family & more</p></div><span class="lock-badge">🔒</span></div>
-      <div class="skill-card"><div class="skill-icon reading">📖</div><div><h4>Reading</h4><p>Simple texts with guided comprehension</p></div><span class="lock-badge">🔒</span></div>
-      <div class="skill-card"><div class="skill-icon speaking">🗣️</div><div><h4>Speaking</h4><p>Basic conversation & pronunciation</p></div><span class="lock-badge">🔒</span></div>
-      <div class="skill-card"><div class="skill-icon writing">✍️</div><div><h4>Writing</h4><p>Letters, words, and simple sentences</p></div><span class="lock-badge">🔒</span></div>
+      <div class="skill-card"><div class="skill-icon listening">🎧</div><div><h4>Listening</h4><p>Aktivitas Harian, Hobi, Keluarga & lainnya</p></div><span class="lock-badge">🔒</span></div>
+      <div class="skill-card"><div class="skill-icon reading">📖</div><div><h4>Reading</h4><p>Teks sederhana dengan pemahaman terbimbing</p></div><span class="lock-badge">🔒</span></div>
+      <div class="skill-card"><div class="skill-icon speaking">🗣️</div><div><h4>Speaking</h4><p>Percakapan dasar & pelafalan</p></div><span class="lock-badge">🔒</span></div>
+      <div class="skill-card"><div class="skill-icon writing">✍️</div><div><h4>Writing</h4><p>Huruf, kata, dan kalimat sederhana</p></div><span class="lock-badge">🔒</span></div>
     </div>
     <div id="g2" class="grade-content">
-      <div class="skill-card"><div class="skill-icon listening">🎧</div><div><h4>Listening</h4><p>Animal Sounds, Colors, Numbers & more</p></div><span class="lock-badge">🔒</span></div>
-      <div class="skill-card"><div class="skill-icon reading">📖</div><div><h4>Reading</h4><p>Short passages and reading games</p></div><span class="lock-badge">🔒</span></div>
-      <div class="skill-card"><div class="skill-icon speaking">🗣️</div><div><h4>Speaking</h4><p>Greetings, responses & daily expressions</p></div><span class="lock-badge">🔒</span></div>
-      <div class="skill-card"><div class="skill-icon writing">✍️</div><div><h4>Writing</h4><p>Sentence building & short paragraphs</p></div><span class="lock-badge">🔒</span></div>
+      <div class="skill-card"><div class="skill-icon listening">🎧</div><div><h4>Listening</h4><p>Suara Hewan, Warna, Angka & lainnya</p></div><span class="lock-badge">🔒</span></div>
+      <div class="skill-card"><div class="skill-icon reading">📖</div><div><h4>Reading</h4><p>Teks pendek dan game membaca</p></div><span class="lock-badge">🔒</span></div>
+      <div class="skill-card"><div class="skill-icon speaking">🗣️</div><div><h4>Speaking</h4><p>Salam, respons & ekspresi sehari-hari</p></div><span class="lock-badge">🔒</span></div>
+      <div class="skill-card"><div class="skill-icon writing">✍️</div><div><h4>Writing</h4><p>Menyusun kalimat & paragraf pendek</p></div><span class="lock-badge">🔒</span></div>
     </div>
     <div id="g3" class="grade-content">
-      <div class="skill-card"><div class="skill-icon listening">🎧</div><div><h4>Listening</h4><p>Weather, Shopping, School Life & more</p></div><span class="lock-badge">🔒</span></div>
-      <div class="skill-card"><div class="skill-icon reading">📖</div><div><h4>Reading</h4><p>Descriptive and narrative texts</p></div><span class="lock-badge">🔒</span></div>
-      <div class="skill-card"><div class="skill-icon speaking">🗣️</div><div><h4>Speaking</h4><p>Describing people, places & events</p></div><span class="lock-badge">🔒</span></div>
-      <div class="skill-card"><div class="skill-icon writing">✍️</div><div><h4>Writing</h4><p>Paragraph writing with topic sentences</p></div><span class="lock-badge">🔒</span></div>
+      <div class="skill-card"><div class="skill-icon listening">🎧</div><div><h4>Listening</h4><p>Cuaca, Belanja, Kehidupan Sekolah & lainnya</p></div><span class="lock-badge">🔒</span></div>
+      <div class="skill-card"><div class="skill-icon reading">📖</div><div><h4>Reading</h4><p>Teks deskriptif dan naratif</p></div><span class="lock-badge">🔒</span></div>
+      <div class="skill-card"><div class="skill-icon speaking">🗣️</div><div><h4>Speaking</h4><p>Mendeskripsikan orang, tempat & kejadian</p></div><span class="lock-badge">🔒</span></div>
+      <div class="skill-card"><div class="skill-icon writing">✍️</div><div><h4>Writing</h4><p>Menulis paragraf dengan kalimat topik</p></div><span class="lock-badge">🔒</span></div>
     </div>
     <div id="g4" class="grade-content">
-      <div class="skill-card"><div class="skill-icon listening">🎧</div><div><h4>Listening</h4><p>Hobbies, My Family, Daily Activities</p></div><span class="lock-badge">🔒</span></div>
-      <div class="skill-card"><div class="skill-icon reading">📖</div><div><h4>Reading</h4><p>Longer texts with inference questions</p></div><span class="lock-badge">🔒</span></div>
-      <div class="skill-card"><div class="skill-icon speaking">🗣️</div><div><h4>Speaking</h4><p>Storytelling and role-play scenarios</p></div><span class="lock-badge">🔒</span></div>
-      <div class="skill-card"><div class="skill-icon writing">✍️</div><div><h4>Writing</h4><p>Opinion writing and structured essays</p></div><span class="lock-badge">🔒</span></div>
+      <div class="skill-card"><div class="skill-icon listening">🎧</div><div><h4>Listening</h4><p>Hobi, Keluargaku, Aktivitas Harian</p></div><span class="lock-badge">🔒</span></div>
+      <div class="skill-card"><div class="skill-icon reading">📖</div><div><h4>Reading</h4><p>Teks lebih panjang dengan pertanyaan inferensi</p></div><span class="lock-badge">🔒</span></div>
+      <div class="skill-card"><div class="skill-icon speaking">🗣️</div><div><h4>Speaking</h4><p>Storytelling dan skenario role-play</p></div><span class="lock-badge">🔒</span></div>
+      <div class="skill-card"><div class="skill-icon writing">✍️</div><div><h4>Writing</h4><p>Menulis opini dan esai terstruktur</p></div><span class="lock-badge">🔒</span></div>
     </div>
     <div id="g5" class="grade-content">
-      <div class="skill-card"><div class="skill-icon listening">🎧</div><div><h4>Listening</h4><p>Complex dialogues and narrations</p></div><span class="lock-badge">🔒</span></div>
-      <div class="skill-card"><div class="skill-icon reading">📖</div><div><h4>Reading</h4><p>Multi-paragraph comprehension texts</p></div><span class="lock-badge">🔒</span></div>
-      <div class="skill-card"><div class="skill-icon speaking">🗣️</div><div><h4>Speaking</h4><p>Discussions, debates & presentations</p></div><span class="lock-badge">🔒</span></div>
-      <div class="skill-card"><div class="skill-icon writing">✍️</div><div><h4>Writing</h4><p>Report writing & creative compositions</p></div><span class="lock-badge">🔒</span></div>
+      <div class="skill-card"><div class="skill-icon listening">🎧</div><div><h4>Listening</h4><p>Dialog dan narasi yang lebih kompleks</p></div><span class="lock-badge">🔒</span></div>
+      <div class="skill-card"><div class="skill-icon reading">📖</div><div><h4>Reading</h4><p>Teks pemahaman multi-paragraf</p></div><span class="lock-badge">🔒</span></div>
+      <div class="skill-card"><div class="skill-icon speaking">🗣️</div><div><h4>Speaking</h4><p>Diskusi, debat & presentasi</p></div><span class="lock-badge">🔒</span></div>
+      <div class="skill-card"><div class="skill-icon writing">✍️</div><div><h4>Writing</h4><p>Menulis laporan & komposisi kreatif</p></div><span class="lock-badge">🔒</span></div>
     </div>
     <div id="g6" class="grade-content">
-      <div class="skill-card"><div class="skill-icon listening">🎧</div><div><h4>Listening</h4><p>Advanced topics and exam preparation</p></div><span class="lock-badge">🔒</span></div>
-      <div class="skill-card"><div class="skill-icon reading">📖</div><div><h4>Reading</h4><p>Critical reading and analysis</p></div><span class="lock-badge">🔒</span></div>
-      <div class="skill-card"><div class="skill-icon speaking">🗣️</div><div><h4>Speaking</h4><p>Formal presentations & arguments</p></div><span class="lock-badge">🔒</span></div>
-      <div class="skill-card"><div class="skill-icon writing">✍️</div><div><h4>Writing</h4><p>Academic writing & exam-ready essays</p></div><span class="lock-badge">🔒</span></div>
+      <div class="skill-card"><div class="skill-icon listening">🎧</div><div><h4>Listening</h4><p>Topik lanjutan dan persiapan ujian</p></div><span class="lock-badge">🔒</span></div>
+      <div class="skill-card"><div class="skill-icon reading">📖</div><div><h4>Reading</h4><p>Membaca kritis dan analisis</p></div><span class="lock-badge">🔒</span></div>
+      <div class="skill-card"><div class="skill-icon speaking">🗣️</div><div><h4>Speaking</h4><p>Presentasi formal & argumentasi</p></div><span class="lock-badge">🔒</span></div>
+      <div class="skill-card"><div class="skill-icon writing">✍️</div><div><h4>Writing</h4><p>Penulisan akademik & esai siap ujian</p></div><span class="lock-badge">🔒</span></div>
     </div>
   </div>
 </section>
@@ -957,7 +974,7 @@ footer {
   <div class="container">
     <div class="reveal" style="text-align:center;margin-bottom:60px">
       <span class="section-eyebrow">Kurikulum Lengkap</span>
-      <h2 class="section-title">Massive Content Library — <em>All Included</em></h2>
+      <h2 class="section-title">Perpustakaan Konten Lengkap — <em>Semua Termasuk</em></h2>
     </div>
     <div class="materials-grid">
       <div class="material-card reveal">
@@ -976,7 +993,7 @@ footer {
         <div class="material-icon">📄</div>
         <div class="material-count">120+</div>
         <div class="material-label">Worksheet Cetak</div>
-        <div class="material-sub">For offline practice & homework</div>
+        <div class="material-sub">Untuk latihan offline & bantuan tugas</div>
       </div>
       <div class="material-card reveal">
         <div class="material-icon">🎮</div>
@@ -1017,13 +1034,13 @@ footer {
       <div class="quick-step reveal">
         <div class="quick-icon">2</div>
         <h3>Pilih Paket</h3>
-        <p>Rp 29K/month. <br>All 6 grades included.</p>
+        <p>Rp 29K/bulan. <br>Semua 6 grade termasuk.</p>
       </div>
       <div class="quick-divider reveal"></div>
       <div class="quick-step reveal">
         <div class="quick-icon">3</div>
-        <h3>Start Learning</h3>
-        <p>Instant access. <br>Anytime, anywhere.</p>
+        <h3>Mulai Belajar</h3>
+        <p>Akses langsung. <br>Kapan saja, di mana saja.</p>
       </div>
     </div>
     <div style="text-align:center;margin-top:48px">
@@ -1038,38 +1055,38 @@ footer {
     <div class="reveal" style="text-align:center;margin-bottom:60px">
       <span class="section-eyebrow">Kenapa Pilih Kami</span>
       <h2 class="section-title">Kenapa Pilih <em>LittleLume</em>?</h2>
-      <p class="section-sub" style="margin:16px auto 0">Simple reasons to trust us with your child's learning</p>
+      <p class="section-sub" style="margin:16px auto 0">Alasan sederhana untuk mempercayakan belajar anak Anda kepada kami</p>
     </div>
     <div class="why-grid">
       <div class="why-card reveal">
         <div class="why-icon">💰</div>
-        <h3>Unbeatable Price</h3>
-        <p>Rp 29.000/month for all 6 grades. Most competitors charge Rp 500K+ or require separate subscriptions per grade. We believe quality education should be affordable.</p>
+        <h3>Harga Tak Tertandingi</h3>
+        <p>Rp 29.000/bulan untuk semua 6 grade. Kebanyakan kompetitor mengenakan Rp 500K+ atau mengharuskan langganan terpisah per grade. Kami percaya pendidikan berkualitas seharusnya terjangkau.</p>
       </div>
       <div class="why-card reveal">
         <div class="why-icon">🎓</div>
-        <h3>All Grades, One Price</h3>
-        <p>Your child isn't locked into one grade level. Access Grade 1 through 6 anytime. As they progress, they move up without extra cost.</p>
+        <h3>Semua Grade, Satu Harga</h3>
+        <p>Anak Anda tidak terkunci di satu level grade. Akses Grade 1 sampai 6 kapan saja. Seiring mereka naik kelas, aksesnya ikut mengikuti tanpa biaya tambahan.</p>
       </div>
       <div class="why-card reveal">
         <div class="why-icon">⏰</div>
-        <h3>Learn On Your Time</h3>
-        <p>No schedules. No classes. Your child learns whenever it fits your family's routine — morning, afternoon, weekends, or holidays.</p>
+        <h3>Belajar Sesuai Waktu Anda</h3>
+        <p>Tanpa jadwal. Tanpa kelas. Anak Anda belajar kapan pun sesuai rutinitas keluarga — pagi, siang, akhir pekan, atau hari libur.</p>
       </div>
       <div class="why-card reveal">
         <div class="why-icon">❌</div>
-        <h3>No Long-Term Contracts</h3>
-        <p>Cancel anytime. No penalties. No hidden fees. If it's not working for your family, you can stop immediately. We want you to stay because it works, not because you're locked in.</p>
+        <h3>Tanpa Kontrak Jangka Panjang</h3>
+        <p>Batal kapan saja. Tanpa penalti. Tanpa biaya tersembunyi. Kalau tidak cocok untuk keluarga Anda, Anda bisa berhenti langsung. Kami ingin Anda bertahan karena memang bermanfaat, bukan karena terikat.</p>
       </div>
       <div class="why-card reveal">
         <div class="why-icon">🔄</div>
-        <h3>Always Improving</h3>
-        <p>New lessons added monthly based on what works. We continuously update content and features based on how kids actually learn and what parents ask for.</p>
+        <h3>Terus Diperbarui</h3>
+        <p>Pelajaran baru ditambahkan tiap bulan berdasarkan apa yang efektif. Kami terus memperbarui konten dan fitur berdasarkan cara anak belajar dan masukan dari orang tua.</p>
       </div>
       <div class="why-card reveal">
         <div class="why-icon">📱</div>
-        <h3>Works Everywhere</h3>
-        <p>Laptop, tablet, phone. Any device, any time. No app needed. Everything works in the browser, online or offline.</p>
+        <h3>Bisa Diakses di Mana Saja</h3>
+        <p>Laptop, tablet, HP. Perangkat apa pun, kapan pun. Tanpa perlu instal aplikasi. Semua berjalan di browser, online maupun offline.</p>
       </div>
     </div>
   </div>
@@ -1092,10 +1109,10 @@ footer {
       <ul class="pricing-features">
         <li>Semua 6 Level Grade (Grade 1–6)</li>
         <li>Listening, Reading, Speaking & Writing</li>
-        <li>Grammar Lessons — Tenses, Parts of Speech & more</li>
-        <li>Interactive Learning Games</li>
+        <li>Pelajaran Grammar — Tenses, Parts of Speech & lainnya</li>
+        <li>Game Pembelajaran Interaktif</li>
         <li>Worksheet yang bisa dicetak untuk semua grade</li>
-        <li>Access on Mobile, Tablet & Desktop</li>
+        <li>Akses di Mobile, Tablet & Desktop</li>
         <li>Konten baru ditambahkan secara rutin</li>
       </ul>
       <button onclick="openAuthModal()" class="btn-primary" style="width:100%;justify-content:center;font-size:1.05rem;padding:18px;border:none;cursor:pointer;">
@@ -1110,23 +1127,23 @@ footer {
   <div class="container">
     <div class="reveal" style="text-align:center">
       <span class="section-eyebrow">Testimoni</span>
-      <h2 class="section-title">Parents & kids <em>love</em> LittleLume</h2>
+      <h2 class="section-title">Orang Tua & Anak <em>Menyukai</em> LittleLume</h2>
     </div>
     <div class="testimonials-grid">
       <div class="testi-card reveal">
         <div class="testi-stars">★★★★★</div>
-        <p class="testi-text">"My daughter actually asks to do her English lessons every day now. The materials are well-structured and the games keep her engaged. Worth every penny."</p>
+        <p class="testi-text">"Anak perempuan saya sekarang malah yang minta belajar Bahasa Inggris tiap hari. Materinya terstruktur dengan baik dan game-nya bikin dia tetap semangat. Sepadan banget dengan harganya."</p>
         <div class="testi-author"><div class="testi-avatar">S</div><div><div class="testi-name">Sarah W.</div><div class="testi-role">Orang Tua Siswa Grade 3</div></div></div>
       </div>
       <div class="testi-card reveal">
         <div class="testi-stars">★★★★★</div>
-        <p class="testi-text">"The listening exercises are excellent. My son's pronunciation has improved noticeably in just a few weeks. Very affordable for the quality offered."</p>
+        <p class="testi-text">"Latihan listening-nya bagus banget. Pelafalan anak laki-laki saya membaik jelas hanya dalam beberapa minggu. Sangat terjangkau untuk kualitas yang ditawarkan."</p>
         <div class="testi-author"><div class="testi-avatar">R</div><div><div class="testi-name">Rudi H.</div><div class="testi-role">Orang Tua Siswa Grade 5</div></div></div>
       </div>
       <div class="testi-card reveal">
         <div class="testi-stars">★★★★★</div>
-        <p class="testi-text">"I love how all grades are included in one subscription. As my kids move up, they don't need a new plan. The grammar section is particularly well done."</p>
-        <div class="testi-author"><div class="testi-avatar">A</div><div><div class="testi-name">Anisa P.</div><div class="testi-role">Parent of Grade 1 & 4 Students</div></div></div>
+        <p class="testi-text">"Saya suka karena semua grade sudah termasuk dalam satu langganan. Waktu anak-anak saya naik kelas, tidak perlu ganti paket lagi. Bagian grammar-nya juga dikerjakan dengan sangat baik."</p>
+        <div class="testi-author"><div class="testi-avatar">A</div><div><div class="testi-name">Anisa P.</div><div class="testi-role">Orang Tua Siswa Grade 1 & 4</div></div></div>
       </div>
     </div>
   </div>
@@ -1141,27 +1158,27 @@ footer {
     <div class="faq-list reveal">
       <div class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)">Grade berapa saja yang tersedia di LittleLume?<em class="chevron">▾</em></button>
-        <div class="faq-a">LittleLume covers Grade 1 through Grade 6 of elementary school. One subscription gives your child access to all grade levels — no upgrades needed as they advance.</div>
+        <div class="faq-a">LittleLume mencakup Grade 1 sampai Grade 6 sekolah dasar. Satu langganan memberi akses ke semua level grade untuk anak Anda — tidak perlu upgrade seiring mereka naik kelas.</div>
       </div>
       <div class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)">Apakah ada uji coba gratis?<em class="chevron">▾</em></button>
-        <div class="faq-a">We offer a preview of selected materials on our homepage so you can see the quality before subscribing. Full access requires an active subscription.</div>
+        <div class="faq-a">Kami menyediakan pratinjau materi pilihan di homepage supaya Anda bisa melihat kualitasnya sebelum berlangganan. Akses penuh membutuhkan langganan aktif.</div>
       </div>
       <div class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)">Apakah saya bisa berhenti berlangganan kapan saja?<em class="chevron">▾</em></button>
-        <div class="faq-a">Yes. There are no contracts or commitments. You can cancel your subscription at any time from your dashboard. Access continues until the end of your billing period.</div>
+        <div class="faq-a">Ya. Tidak ada kontrak atau komitmen jangka panjang. Anda bisa membatalkan langganan kapan saja dari dashboard. Akses tetap berlaku sampai akhir periode tagihan.</div>
       </div>
       <div class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)">Metode pembayaran apa saja yang diterima?<em class="chevron">▾</em></button>
-        <div class="faq-a">We accept QRIS, bank transfer (BCA, Mandiri, BNI, BRI), GoPay, OVO, Dana, and credit/debit cards — all processed securely through Midtrans.</div>
+        <div class="faq-a">Kami menerima QRIS, transfer bank (BCA, Mandiri, BNI, BRI), GoPay, OVO, Dana, dan kartu kredit/debit — semua diproses secara aman melalui Midtrans.</div>
       </div>
       <div class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)">Apakah anak saya perlu guru untuk menggunakan LittleLume?<em class="chevron">▾</em></button>
-        <div class="faq-a">No. LittleLume is fully self-paced. All lessons, audio, and exercises are designed so children can learn independently at their own pace, with no live teacher required.</div>
+        <div class="faq-a">Tidak. LittleLume sepenuhnya belajar mandiri. Semua pelajaran, audio, dan latihan dirancang supaya anak bisa belajar sendiri sesuai ritmenya, tanpa perlu guru langsung.</div>
       </div>
       <div class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)">Apakah kontennya sesuai dengan kurikulum sekolah?<em class="chevron">▾</em></button>
-        <div class="faq-a">Yes. Our materials are structured to complement and reinforce the English curriculum for Indonesian elementary students, covering the four core skills plus grammar.</div>
+        <div class="faq-a">Ya. Materi kami disusun untuk melengkapi dan memperkuat kurikulum Bahasa Inggris siswa SD di Indonesia, mencakup empat skill inti plus grammar.</div>
       </div>
     </div>
   </div>
@@ -1263,13 +1280,13 @@ function renderLoggedIn(user, isActive) {
       </div>
       <div class="user-dropdown">
         <div class="dropdown-header">
-          <div class="d-name">${user.displayName || 'User'}</div>
+          <div class="d-name">${user.displayName || 'Pengguna'}</div>
           <div class="d-email">${user.email}</div>
         </div>
         <div class="dropdown-item" onclick="goToDashboard()">
           📊 Dasbor Saya
           <span class="sub-badge ${isActive ? '' : 'inactive'}">
-            ${isActive ? '✓ Active' : '✗ Inactive'}
+            ${isActive ? '✓ Aktif' : '✗ Nonaktif'}
           </span>
         </div>
         ${!isActive ? `
@@ -1307,7 +1324,7 @@ async function signInWithGoogle() {
     // onAuthStateChanged akan handle sisanya
   } catch (err) {
     if (err.code !== 'auth/popup-closed-by-user') {
-      showToast('Sign in failed. Please try again.', 'error');
+      showToast('Gagal masuk. Silakan coba lagi.', 'error');
     }
   }
 }
@@ -1317,7 +1334,7 @@ window.signInWithGoogle = signInWithGoogle;
 async function handleSignOut() {
   closeDropdown();
   await signOut(auth);
-  showToast('You have been signed out.');
+  showToast('Kamu telah keluar.');
 }
 window.handleSignOut = handleSignOut;
 
@@ -1436,7 +1453,7 @@ window.addEventListener('scroll', ()=>{
       </svg>
       Masuk dengan Google
     </button>
-    <p class="modal-note">By signing in, you agree to our Terms & Conditions and Privacy Policy.</p>
+    <p class="modal-note">Dengan masuk, Anda menyetujui Syarat & Ketentuan dan Kebijakan Privasi kami.</p>
   </div>
 </div>
 
