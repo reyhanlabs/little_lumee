@@ -24,11 +24,16 @@
       'background:rgba(255,255,255,0.12);color:#fff;cursor:pointer;' +
       'font-size:1.2rem;flex-shrink:0;margin-right:10px;';
 
-    // Insert right before the auth area (Get Started button / user chip),
-    // so order reads: logo -> hamburger -> auth button.
+    // Insert as the FIRST child inside the auth area itself (not as a
+    // separate sibling in the outer nav flex row) so it sits immediately
+    // to the left of "Get Started" instead of being spaced out on its
+    // own by nav's justify-content:space-between.
     var authArea = document.getElementById('navAuth');
-    if (authArea && authArea.parentElement === nav) {
-      nav.insertBefore(toggle, authArea);
+    if (authArea) {
+      authArea.insertBefore(toggle, authArea.firstChild);
+      authArea.style.display = 'flex';
+      authArea.style.alignItems = 'center';
+      authArea.style.gap = '10px';
     } else {
       nav.appendChild(toggle);
     }
