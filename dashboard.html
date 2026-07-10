@@ -311,6 +311,7 @@ body {
   position:relative; overflow:hidden;
 }
 .grade-card:hover { transform:translateY(-4px); box-shadow:var(--shadow-md); }
+.grade-card:focus-visible { outline:3px solid var(--purple); outline-offset:2px; }
 .grade-card.locked { opacity:0.65; cursor:default; }
 .grade-card.locked:hover { transform:none; box-shadow:var(--shadow-sm); }
 
@@ -576,12 +577,12 @@ body {
     </div>
     <div class="grade-grid">
 
-      <div class="grade-card" id="gc1" onclick="showToast('Konten Grade 1 segera hadir!')">
+      <div class="grade-card" id="gc1" role="button" tabindex="0" aria-label="Grade 1 — konten segera hadir" onclick="showToast('Konten Grade 1 segera hadir!')">
         <div class="gc-watermark">🌟</div>
         <div class="gc-color-bar" style="background:linear-gradient(90deg,var(--g1),#FF9A8B)"></div>
         <div class="gc-top">
           <span class="gc-badge" style="background:var(--g1bg);color:var(--g1)">Grade 1</span>
-          <span class="gc-lock" id="lock1">🔒</span>
+          <span class="gc-lock" id="lock1" aria-label="Terkunci">🔒</span>
         </div>
         <div class="gc-title">Beginner Explorer</div>
         <div class="gc-sub">Dasar bahasa Inggris — huruf, kata & percakapan sederhana</div>
@@ -589,12 +590,12 @@ body {
         <div class="progress-label"><span id="prog1pct">0% selesai</span><span>0 / 8 chapter</span></div>
       </div>
 
-      <div class="grade-card" id="gc2" onclick="showToast('Konten Grade 2 segera hadir!')">
+      <div class="grade-card" id="gc2" role="button" tabindex="0" aria-label="Grade 2 — konten segera hadir" onclick="showToast('Konten Grade 2 segera hadir!')">
         <div class="gc-watermark">🚀</div>
         <div class="gc-color-bar" style="background:linear-gradient(90deg,var(--g2),#FFD93D)"></div>
         <div class="gc-top">
           <span class="gc-badge" style="background:var(--g2bg);color:var(--g2)">Grade 2</span>
-          <span class="gc-lock" id="lock2">🔒</span>
+          <span class="gc-lock" id="lock2" aria-label="Terkunci">🔒</span>
         </div>
         <div class="gc-title">Word Builder</div>
         <div class="gc-sub">Perbendaharaan kata, kalimat sederhana & kemampuan menyimak</div>
@@ -602,12 +603,12 @@ body {
         <div class="progress-label"><span id="prog2pct">0% selesai</span><span>0 / 8 chapter</span></div>
       </div>
 
-      <div class="grade-card" id="gc3" onclick="showToast('Konten Grade 3 segera hadir!')">
+      <div class="grade-card" id="gc3" role="button" tabindex="0" aria-label="Grade 3 — konten segera hadir" onclick="showToast('Konten Grade 3 segera hadir!')">
         <div class="gc-watermark">📚</div>
         <div class="gc-color-bar" style="background:linear-gradient(90deg,var(--g3),#FF9A3C)"></div>
         <div class="gc-top">
           <span class="gc-badge" style="background:var(--g3bg);color:var(--g3)">Grade 3</span>
-          <span class="gc-lock" id="lock3">🔒</span>
+          <span class="gc-lock" id="lock3" aria-label="Terkunci">🔒</span>
         </div>
         <div class="gc-title">Story Reader</div>
         <div class="gc-sub">Membaca teks, dasar grammar & latihan berbicara</div>
@@ -615,12 +616,12 @@ body {
         <div class="progress-label"><span id="prog3pct">0% selesai</span><span>0 / 8 chapter</span></div>
       </div>
 
-      <div class="grade-card" id="gc4" onclick="showToast('Konten Grade 4 segera hadir!')">
+      <div class="grade-card" id="gc4" role="button" tabindex="0" aria-label="Grade 4 — konten segera hadir" onclick="showToast('Konten Grade 4 segera hadir!')">
         <div class="gc-watermark">✏️</div>
         <div class="gc-color-bar" style="background:linear-gradient(90deg,var(--g4),#00C9A7)"></div>
         <div class="gc-top">
           <span class="gc-badge" style="background:var(--g4bg);color:var(--g4)">Grade 4</span>
-          <span class="gc-lock" id="lock4">🔒</span>
+          <span class="gc-lock" id="lock4" aria-label="Terkunci">🔒</span>
         </div>
         <div class="gc-title">Language Crafter</div>
         <div class="gc-sub">Grammar menengah, menulis & bercerita dalam bahasa Inggris</div>
@@ -628,12 +629,12 @@ body {
         <div class="progress-label"><span id="prog4pct">0% selesai</span><span>0 / 8 chapter</span></div>
       </div>
 
-      <div class="grade-card" id="gc5" onclick="showToast('Konten Grade 5 segera hadir!')">
+      <div class="grade-card" id="gc5" role="button" tabindex="0" aria-label="Grade 5 — konten segera hadir" onclick="showToast('Konten Grade 5 segera hadir!')">
         <div class="gc-watermark">💬</div>
         <div class="gc-color-bar" style="background:linear-gradient(90deg,var(--g5),#6C63FF)"></div>
         <div class="gc-top">
           <span class="gc-badge" style="background:var(--g5bg);color:var(--g5)">Grade 5</span>
-          <span class="gc-lock" id="lock5">🔒</span>
+          <span class="gc-lock" id="lock5" aria-label="Terkunci">🔒</span>
         </div>
         <div class="gc-title">Advanced Communicator</div>
         <div class="gc-sub">Membaca kritis, menulis esai & berbicara percaya diri</div>
@@ -641,12 +642,12 @@ body {
         <div class="progress-label"><span id="prog5pct">0% selesai</span><span>0 / 8 chapter</span></div>
       </div>
 
-      <div class="grade-card" id="gc6" onclick="showToast('Konten Grade 6 segera hadir!')">
+      <div class="grade-card" id="gc6" role="button" tabindex="0" aria-label="Grade 6 — konten segera hadir" onclick="showToast('Konten Grade 6 segera hadir!')">
         <div class="gc-watermark">🏆</div>
         <div class="gc-color-bar" style="background:linear-gradient(90deg,var(--g6),#FF6B9D)"></div>
         <div class="gc-top">
           <span class="gc-badge" style="background:var(--g6bg);color:var(--g6)">Grade 6</span>
-          <span class="gc-lock" id="lock6">🔒</span>
+          <span class="gc-lock" id="lock6" aria-label="Terkunci">🔒</span>
         </div>
         <div class="gc-title">English Master</div>
         <div class="gc-sub">Menulis akademik, membaca kritis & persiapan ujian</div>
@@ -764,7 +765,11 @@ function renderSubStatus(sub) {
     const exp = sub.expiredAt.toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'});
     label.textContent = `Aktif · berakhir ${exp}`;
     banner.style.display = 'none';
-    for(let i=1;i<=6;i++) document.getElementById(`lock${i}`).textContent = '✅';
+    for(let i=1;i<=6;i++) {
+      const lockEl = document.getElementById(`lock${i}`);
+      lockEl.textContent = '✅';
+      lockEl.setAttribute('aria-label', 'Terbuka');
+    }
     document.getElementById('greetingSub').textContent = 'Kamu punya akses penuh ke semua grade. Semangat terus belajarnya!';
     unlockGradeCards();
   } else {
@@ -794,6 +799,15 @@ function unlockGradeCards() {
     card.classList.remove('locked');
   }
 }
+
+/* UX-002: grade-card pakai role="button", ini bikin Enter/Space ikut trigger klik */
+document.addEventListener('keydown', (e) => {
+  if (e.key !== 'Enter' && e.key !== ' ') return;
+  const el = e.target.closest('[role="button"]');
+  if (!el) return;
+  e.preventDefault();
+  el.click();
+});
 
 onAuthStateChanged(auth, async (user) => {
   if (!user) {

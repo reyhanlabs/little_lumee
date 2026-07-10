@@ -726,6 +726,7 @@ footer {
   background:var(--card); border:1px solid var(--border); box-shadow:var(--shadow-sm);
   border-radius:50px; padding:6px 16px 6px 6px;
   cursor:pointer; transition:border-color 0.2s;
+  font-family:'Inter',sans-serif; text-align:left;
 }
 .user-avatar-btn:hover { border-color:rgba(108,99,255,0.5); }
 .user-avatar {
@@ -756,7 +757,7 @@ footer {
   font-size:0.85rem; color:var(--text);
   cursor:pointer; transition:background 0.15s;
   text-decoration:none; width:100%; background:none; border:none;
-  font-family:'Inter',sans-serif;
+  font-family:'Inter',sans-serif; text-align:left;
 }
 .dropdown-item:hover { background:rgba(108,99,255,0.1); }
 .dropdown-item.danger { color:#ff6b6b; }
@@ -932,40 +933,40 @@ footer {
       <button class="grade-tab" onclick="showGrade('g6',this)">Grade 6</button>
     </div>
     <div id="g1" class="grade-content active">
-      <div class="skill-card"><div class="skill-icon listening">🎧</div><div><h4>Listening</h4><p>Aktivitas Harian, Hobi, Keluarga & lainnya</p></div><span class="lock-badge">🔒</span></div>
-      <div class="skill-card"><div class="skill-icon reading">📖</div><div><h4>Reading</h4><p>Teks sederhana dengan pemahaman terbimbing</p></div><span class="lock-badge">🔒</span></div>
-      <div class="skill-card"><div class="skill-icon speaking">🗣️</div><div><h4>Speaking</h4><p>Percakapan dasar & pelafalan</p></div><span class="lock-badge">🔒</span></div>
-      <div class="skill-card"><div class="skill-icon writing">✍️</div><div><h4>Writing</h4><p>Huruf, kata, dan kalimat sederhana</p></div><span class="lock-badge">🔒</span></div>
+      <div class="skill-card"><div class="skill-icon listening">🎧</div><div><h4>Listening</h4><p>Aktivitas Harian, Hobi, Keluarga & lainnya</p></div><span class="lock-badge" aria-label="Terkunci">🔒</span></div>
+      <div class="skill-card"><div class="skill-icon reading">📖</div><div><h4>Reading</h4><p>Teks sederhana dengan pemahaman terbimbing</p></div><span class="lock-badge" aria-label="Terkunci">🔒</span></div>
+      <div class="skill-card"><div class="skill-icon speaking">🗣️</div><div><h4>Speaking</h4><p>Percakapan dasar & pelafalan</p></div><span class="lock-badge" aria-label="Terkunci">🔒</span></div>
+      <div class="skill-card"><div class="skill-icon writing">✍️</div><div><h4>Writing</h4><p>Huruf, kata, dan kalimat sederhana</p></div><span class="lock-badge" aria-label="Terkunci">🔒</span></div>
     </div>
     <div id="g2" class="grade-content">
-      <div class="skill-card"><div class="skill-icon listening">🎧</div><div><h4>Listening</h4><p>Suara Hewan, Warna, Angka & lainnya</p></div><span class="lock-badge">🔒</span></div>
-      <div class="skill-card"><div class="skill-icon reading">📖</div><div><h4>Reading</h4><p>Teks pendek dan game membaca</p></div><span class="lock-badge">🔒</span></div>
-      <div class="skill-card"><div class="skill-icon speaking">🗣️</div><div><h4>Speaking</h4><p>Salam, respons & ekspresi sehari-hari</p></div><span class="lock-badge">🔒</span></div>
-      <div class="skill-card"><div class="skill-icon writing">✍️</div><div><h4>Writing</h4><p>Menyusun kalimat & paragraf pendek</p></div><span class="lock-badge">🔒</span></div>
+      <div class="skill-card"><div class="skill-icon listening">🎧</div><div><h4>Listening</h4><p>Suara Hewan, Warna, Angka & lainnya</p></div><span class="lock-badge" aria-label="Terkunci">🔒</span></div>
+      <div class="skill-card"><div class="skill-icon reading">📖</div><div><h4>Reading</h4><p>Teks pendek dan game membaca</p></div><span class="lock-badge" aria-label="Terkunci">🔒</span></div>
+      <div class="skill-card"><div class="skill-icon speaking">🗣️</div><div><h4>Speaking</h4><p>Salam, respons & ekspresi sehari-hari</p></div><span class="lock-badge" aria-label="Terkunci">🔒</span></div>
+      <div class="skill-card"><div class="skill-icon writing">✍️</div><div><h4>Writing</h4><p>Menyusun kalimat & paragraf pendek</p></div><span class="lock-badge" aria-label="Terkunci">🔒</span></div>
     </div>
     <div id="g3" class="grade-content">
-      <div class="skill-card"><div class="skill-icon listening">🎧</div><div><h4>Listening</h4><p>Cuaca, Belanja, Kehidupan Sekolah & lainnya</p></div><span class="lock-badge">🔒</span></div>
-      <div class="skill-card"><div class="skill-icon reading">📖</div><div><h4>Reading</h4><p>Teks deskriptif dan naratif</p></div><span class="lock-badge">🔒</span></div>
-      <div class="skill-card"><div class="skill-icon speaking">🗣️</div><div><h4>Speaking</h4><p>Mendeskripsikan orang, tempat & kejadian</p></div><span class="lock-badge">🔒</span></div>
-      <div class="skill-card"><div class="skill-icon writing">✍️</div><div><h4>Writing</h4><p>Menulis paragraf dengan kalimat topik</p></div><span class="lock-badge">🔒</span></div>
+      <div class="skill-card"><div class="skill-icon listening">🎧</div><div><h4>Listening</h4><p>Cuaca, Belanja, Kehidupan Sekolah & lainnya</p></div><span class="lock-badge" aria-label="Terkunci">🔒</span></div>
+      <div class="skill-card"><div class="skill-icon reading">📖</div><div><h4>Reading</h4><p>Teks deskriptif dan naratif</p></div><span class="lock-badge" aria-label="Terkunci">🔒</span></div>
+      <div class="skill-card"><div class="skill-icon speaking">🗣️</div><div><h4>Speaking</h4><p>Mendeskripsikan orang, tempat & kejadian</p></div><span class="lock-badge" aria-label="Terkunci">🔒</span></div>
+      <div class="skill-card"><div class="skill-icon writing">✍️</div><div><h4>Writing</h4><p>Menulis paragraf dengan kalimat topik</p></div><span class="lock-badge" aria-label="Terkunci">🔒</span></div>
     </div>
     <div id="g4" class="grade-content">
-      <div class="skill-card"><div class="skill-icon listening">🎧</div><div><h4>Listening</h4><p>Hobi, Keluargaku, Aktivitas Harian</p></div><span class="lock-badge">🔒</span></div>
-      <div class="skill-card"><div class="skill-icon reading">📖</div><div><h4>Reading</h4><p>Teks lebih panjang dengan pertanyaan inferensi</p></div><span class="lock-badge">🔒</span></div>
-      <div class="skill-card"><div class="skill-icon speaking">🗣️</div><div><h4>Speaking</h4><p>Storytelling dan skenario role-play</p></div><span class="lock-badge">🔒</span></div>
-      <div class="skill-card"><div class="skill-icon writing">✍️</div><div><h4>Writing</h4><p>Menulis opini dan esai terstruktur</p></div><span class="lock-badge">🔒</span></div>
+      <div class="skill-card"><div class="skill-icon listening">🎧</div><div><h4>Listening</h4><p>Hobi, Keluargaku, Aktivitas Harian</p></div><span class="lock-badge" aria-label="Terkunci">🔒</span></div>
+      <div class="skill-card"><div class="skill-icon reading">📖</div><div><h4>Reading</h4><p>Teks lebih panjang dengan pertanyaan inferensi</p></div><span class="lock-badge" aria-label="Terkunci">🔒</span></div>
+      <div class="skill-card"><div class="skill-icon speaking">🗣️</div><div><h4>Speaking</h4><p>Storytelling dan skenario role-play</p></div><span class="lock-badge" aria-label="Terkunci">🔒</span></div>
+      <div class="skill-card"><div class="skill-icon writing">✍️</div><div><h4>Writing</h4><p>Menulis opini dan esai terstruktur</p></div><span class="lock-badge" aria-label="Terkunci">🔒</span></div>
     </div>
     <div id="g5" class="grade-content">
-      <div class="skill-card"><div class="skill-icon listening">🎧</div><div><h4>Listening</h4><p>Dialog dan narasi yang lebih kompleks</p></div><span class="lock-badge">🔒</span></div>
-      <div class="skill-card"><div class="skill-icon reading">📖</div><div><h4>Reading</h4><p>Teks pemahaman multi-paragraf</p></div><span class="lock-badge">🔒</span></div>
-      <div class="skill-card"><div class="skill-icon speaking">🗣️</div><div><h4>Speaking</h4><p>Diskusi, debat & presentasi</p></div><span class="lock-badge">🔒</span></div>
-      <div class="skill-card"><div class="skill-icon writing">✍️</div><div><h4>Writing</h4><p>Menulis laporan & komposisi kreatif</p></div><span class="lock-badge">🔒</span></div>
+      <div class="skill-card"><div class="skill-icon listening">🎧</div><div><h4>Listening</h4><p>Dialog dan narasi yang lebih kompleks</p></div><span class="lock-badge" aria-label="Terkunci">🔒</span></div>
+      <div class="skill-card"><div class="skill-icon reading">📖</div><div><h4>Reading</h4><p>Teks pemahaman multi-paragraf</p></div><span class="lock-badge" aria-label="Terkunci">🔒</span></div>
+      <div class="skill-card"><div class="skill-icon speaking">🗣️</div><div><h4>Speaking</h4><p>Diskusi, debat & presentasi</p></div><span class="lock-badge" aria-label="Terkunci">🔒</span></div>
+      <div class="skill-card"><div class="skill-icon writing">✍️</div><div><h4>Writing</h4><p>Menulis laporan & komposisi kreatif</p></div><span class="lock-badge" aria-label="Terkunci">🔒</span></div>
     </div>
     <div id="g6" class="grade-content">
-      <div class="skill-card"><div class="skill-icon listening">🎧</div><div><h4>Listening</h4><p>Topik lanjutan dan persiapan ujian</p></div><span class="lock-badge">🔒</span></div>
-      <div class="skill-card"><div class="skill-icon reading">📖</div><div><h4>Reading</h4><p>Membaca kritis dan analisis</p></div><span class="lock-badge">🔒</span></div>
-      <div class="skill-card"><div class="skill-icon speaking">🗣️</div><div><h4>Speaking</h4><p>Presentasi formal & argumentasi</p></div><span class="lock-badge">🔒</span></div>
-      <div class="skill-card"><div class="skill-icon writing">✍️</div><div><h4>Writing</h4><p>Penulisan akademik & esai siap ujian</p></div><span class="lock-badge">🔒</span></div>
+      <div class="skill-card"><div class="skill-icon listening">🎧</div><div><h4>Listening</h4><p>Topik lanjutan dan persiapan ujian</p></div><span class="lock-badge" aria-label="Terkunci">🔒</span></div>
+      <div class="skill-card"><div class="skill-icon reading">📖</div><div><h4>Reading</h4><p>Membaca kritis dan analisis</p></div><span class="lock-badge" aria-label="Terkunci">🔒</span></div>
+      <div class="skill-card"><div class="skill-icon speaking">🗣️</div><div><h4>Speaking</h4><p>Presentasi formal & argumentasi</p></div><span class="lock-badge" aria-label="Terkunci">🔒</span></div>
+      <div class="skill-card"><div class="skill-icon writing">✍️</div><div><h4>Writing</h4><p>Penulisan akademik & esai siap ujian</p></div><span class="lock-badge" aria-label="Terkunci">🔒</span></div>
     </div>
   </div>
 </section>
@@ -1270,42 +1271,46 @@ function renderLoggedIn(user, isActive) {
 
   document.getElementById('navAuth').innerHTML = `
     <div class="user-menu" id="userMenu">
-      <div class="user-avatar-btn" onclick="toggleDropdown()">
+      <button class="user-avatar-btn" onclick="toggleDropdown()" aria-haspopup="true" aria-expanded="false" aria-label="Menu akun">
         <div class="user-avatar">
           ${user.photoURL
             ? `<img src="${user.photoURL}" alt="${firstName}">`
             : initials}
         </div>
         <span class="user-name">${firstName}</span>
-      </div>
+      </button>
       <div class="user-dropdown">
         <div class="dropdown-header">
           <div class="d-name">${user.displayName || 'Pengguna'}</div>
           <div class="d-email">${user.email}</div>
         </div>
-        <div class="dropdown-item" onclick="goToDashboard()">
+        <button class="dropdown-item" onclick="goToDashboard()">
           📊 Dasbor Saya
           <span class="sub-badge ${isActive ? '' : 'inactive'}">
             ${isActive ? '✓ Aktif' : '✗ Nonaktif'}
           </span>
-        </div>
+        </button>
         ${!isActive ? `
-        <div class="dropdown-item" onclick="closeDropdown(); document.getElementById('pricing').scrollIntoView({behavior:'smooth'})">
+        <button class="dropdown-item" onclick="closeDropdown(); document.getElementById('pricing').scrollIntoView({behavior:'smooth'})">
           🚀 Berlangganan Sekarang
-        </div>` : ''}
-        <div class="dropdown-item danger" onclick="handleSignOut()">
+        </button>` : ''}
+        <button class="dropdown-item danger" onclick="handleSignOut()">
           ↩ Keluar
-        </div>
+        </button>
       </div>
     </div>`;
 }
 
 /* ── DROPDOWN ── */
 function toggleDropdown() {
-  document.getElementById('userMenu')?.classList.toggle('open');
+  const menu = document.getElementById('userMenu');
+  const isOpen = menu?.classList.toggle('open');
+  menu?.querySelector('.user-avatar-btn')?.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
 }
 function closeDropdown() {
-  document.getElementById('userMenu')?.classList.remove('open');
+  const menu = document.getElementById('userMenu');
+  menu?.classList.remove('open');
+  menu?.querySelector('.user-avatar-btn')?.setAttribute('aria-expanded', 'false');
 }
 window.toggleDropdown = toggleDropdown;
 window.closeDropdown  = closeDropdown;
