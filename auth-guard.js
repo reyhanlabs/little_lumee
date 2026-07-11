@@ -19,7 +19,7 @@
  * To review chapters yourself without needing an active paid
  * subscription, open the browser console on this site and run:
  *
- *     localStorage.setItem('ll_dev_key', 'lumee-dev-d78ef738806f82763bb0da5c')
+ *     localStorage.setItem('ll_dev_key', 'lumee-dev-584d18db690c00c090aa1203643cbdc3')
  *
  * To turn it back off:
  *
@@ -54,7 +54,7 @@ const db   = getFirestore(app);
 
 // ---- Dev mode bypass (see comment block above) ----------------------
 const DEV_KEY_STORAGE = 'll_dev_key';
-const DEV_SECRET = 'lumee-dev-d78ef738806f82763bb0da5c';
+const DEV_SECRET = 'lumee-dev-584d18db690c00c090aa1203643cbdc3';
 function isDevMode() {
   return localStorage.getItem(DEV_KEY_STORAGE) === DEV_SECRET;
 }
