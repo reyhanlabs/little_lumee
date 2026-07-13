@@ -205,11 +205,23 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);displ
     <div class="chapter-header">
       <div class="ch-tag">✍️ Writing · Chapter 1</div>
       <h1>Hello, World!</h1>
-      <p>Belajar menulis kalimat perkenalan dengan ejaan dan tanda baca yang benar.</p>
+      <p><strong>🎯 Aku bisa</strong> menulis kalimat perkenalan sederhana dalam Bahasa Inggris!</p>
       <div class="ch-meta">
         <div class="ch-meta-item">⏱ ~25 menit</div>
         <div class="ch-meta-item">📝 8 soal + 2 writing task</div>
         <div class="ch-meta-item">✏️ 3 aturan menulis</div>
+      </div>
+    </div>
+
+    <!-- Section 0: Warm-up -->
+    <div class="section-card">
+      <div class="sec-header">
+        <div class="sec-icon orange">🔥</div>
+        <div><div class="sec-title">Yuk, Mulai!</div><div class="sec-subtitle">Ini pelajaran pertamamu — semangat ya!</div></div>
+      </div>
+      <div class="tip-box">
+        <span class="tip-icon">💡</span>
+        <p>Karena ini Chapter 1, belum ada tulisan sebelumnya untuk diulang. Siapkan pensil dan bukumu, yuk kita mulai menulis dalam Bahasa Inggris!</p>
       </div>
     </div>
 
@@ -357,12 +369,33 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);displ
       </div>
     </div>
 
+    <!-- Section: Self-Reflection -->
+    <div class="section-card">
+      <div class="sec-header">
+        <div class="sec-icon purple">🌟</div>
+        <div><div class="sec-title">Bagaimana Perasaanmu?</div><div class="sec-subtitle">Chapter 1 selesai! Lihat lagi progresmu</div></div>
+      </div>
+      <div style="display:flex;justify-content:center;gap:16px;margin:18px 0 8px;">
+        <button onclick="selectMoodW(this,'Hebat! Kamu jago menulis! 🎉')" style="font-size:2.4rem;background:none;border:3px solid transparent;border-radius:50%;width:70px;height:70px;cursor:pointer;">😃</button>
+        <button onclick="selectMoodW(this,'Bagus, tinggal latihan sedikit lagi.')" style="font-size:2.4rem;background:none;border:3px solid transparent;border-radius:50%;width:70px;height:70px;cursor:pointer;">🙂</button>
+        <button onclick="selectMoodW(this,'Tidak apa-apa, yuk kita coba lagi bareng-bareng.')" style="font-size:2.4rem;background:none;border:3px solid transparent;border-radius:50%;width:70px;height:70px;cursor:pointer;">😐</button>
+      </div>
+      <div id="moodLabelW" style="text-align:center;font-size:0.85rem;color:var(--muted);font-weight:600;min-height:1.2em;">Tap salah satu untuk cerita perasaanmu!</div>
+    </div>
+    <script>
+      function selectMoodW(el, msg) {
+        el.parentElement.querySelectorAll('button').forEach(b => b.style.borderColor = 'transparent');
+        el.style.borderColor = 'var(--purple)';
+        document.getElementById('moodLabelW').textContent = msg;
+      }
+    </script>
+
     <!-- Chapter Complete Card -->
     <div class="complete-card">
       <span class="complete-icon">🏆</span>
       <div class="complete-title">Chapter 1 Selesai!</div>
       <div class="complete-desc">Luar biasa! Kamu telah menyelesaikan semua skill di Chapter 1 — Hello, World!<br>Kamu sudah belajar menyimak, membaca, berbicara, dan menulis perkenalan dalam bahasa Inggris.</div>
-      <a href="#" class="btn-next-chapter">🚀 Lanjut ke Chapter 2: My Body →</a>
+      <a href="/grade1/chapter2/listening.html" class="btn-next-chapter">🚀 Lanjut ke Chapter 2: My Body →</a>
     </div>
   </div>
 </main>

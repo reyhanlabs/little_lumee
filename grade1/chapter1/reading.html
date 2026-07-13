@@ -198,11 +198,23 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);displ
     <div class="chapter-header">
       <div class="ch-tag">📖 Reading · Chapter 1</div>
       <h1>Hello, World!</h1>
-      <p>Belajar membaca teks perkenalan dan memahami pola kalimat dasar bahasa Inggris.</p>
+      <p><strong>🎯 Aku bisa</strong> membaca dan memahami teks perkenalan sederhana dalam Bahasa Inggris!</p>
       <div class="ch-meta">
         <div class="ch-meta-item">⏱ ~20 menit</div>
         <div class="ch-meta-item">📝 8 soal latihan</div>
         <div class="ch-meta-item">📄 2 teks bacaan</div>
+      </div>
+    </div>
+
+    <!-- Section 0: Warm-up -->
+    <div class="section-card">
+      <div class="sec-header">
+        <div class="sec-icon orange">🔥</div>
+        <div><div class="sec-title">Yuk, Mulai!</div><div class="sec-subtitle">Ini pelajaran pertamamu — semangat ya!</div></div>
+      </div>
+      <div class="tip-box">
+        <span class="tip-icon">💡</span>
+        <p>Karena ini Chapter 1, belum ada bacaan sebelumnya untuk diulang. Siapkan dirimu buat baca cerita pertama dalam Bahasa Inggris!</p>
       </div>
     </div>
 
@@ -335,6 +347,39 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);displ
         <div class="score-desc" id="scoreDesc"></div>
       </div>
     </div>
+
+    <!-- Section: Production -->
+    <div class="section-card">
+      <div class="sec-header">
+        <div class="sec-icon purple">🗣️</div>
+        <div><div class="sec-title">Sekarang Giliranmu!</div><div class="sec-subtitle">Ceritakan ulang dengan kata-katamu sendiri</div></div>
+      </div>
+      <div class="tip-box">
+        <span class="tip-icon">💡</span>
+        <p>Coba ceritakan ke orang tuamu: siapa nama Adi, dan apa hewan favoritnya? Pakai bahasamu sendiri, boleh campur Bahasa Indonesia dan Inggris!</p>
+      </div>
+    </div>
+
+    <!-- Section: Self-Reflection -->
+    <div class="section-card">
+      <div class="sec-header">
+        <div class="sec-icon green">🌟</div>
+        <div><div class="sec-title">Bagaimana Perasaanmu?</div><div class="sec-subtitle">Lihat lagi apa yang sudah kamu pelajari</div></div>
+      </div>
+      <div style="display:flex;justify-content:center;gap:16px;margin:18px 0 8px;">
+        <button onclick="selectMoodR(this,'Hebat! Kamu jago membaca! 🎉')" style="font-size:2.4rem;background:none;border:3px solid transparent;border-radius:50%;width:70px;height:70px;cursor:pointer;">😃</button>
+        <button onclick="selectMoodR(this,'Bagus, tinggal latihan sedikit lagi.')" style="font-size:2.4rem;background:none;border:3px solid transparent;border-radius:50%;width:70px;height:70px;cursor:pointer;">🙂</button>
+        <button onclick="selectMoodR(this,'Tidak apa-apa, yuk kita baca bareng-bareng lagi.')" style="font-size:2.4rem;background:none;border:3px solid transparent;border-radius:50%;width:70px;height:70px;cursor:pointer;">😐</button>
+      </div>
+      <div id="moodLabelR" style="text-align:center;font-size:0.85rem;color:var(--muted);font-weight:600;min-height:1.2em;">Tap salah satu untuk cerita perasaanmu!</div>
+    </div>
+    <script>
+      function selectMoodR(el, msg) {
+        el.parentElement.querySelectorAll('button').forEach(b => b.style.borderColor = 'transparent');
+        el.style.borderColor = 'var(--purple)';
+        document.getElementById('moodLabelR').textContent = msg;
+      }
+    </script>
 
     <div style="background:linear-gradient(135deg,rgba(255,154,60,0.1),rgba(108,99,255,0.06));border:1px solid rgba(255,154,60,0.2);border-radius:20px;padding:24px 28px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:32px">
       <div>

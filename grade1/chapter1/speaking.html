@@ -201,11 +201,23 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);displ
     <div class="chapter-header">
       <div class="ch-tag">🗣️ Speaking · Chapter 1</div>
       <h1>Hello, World!</h1>
-      <p>Latihan berbicara, pengucapan yang benar, dan memperkenalkan diri dengan percaya diri.</p>
+      <p><strong>🎯 Aku bisa</strong> menyapa dan memperkenalkan diri dengan percaya diri dalam Bahasa Inggris!</p>
       <div class="ch-meta">
         <div class="ch-meta-item">⏱ ~20 menit</div>
         <div class="ch-meta-item">🎤 3 role play</div>
         <div class="ch-meta-item">🔊 Pronunciation guide</div>
+      </div>
+    </div>
+
+    <!-- Section 0: Warm-up -->
+    <div class="section-card">
+      <div class="sec-header">
+        <div class="sec-icon orange">🔥</div>
+        <div><div class="sec-title">Yuk, Mulai!</div><div class="sec-subtitle">Ini pelajaran pertamamu — semangat ya!</div></div>
+      </div>
+      <div class="tip-box">
+        <span class="tip-icon">💡</span>
+        <p>Karena ini Chapter 1, belum ada latihan bicara sebelumnya. Coba hangatkan suaramu dulu: ucapkan "la-la-la" beberapa kali, lalu kita mulai!</p>
       </div>
     </div>
 
@@ -396,6 +408,27 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);displ
         <div class="score-desc" id="scoreDesc"></div>
       </div>
     </div>
+
+    <!-- Section: Self-Reflection -->
+    <div class="section-card">
+      <div class="sec-header">
+        <div class="sec-icon purple">🌟</div>
+        <div><div class="sec-title">Bagaimana Perasaanmu?</div><div class="sec-subtitle">Lihat lagi apa yang sudah kamu pelajari</div></div>
+      </div>
+      <div style="display:flex;justify-content:center;gap:16px;margin:18px 0 8px;">
+        <button onclick="selectMoodS(this,'Hebat! Kamu percaya diri sekali! 🎉')" style="font-size:2.4rem;background:none;border:3px solid transparent;border-radius:50%;width:70px;height:70px;cursor:pointer;">😃</button>
+        <button onclick="selectMoodS(this,'Bagus, tinggal latihan sedikit lagi.')" style="font-size:2.4rem;background:none;border:3px solid transparent;border-radius:50%;width:70px;height:70px;cursor:pointer;">🙂</button>
+        <button onclick="selectMoodS(this,'Tidak apa-apa, yuk kita coba lagi bareng-bareng.')" style="font-size:2.4rem;background:none;border:3px solid transparent;border-radius:50%;width:70px;height:70px;cursor:pointer;">😐</button>
+      </div>
+      <div id="moodLabelS" style="text-align:center;font-size:0.85rem;color:var(--muted);font-weight:600;min-height:1.2em;">Tap salah satu untuk cerita perasaanmu!</div>
+    </div>
+    <script>
+      function selectMoodS(el, msg) {
+        el.parentElement.querySelectorAll('button').forEach(b => b.style.borderColor = 'transparent');
+        el.style.borderColor = 'var(--purple)';
+        document.getElementById('moodLabelS').textContent = msg;
+      }
+    </script>
 
     <div style="background:linear-gradient(135deg,rgba(255,107,157,0.1),rgba(108,99,255,0.06));border:1px solid rgba(255,107,157,0.2);border-radius:20px;padding:24px 28px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:32px">
       <div>
