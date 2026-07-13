@@ -123,6 +123,37 @@
       }
     });
 
+    // Disable sidebar links to chapters that don't actually exist yet.
+    // (Grade 2's sidebar template currently lists all 8 chapter slots
+    // even though only the first 4 are built — clicking 5-8 there is
+    // a dead link right now.) Convert those specific items into a
+    // clearly-labelled "coming soon" state instead of a broken link.
+    var gradeMatch = window.location.pathname.match(/\/grade(\d+)\//);
+    if (gradeMatch) {
+      var gradeNum = parseInt(gradeMatch[1], 10);
+      var builtCount = BUILT_CHAPTERS[gradeNum];
+      if (builtCount) {
+        document.querySelectorAll('.chapter-item, .ch-item').forEach(function (link) {
+          var m2 = (link.getAttribute('href') || '').match(/\/chapter(\d+)\//);
+          if (!m2) return;
+          var chNum = parseInt(m2[1], 10);
+          if (chNum > builtCount) {
+            link.removeAttribute('href');
+            link.style.opacity = '0.4';
+            link.style.cursor = 'default';
+            link.style.pointerEvents = 'none';
+            if (!link.querySelector('.ll-soon-badge')) {
+              var badge = document.createElement('span');
+              badge.className = 'll-soon-badge';
+              badge.textContent = ' (segera)';
+              badge.style.cssText = 'font-size:0.7em;opacity:0.8;';
+              link.appendChild(badge);
+            }
+          }
+        });
+      }
+    }
+
     // Add a "next chapter" CTA at the end of the writing page (the last
     // skill in each chapter) — computed from the URL so it's always a
     // real link, regardless of what each file's own hardcoded markup does.
