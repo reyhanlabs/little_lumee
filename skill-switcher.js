@@ -95,23 +95,33 @@
     // variants since the markup for this differs across pages
     // (.skill-progress container, or bare .sp-item/.skill-prog-item rows
     // with no shared container at all).
-    var oldBar = document.querySelector('.skill-progress');
-    if (oldBar) {
-      oldBar.style.display = 'none';
-    } else {
-      // No shared container — hide individual items directly if present.
-      document.querySelectorAll('.sp-item, .skill-prog-item').forEach(function (item) {
-        var wrapper = item.parentElement;
-        // If the item's own parent holds exactly this kind of row (not
-        // some unrelated element), hide the parent; otherwise hide the
-        // item itself.
-        if (wrapper && wrapper.children.length <= 4) {
-          wrapper.style.display = 'none';
-        } else {
-          item.style.display = 'none';
-        }
-      });
-    }
+    // Hide the old decorative "skill progress" bar(s). Some pages have
+    // ONE shared container wrapping all 4 items; others (discovered
+    // later) have FOUR separate .skill-progress elements, one per skill,
+    // each paired with a sibling .progress-label text element outside
+    // of it — so this hides every matching container, every bare
+    // .sp-item/.skill-prog-item item, AND any .progress-label siblings,
+    // rather than assuming a single shared container.
+    document.querySelectorAll('.skill-progress').forEach(function (bar) {
+      bar.style.display = 'none';
+    });
+    document.querySelectorAll('.sp-item, .skill-prog-item').forEach(function (item) {
+      var wrapper = item.parentElement;
+      if (wrapper && wrapper.children.length <= 4 && wrapper.className !== 'skill-progress') {
+        wrapper.style.display = 'none';
+      } else {
+        item.style.display = 'none';
+      }
+    });
+    document.querySelectorAll('.progress-label').forEach(function (label) {
+      // Only hide it if it's sitting alongside a skill-progress/sp-item
+      // sibling (i.e. it's this decorative component, not some unrelated
+      // "progress label" used elsewhere on the page).
+      var container = label.parentElement;
+      if (container && container.querySelector('.skill-progress, .sp-item')) {
+        label.style.display = 'none';
+      }
+    });
 
     // Add a "next chapter" CTA at the end of the writing page (the last
     // skill in each chapter) — computed from the URL so it's always a
